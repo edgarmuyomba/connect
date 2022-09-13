@@ -16,6 +16,7 @@ Muyomba Matthew Edgar @edgarmuyomba
 Neema Maria Nakayiza @NeemaMaria
 Ddamulira Christina @Ddamuliratina
 Muwangizu Cyrus @muwanguzicyrus
+Nkiinzi Damalie @nkinzicynthia22
 
 ## License
 This project is open source and there is no use warranty
