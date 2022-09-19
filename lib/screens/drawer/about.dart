@@ -12,7 +12,7 @@ class About extends StatelessWidget {
         body: Center(
           child: Container(
             padding: EdgeInsets.all(20.0), 
-            child: Text('Developed by @Group18')
+            child: Text('Developed by Group18 developers Inc')
             ),
         ),
       );
