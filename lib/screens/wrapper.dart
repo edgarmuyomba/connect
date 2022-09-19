@@ -24,7 +24,7 @@ class Wrapper extends StatelessWidget {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return Center(child: CircularProgressIndicator());
               } else if (snapshot.hasError) {
-                return Center(child: Text('Something Went Wrong!'));
+                return Center(child: Text('Something Horribly Went Wrong!'));
               } else if (snapshot.hasData) {
                 return homePage();
               } else {
