@@ -17,7 +17,7 @@ class Inbox extends StatefulWidget {
 
 class _InboxState extends State<Inbox> {
   void callEmoji() {
-    print('Emoji Icon Pressed...');
+    print('Emoji Icon Pressed....');
   }
 
   void callAttachFile() {
