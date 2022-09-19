@@ -12,6 +12,7 @@ class Share extends StatelessWidget {
         body: Center(
           child: Column(
             children: [
+              SizedBox(height: 60),
               Row(
                 children: [
                   Icon(Icons.share),
