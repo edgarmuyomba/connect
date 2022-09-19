@@ -1,16 +1,25 @@
-# connect
+## Connect
 
-A new Flutter project.
+## Description
+This is an application to enable people market themseleves and their work on a simple easy to use platform. With this, they will be able to find market for themselves and also people or ordinary users looking for their specialties will be able to find them here. Users will be able to search for any profession they might be interested in and they will be provided with suggestion within a 5km radius (or larger) for the available service providers. Professionals will be able to grow their profile basing on a system of ratings and reviews as higher profile professionals will be given higher priority over lower priority ones in an attempt to provide users with quality options.
+Once a user finds a professional they are interested in, they will be able to contact them and discuss further the project theyr require them to take part of. Afterwards, a user can give the professional a rating basing on the work they have done and even provide a review for future customers to base on while contacting said professional.
 
-## Getting Started
+## Visuals
+Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
 
-This project is a starting point for a Flutter application.
+## Support
+Please contact any of the contributors of the project to seek assistance.
 
-A few resources to get you started if this is your first Flutter project:
+## Authors and acknowledgment
+Authors and Developers
+Muyomba Matthew Edgar @edgarmuyomba
+Neema Maria Nakayiza @NeemaMaria
+Ddamulira Christina @Ddamuliratina
+Muwangizu Cyrus @muwanguzicyrus
+Nkiinzi Damalie @nkinzicynthia22
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## License
+This project is open source and there is no use warranty
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Project status
+This project is currently under development.
