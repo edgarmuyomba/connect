@@ -20,7 +20,7 @@ class _ChatState extends State<Chat> {
     {
       'firstname': 'Ntale',
       'lastname': 'John',
-      'email': 'ntalejohn@gmail.com',
+      'email': 'ntalejohn25@gmail.com',
       'Profession': 'Tailor',
       'Contact': '+256 700 999 999',
       'Location': 'Wandegeya'

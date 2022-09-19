@@ -39,10 +39,13 @@ class _LoginWidgetState extends State<LoginWidget> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(height: 60),
-            FlutterLogo(size:150),
+            FlutterLogo(size: 150),
             SizedBox(height: 20),
             Text('Create an account with us today!',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28, color: Color.fromARGB(255, 0, 65, 118))),
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 28,
+                    color: Color.fromARGB(255, 0, 65, 118))),
             TextFormField(
               controller: emailController,
               cursorColor: Colors.white,
