@@ -8,13 +8,6 @@ import 'package:flutter/material.dart';
 class Wrapper extends StatelessWidget {
   const Wrapper({super.key});
 
-  Future<Professional> _getProUser(user) async {
-    var proUser = await FirebaseFirestore.instance
-        .collection("professional")
-        .where("uniqueId"== user!.uid) as Map<String, dynamic>;
-    return Professional(proUser['firstname'] +' '+ proUser['lastname'], proUser['email'], proUser['Profession'], proUser['Contact'], proUser['Location']);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
