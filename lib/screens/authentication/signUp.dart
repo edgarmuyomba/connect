@@ -37,7 +37,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
               SizedBox(height: 60),
               FlutterLogo(size: 150),
               SizedBox(height: 20),
-              Text('Welcome Back!',
+              Text('Create an account',
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 28,

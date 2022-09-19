@@ -41,7 +41,7 @@ class _LoginWidgetState extends State<LoginWidget> {
             SizedBox(height: 60),
             FlutterLogo(size: 150),
             SizedBox(height: 20),
-            Text('Create an account with us today!',
+            Text('Welcome Back!',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 28,
