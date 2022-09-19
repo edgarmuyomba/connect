@@ -1,4 +1,4 @@
-## Connect (Temporary Name)
+## Connect
 
 ## Description
 This is an application to enable people market themseleves and their work on a simple easy to use platform. With this, they will be able to find market for themselves and also people or ordinary users looking for their specialties will be able to find them here. Users will be able to search for any profession they might be interested in and they will be provided with suggestion within a 5km radius (or larger) for the available service providers. Professionals will be able to grow their profile basing on a system of ratings and reviews as higher profile professionals will be given higher priority over lower priority ones in an attempt to provide users with quality options.
