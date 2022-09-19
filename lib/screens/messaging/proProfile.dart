@@ -51,7 +51,7 @@ class _proProfileState extends State<proProfile> {
                   height: 20,
                 ),
                 ElevatedButton(
-                  child: const Text('Post'),
+                  child: const Text("Post"),
                   onPressed: () async {
                     final String text = _textController.text;
                     if (text != null) {
