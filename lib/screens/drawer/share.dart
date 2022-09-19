@@ -15,7 +15,7 @@ class Share extends StatelessWidget {
               Row(
                 children: [
                   Icon(Icons.share),
-                  Text('Name:'),
+                  Text('Share our application with your friends!'),
                 ],
               )
             ],
