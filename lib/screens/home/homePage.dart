@@ -122,7 +122,6 @@ class _homePage extends State<homePage> {
     for (var element in data) {
       FirebaseFirestore.instance.collection('professional').add(element);
     }
-    print('All data added');
   }
 
   @override
