@@ -59,8 +59,8 @@ class _proProfileState extends State<proProfile> {
                           .collection('reviews')
                           .add({
                         "contents": text,
-                        'uniqueId': user.uid,
-                        'sender': _user['firstname']
+                        "uniqueId": user.uid,
+                        "sender": _user['firstname']
                       });
 
                       _textController.text = '';
