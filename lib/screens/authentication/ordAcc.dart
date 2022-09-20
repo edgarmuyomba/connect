@@ -175,6 +175,7 @@ class _ordAccountState extends State<ordAccount> {
         'lastname': _lnameController.text.trim(),
         'email': _emailController.text.trim(),
         'Location': _locationController.text.trim(),
+        'accountType': 'Ordinary',
       });
     } on FirebaseAuthException catch (e) {
       print(e);

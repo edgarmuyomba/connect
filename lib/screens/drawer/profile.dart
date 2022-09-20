@@ -37,7 +37,6 @@ class Profile extends StatelessWidget {
                       .snapshots(),
                   builder: (context, snapshot) {
                     if (!snapshot.hasData) {
-                      // stream: FirebaseFirestore.instance.collection('professional').where('uniqueId', isEqualTo: user!.uid).snapshots();
                       return Center(
                         child: CircularProgressIndicator(),
                       );
@@ -58,13 +57,18 @@ class Profile extends StatelessWidget {
                               ),
                               Column(
                                 children: [
-                                  Text(data['firstname'].toString().toUpperCase(),
+                                  Text(
+                                      data['firstname']
+                                          .toString()
+                                          .toUpperCase(),
                                       style: TextStyle(
                                         fontSize: 18,
                                       )),
                                 ],
                               ),
-                              SizedBox(width: 20,),
+                              SizedBox(
+                                width: 20,
+                              ),
                               Column(
                                 children: [
                                   Text("Lastname: ",
@@ -75,14 +79,29 @@ class Profile extends StatelessWidget {
                               ),
                               Column(
                                 children: [
-                                  Text(data['lastname'].toString().toUpperCase(),
+                                  Text(
+                                      data['lastname'].toString().toUpperCase(),
                                       style: TextStyle(
                                         fontSize: 18,
                                       )),
                                 ],
                               ),
                             ],
-                          )
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                'Location: ',
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                data['Location'].toString().toUpperCase(),
+                                style: TextStyle(fontSize: 18),
+                              ),
+                              Icon(Icons.edit),
+                            ],
+                          ),
                         ],
                       );
                     }
