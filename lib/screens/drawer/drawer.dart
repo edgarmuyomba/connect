@@ -197,7 +197,7 @@ class _Drawer extends State<Drawer_> {
                               .contains(name.toLowerCase())) {
                         return Card(
                             child: ListTile(
-                          title: Text(data['firstname']+ data['lastname'],
+                          title: Text(data['firstname']+' '+ data['lastname'],
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(

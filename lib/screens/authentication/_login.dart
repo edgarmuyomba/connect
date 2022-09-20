@@ -5,20 +5,21 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:connect/main.dart';
 
-class LoginWidget extends StatefulWidget {
-  final VoidCallback onClickedSignUp;
-  
+class loginwidget extends StatefulWidget {
+  final VoidCallback isLogin;
+  final Function() isPro;
 
-  const LoginWidget({
+  const loginwidget({
     Key? key,
-    required this.onClickedSignUp,
+    required this.isLogin,
+    required this.isPro,
   }) : super(key: key);
 
   @override
-  State<LoginWidget> createState() => _LoginWidgetState();
+  State<loginwidget> createState() => _LoginWidgetState();
 }
 
-class _LoginWidgetState extends State<LoginWidget> {
+class _LoginWidgetState extends State<loginwidget> {
   final formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
@@ -85,15 +86,33 @@ class _LoginWidgetState extends State<LoginWidget> {
             SizedBox(
               height: 24,
             ),
+            Divider(
+              height: 10,
+            ),
             RichText(
               text: TextSpan(
                   style: TextStyle(color: Colors.black54, fontSize: 17),
-                  text: 'No account?',
+                  text: 'SignUp as a ',
+                  children: [
+                    TextSpan(
+                      recognizer: TapGestureRecognizer()..onTap = widget.isPro,
+                      text: 'Professional',
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.secondary,
+                      ),
+                    )
+                  ]),
+            ),
+            SizedBox(height: 20),
+            RichText(
+              text: TextSpan(
+                  style: TextStyle(color: Colors.black54, fontSize: 17),
+                  text: 'SignUp as a ',
                   children: [
                     TextSpan(
                       recognizer: TapGestureRecognizer()
-                        ..onTap = widget.onClickedSignUp,
-                      text: 'SignUp',
+                        ..onTap = widget.isLogin,
+                      text: 'User',
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.secondary,
                       ),
