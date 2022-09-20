@@ -1,9 +1,6 @@
-import 'package:connect/screens/authentication/_login.dart';
-import 'package:connect/screens/authentication/_signUp.dart';
 import 'package:connect/screens/authentication/login.dart';
 import 'package:connect/screens/authentication/ordAcc.dart';
 import 'package:connect/screens/authentication/proAcc.dart';
-import 'package:connect/screens/authentication/signUp.dart';
 import 'package:flutter/material.dart';
 
 class AuthPage extends StatefulWidget {
@@ -26,13 +23,8 @@ class _AuthPageState extends State<AuthPage> {
       return loginwidget(isLogin: toggle1, isPro: toggle2);
     }
   } 
-      // isLogin
-      // ? LoginWidget(onClickedSignUp: toggle1)
-      // // : SignUpWidget(onClickedsignIn: toggle);
-      // : signUp(onClickedsignIn: toggle1);
 
   void toggle1() => setState(() => isLogin = !isLogin);
   void toggle2() => setState(() => isPro = !isPro);
 }
-
 
