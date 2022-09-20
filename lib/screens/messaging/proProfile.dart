@@ -27,8 +27,8 @@ class _proProfileState extends State<proProfile> {
   Future<void> _addReview() async {
     final user = FirebaseAuth.instance.currentUser;
     final _user = FirebaseFirestore.instance
-        .collection('ordinary')
-        .where('uniqueId' == user!.uid) as Map<String, dynamic>;
+        .collection('users')
+        .where('uniqueId', isEqualTo: user!.uid) as Map<String, dynamic>;
     await showModalBottomSheet(
         isScrollControlled: false,
         context: context,

@@ -148,7 +148,7 @@ class _Drawer extends State<Drawer_> {
           ),
         ),
         body: StreamBuilder<QuerySnapshot>(
-          stream: FirebaseFirestore.instance.collection('professional').snapshots(),
+          stream: FirebaseFirestore.instance.collection('users').where('accountType', isEqualTo: 'Professional').snapshots(),
           builder: (context, snapshots) {
             return (snapshots.connectionState == ConnectionState.waiting)
                 ? Center(

@@ -120,7 +120,7 @@ class _homePage extends State<homePage> {
 
   addData() async {
     for (var element in data) {
-      FirebaseFirestore.instance.collection('professional').add(element);
+      FirebaseFirestore.instance.collection('users').add(element);
     }
   }
 

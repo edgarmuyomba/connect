@@ -32,7 +32,7 @@ class Profile extends StatelessWidget {
               ),
               StreamBuilder(
                   stream: FirebaseFirestore.instance
-                      .collection('ordinary')
+                      .collection('users')
                       .where('uniqueId', isEqualTo: user!.uid)
                       .snapshots(),
                   builder: (context, snapshot) {
