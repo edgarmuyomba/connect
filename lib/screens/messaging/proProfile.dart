@@ -60,7 +60,7 @@ class _proProfileState extends State<proProfile> {
                           .add({
                         "contents": text,
                         "uniqueId": user.uid,
-                        "sender": _user['firstname']
+                        "sender": _user['firstname'] + ' ' + _user['lastname']
                       });
 
                       _textController.text = '';
@@ -93,7 +93,7 @@ class _proProfileState extends State<proProfile> {
             Text(widget.professional.email),
             Text(widget.professional.Contact),
             ElevatedButton(
-                onPressed: () => pushInbox(widget.professional),
+                onPressed: () => {pushInbox(widget.professional), print('!!!!!!!!!!!!!!!!!!!!!!')},
                 child: Text('Chat')),
             Divider(
               height: 1,
@@ -129,6 +129,7 @@ class _proProfileState extends State<proProfile> {
               builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
                 if (streamSnapshot.hasData) {
                   return ListView.builder(
+                    shrinkWrap: true,
                     itemCount: streamSnapshot.data!.docs.length,
                     itemBuilder: (context, index) {
                       final DocumentSnapshot documentSnapshot =
