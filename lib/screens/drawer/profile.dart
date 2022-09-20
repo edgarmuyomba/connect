@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -28,19 +30,63 @@ class Profile extends StatelessWidget {
               SizedBox(
                 height: 8,
               ),
-              Row(
-                children: [
-                  Text(
-                    'Name: ',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    'Muyomba Matthew Edgar',
-                    style: TextStyle(fontSize: 18),
-                  ),
-                  Icon(Icons.edit),
-                ],
-              ),
+              StreamBuilder(
+                  stream: FirebaseFirestore.instance
+                      .collection('ordinary')
+                      .where('uniqueId', isEqualTo: user!.uid)
+                      .snapshots(),
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData) {
+                      // stream: FirebaseFirestore.instance.collection('professional').where('uniqueId', isEqualTo: user!.uid).snapshots();
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    } else {
+                      var data =
+                          snapshot.data!.docs[0].data() as Map<String, dynamic>;
+                      return Column(
+                        children: [
+                          Row(
+                            children: [
+                              Column(
+                                children: [
+                                  Text("Firstname: ",
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold))
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  Text(data['firstname'].toString().toUpperCase(),
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                      )),
+                                ],
+                              ),
+                              SizedBox(width: 20,),
+                              Column(
+                                children: [
+                                  Text("Lastname: ",
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold))
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  Text(data['lastname'].toString().toUpperCase(),
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                      )),
+                                ],
+                              ),
+                            ],
+                          )
+                        ],
+                      );
+                    }
+                  }),
               Row(
                 children: [
                   Text(
@@ -52,18 +98,6 @@ class Profile extends StatelessWidget {
                     style: TextStyle(fontSize: 18),
                   ),
                   Icon(Icons.edit),
-                ],
-              ),
-              Row(
-                children: [
-                  Text(
-                    'Account: ',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    'Ordinary',
-                    style: TextStyle(fontSize: 18),
-                  ),
                 ],
               ),
             ],

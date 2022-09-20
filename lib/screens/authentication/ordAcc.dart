@@ -170,7 +170,7 @@ class _ordAccountState extends State<ordAccount> {
           password: _passwordController.text.trim());
       var user = FirebaseAuth.instance.currentUser;
       await FirebaseFirestore.instance.collection('ordinary').add({
-        'uniqueId': user!.uid,
+        'uniqueId': user!.uid.toString(),
         'firstname': _fnameController.text.trim(),
         'lastname': _lnameController.text.trim(),
         'email': _emailController.text.trim(),
