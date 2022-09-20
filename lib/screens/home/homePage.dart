@@ -26,7 +26,8 @@ class _homePage extends State<homePage> {
       'email': 'ntalejohn@gmail.com',
       'Profession': 'Tailor',
       'Contact': '+256 700 934 876',
-      'Location': 'Wandegeya'
+      'Location': 'Wandegeya',
+      'accountType': 'Professional',
     },
     {
       'firstname': 'Matovu',
@@ -34,7 +35,8 @@ class _homePage extends State<homePage> {
       'email': 'matovueric@gmail.com',
       'Profession': 'Carpenter',
       'Contact': '+256 700 912 456',
-      'Location': 'Kikoni'
+      'Location': 'Kikoni',
+      'accountType': 'Professional',
     },
     {
       'firstname': 'Kasozi',
@@ -42,7 +44,8 @@ class _homePage extends State<homePage> {
       'email': 'kasozimark@gmail.com',
       'Profession': 'Plumber',
       'Contact': '+256 700 012 345',
-      'Location': 'Mukono'
+      'Location': 'Mukono',
+      'accountType': 'Professional',
     },
     {
       'firstname': 'Amanya',
@@ -50,7 +53,8 @@ class _homePage extends State<homePage> {
       'email': 'amanyaela@gmail.com',
       'Profession': 'Tailor',
       'Contact': '+256 700 900 567',
-      'Location': 'Kampala'
+      'Location': 'Kampala',
+      'accountType': 'Professional',
     },
     {
       'firstname': 'Nalwoga',
@@ -58,7 +62,8 @@ class _homePage extends State<homePage> {
       'email': 'nalwogasuzan@gmail.com',
       'Profession': 'Chef',
       'Contact': '+256 700 567 437',
-      'Location': 'Zzana'
+      'Location': 'Zzana',
+      'accountType': 'Professional',
     },
     {
       'firstname': 'Kukunda',
@@ -66,7 +71,8 @@ class _homePage extends State<homePage> {
       'email': 'kukundaangella@gmail.com',
       'Profession': 'Electrician',
       'Contact': '+256 700 909 321',
-      'Location': 'Seguku'
+      'Location': 'Seguku',
+      'accountType': 'Professional',
     },
     {
       'firstname': 'Kyosaba',
@@ -74,7 +80,8 @@ class _homePage extends State<homePage> {
       'email': 'kyosabajeane@gmail.com',
       'Profession': 'Tailor',
       'Contact': '+256 700 124 789',
-      'Location': 'Nakawa'
+      'Location': 'Nakawa',
+      'accountType': 'Professional',
     },
     {
       'firstname': 'Mubiru',
@@ -82,7 +89,8 @@ class _homePage extends State<homePage> {
       'email': 'mubirunicholas@gmail.com',
       'Profession': 'Plumber',
       'Contact': '+256 767 437 143',
-      'Location': 'Kyambogo'
+      'Location': 'Kyambogo',
+      'accountType': 'Professional',
     },
     {
       'firstname': 'Tumusiime',
@@ -90,7 +98,8 @@ class _homePage extends State<homePage> {
       'email': 'tumusiimewelch@gmail.com',
       'Profession': 'Carpenter',
       'Contact': '+256 700 999 454 901',
-      'Location': 'Luzira'
+      'Location': 'Luzira',
+      'accountType': 'Professional',
     },
     {
       'firstname': 'Nsiimbi',
@@ -98,7 +107,8 @@ class _homePage extends State<homePage> {
       'email': 'nsiimbidennis@gmail.com',
       'Profession': 'Electrician',
       'Contact': '+256 700 123 345',
-      'Location': 'Kikoni'
+      'Location': 'Kikoni',
+      'accountType': 'Professional',
     },
     {
       'firstname': 'Nankya',
@@ -106,7 +116,8 @@ class _homePage extends State<homePage> {
       'email': 'nankyatania@gmail.com',
       'Profession': 'Tailor',
       'Contact': '+256 777 775 332',
-      'Location': 'Wandegeya'
+      'Location': 'Wandegeya',
+      'accountType': 'Professional',
     },
     {
       'firstname': 'Jeanie',
@@ -114,7 +125,8 @@ class _homePage extends State<homePage> {
       'email': 'jeaniek@gmail.com',
       'Profession': 'Plumber',
       'Contact': '+256 701 567 324',
-      'Location': 'Nakawa'
+      'Location': 'Nakawa',
+      'accountType': 'Professional',
     }
   ];
 
