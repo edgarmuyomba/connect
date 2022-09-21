@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connect/utils.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -5,43 +6,79 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:connect/main.dart';
 
-class SignUpWidget extends StatefulWidget {
-  final Function() onClickedsignIn;
-  const SignUpWidget({super.key, required this.onClickedsignIn});
+class ordAccount extends StatefulWidget {
+  final Function() isLogin;
+  final Function() isPro;
+  const ordAccount({super.key, required this.isLogin, required this.isPro});
 
   @override
-  State<SignUpWidget> createState() => _SignUpWidgetState();
+  State<ordAccount> createState() => _ordAccountState();
 }
 
-class _SignUpWidgetState extends State<SignUpWidget> {
+class _ordAccountState extends State<ordAccount> {
   final formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _fnameController = TextEditingController();
+  final _lnameController = TextEditingController();
+  final _locationController = TextEditingController();
 
   @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
+    _fnameController.dispose();
+    _lnameController.dispose();
+    _locationController.dispose();
 
     super.dispose();
   }
 
   @override
-  Widget build(BuildContext context) => SingleChildScrollView(
-        padding: EdgeInsets.all(16),
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        // padding: EdgeInsets.all(16),
         child: Form(
           key: formKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(height: 60),
-              FlutterLogo(size: 150),
+              // SizedBox(height: 30),
+              FlutterLogo(size: 70),
               SizedBox(height: 20),
               Text('Create an account',
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 28,
                       color: Color.fromARGB(255, 0, 65, 118))),
+              Row(
+                children: [
+                  Expanded(
+                  child: TextFormField(
+                    controller: _fnameController,
+                    textInputAction: TextInputAction.done,
+                    decoration: InputDecoration(labelText: 'First Name'),
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (value) =>
+                        value != null ? null : 'This is a required field',
+                  ),
+                  ),
+                  Expanded(  
+                  child: TextFormField(
+                    controller: _lnameController,
+                    textInputAction: TextInputAction.done,
+                    decoration: InputDecoration(labelText: 'Last Name'),
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (value) =>
+                        value != null ? null : 'This is a required field',
+                  ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 4,
+              ),
               TextFormField(
                 controller: _emailController,
                 cursorColor: Colors.white,
@@ -49,12 +86,20 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                 decoration: InputDecoration(labelText: 'Email'),
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: (email) =>
-                    email != null && !EmailValidator.validate(email)
+                    email != null && !EmailValidator.validate(email.trim())
                         ? 'Enter a valid email'
                         : null,
               ),
               SizedBox(
                 height: 4,
+              ),
+              TextFormField(
+                controller: _locationController,
+                textInputAction: TextInputAction.done,
+                decoration: InputDecoration(labelText: 'Location'),
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: (value) =>
+                    value != null ? null : 'This is a required field',
               ),
               SizedBox(
                 height: 4,
@@ -94,7 +139,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                     children: [
                       TextSpan(
                         recognizer: TapGestureRecognizer()
-                          ..onTap = widget.onClickedsignIn,
+                          ..onTap = widget.isLogin,
                         text: 'SignIn',
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.secondary,
@@ -105,7 +150,9 @@ class _SignUpWidgetState extends State<SignUpWidget> {
             ],
           ),
         ),
-      );
+      ),
+    );
+  }
 
   Future signUp() async {
     final isValid = formKey.currentState!.validate();
@@ -121,6 +168,15 @@ class _SignUpWidgetState extends State<SignUpWidget> {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: _emailController.text.trim(),
           password: _passwordController.text.trim());
+      var user = FirebaseAuth.instance.currentUser;
+      await FirebaseFirestore.instance.collection('users').add({
+        'uniqueId': user!.uid.toString(),
+        'firstname': _fnameController.text.trim(),
+        'lastname': _lnameController.text.trim(),
+        'email': _emailController.text.trim(),
+        'Location': _locationController.text.trim(),
+        'accountType': 'Ordinary',
+      });
     } on FirebaseAuthException catch (e) {
       print(e);
       Utils.showSnackBar(e.message);

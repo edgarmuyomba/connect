@@ -27,8 +27,8 @@ class _proProfileState extends State<proProfile> {
   Future<void> _addReview() async {
     final user = FirebaseAuth.instance.currentUser;
     final _user = FirebaseFirestore.instance
-        .collection('ordinary')
-        .where('uniqueId' == user!.uid) as Map<String, dynamic>;
+        .collection('users')
+        .where('uniqueId', isEqualTo: user!.uid) as Map<String, dynamic>;
     await showModalBottomSheet(
         isScrollControlled: false,
         context: context,
@@ -60,7 +60,7 @@ class _proProfileState extends State<proProfile> {
                           .add({
                         "contents": text,
                         "uniqueId": user.uid,
-                        "sender": _user['firstname']
+                        "sender": _user['firstname'] + ' ' + _user['lastname']
                       });
 
                       _textController.text = '';
@@ -129,6 +129,7 @@ class _proProfileState extends State<proProfile> {
               builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
                 if (streamSnapshot.hasData) {
                   return ListView.builder(
+                    shrinkWrap: true,
                     itemCount: streamSnapshot.data!.docs.length,
                     itemBuilder: (context, index) {
                       final DocumentSnapshot documentSnapshot =

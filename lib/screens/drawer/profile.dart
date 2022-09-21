@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -28,19 +30,68 @@ class Profile extends StatelessWidget {
               SizedBox(
                 height: 8,
               ),
-              Row(
-                children: [
-                  Text(
-                    'Name: ',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    'Muyomba Matthew Edgar',
-                    style: TextStyle(fontSize: 18),
-                  ),
-                  Icon(Icons.edit),
-                ],
-              ),
+              StreamBuilder(
+                  stream: FirebaseFirestore.instance
+                      .collection('users')
+                      .where('uniqueId', isEqualTo: user!.uid)
+                      .snapshots(),
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData) {
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    } else {
+                      var data =
+                          snapshot.data!.docs[0].data() as Map<String, dynamic>;
+                      return Column(
+                        children: [
+                          Row(
+                            children: [
+                              Text("Firstname: ",
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold)),
+                              Text(data['firstname'].toString().toUpperCase(),
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                  )),
+                              Icon(Icons.edit),
+                            ],
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Row(
+                            children: [
+                              Text("Lastname: ",
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold)),
+                              Text(data['lastname'].toString().toUpperCase(),
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                  )),
+                              Icon(Icons.edit),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                'Location: ',
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                data['Location'].toString().toUpperCase(),
+                                style: TextStyle(fontSize: 18),
+                              ),
+                              Icon(Icons.edit),
+                            ],
+                          ),
+                        ],
+                      );
+                    }
+                  }),
               Row(
                 children: [
                   Text(
@@ -52,18 +103,6 @@ class Profile extends StatelessWidget {
                     style: TextStyle(fontSize: 18),
                   ),
                   Icon(Icons.edit),
-                ],
-              ),
-              Row(
-                children: [
-                  Text(
-                    'Account: ',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    'Ordinary',
-                    style: TextStyle(fontSize: 18),
-                  ),
                 ],
               ),
             ],
