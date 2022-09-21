@@ -47,45 +47,31 @@ class Profile extends StatelessWidget {
                         children: [
                           Row(
                             children: [
-                              Column(
-                                children: [
-                                  Text("Firstname: ",
-                                      style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold))
-                                ],
-                              ),
-                              Column(
-                                children: [
-                                  Text(
-                                      data['firstname']
-                                          .toString()
-                                          .toUpperCase(),
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                      )),
-                                ],
-                              ),
-                              SizedBox(
-                                width: 20,
-                              ),
-                              Column(
-                                children: [
-                                  Text("Lastname: ",
-                                      style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold))
-                                ],
-                              ),
-                              Column(
-                                children: [
-                                  Text(
-                                      data['lastname'].toString().toUpperCase(),
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                      )),
-                                ],
-                              ),
+                              Text("Firstname: ",
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold)),
+                              Text(data['firstname'].toString().toUpperCase(),
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                  )),
+                              Icon(Icons.edit),
+                            ],
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Row(
+                            children: [
+                              Text("Lastname: ",
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold)),
+                              Text(data['lastname'].toString().toUpperCase(),
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                  )),
+                              Icon(Icons.edit),
                             ],
                           ),
                           Row(
