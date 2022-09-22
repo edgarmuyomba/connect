@@ -105,7 +105,7 @@ class Profile extends StatelessWidget {
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    user!.email!,
+                    user.email!,
                     style: TextStyle(fontSize: 18),
                   ),
                   Icon(Icons.edit),

@@ -204,7 +204,8 @@ class _proAccountState extends State<proAccount> {
         'Contact': _contactController.text.trim(),
         'Profession': _professionController.text.trim(),
         'Location': _locationController.text.trim(),
-        'accountType': user!.uid.toString()+'Professional',
+        'accountType': 'Professional',
+        'identifier': user.uid.toString()+'Professional',
       });
     } on FirebaseAuthException catch (e) {
       print(e);

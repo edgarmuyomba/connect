@@ -142,7 +142,7 @@ class _homePage extends State<homePage> {
   @override
   void initState() {
     super.initState();
-    addData();
+    // addData();
   }
 
   @override
@@ -152,7 +152,7 @@ class _homePage extends State<homePage> {
         home: StreamBuilder(
             stream: FirebaseFirestore.instance
                 .collection('users')
-                .where('accountType',
+                .where('identifier',
                     isEqualTo: user!.uid.toString() + 'Professional')
                 .snapshots(),
             builder: (context, snapshot) {
@@ -160,35 +160,39 @@ class _homePage extends State<homePage> {
                 return Center(
                   child: CircularProgressIndicator(),
                 );
-              } else if (!snapshot.hasData) {
-                return Scaffold(
-                  body: Center(child: _pages.elementAt(_currentPage)),
-                  bottomNavigationBar: BottomNavigationBar(
-                    items: [
-                      BottomNavigationBarItem(
-                        icon: Icon(Icons.home),
-                        label: 'Home',
-                      ),
-                      BottomNavigationBarItem(
-                        icon: Icon(Icons.email),
-                        label: 'chats',
-                      ),
-                      BottomNavigationBarItem(
-                        icon: Icon(Icons.map),
-                        label: 'Map',
-                      ),
-                    ],
-                    currentIndex: _currentPage,
-                    fixedColor: Colors.blue,
-                    onTap: (int inIndex) {
-                      setState(() {
-                        _currentPage = inIndex;
-                      });
-                    },
-                  ),
-                );
               } else {
-                return proHome();
+                try {
+                  var data =
+                      snapshot.data!.docs[0].data() as Map<String, dynamic>;
+                  return proHome();
+                } on RangeError catch (e) {
+                  return Scaffold(
+                    body: Center(child: _pages.elementAt(_currentPage)),
+                    bottomNavigationBar: BottomNavigationBar(
+                      items: [
+                        BottomNavigationBarItem(
+                          icon: Icon(Icons.home),
+                          label: 'Home',
+                        ),
+                        BottomNavigationBarItem(
+                          icon: Icon(Icons.email),
+                          label: 'chats',
+                        ),
+                        BottomNavigationBarItem(
+                          icon: Icon(Icons.map),
+                          label: 'Map',
+                        ),
+                      ],
+                      currentIndex: _currentPage,
+                      fixedColor: Colors.blue,
+                      onTap: (int inIndex) {
+                        setState(() {
+                          _currentPage = inIndex;
+                        });
+                      },
+                    ),
+                  );
+                }
               }
             }));
   }
