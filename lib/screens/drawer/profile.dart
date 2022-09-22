@@ -74,6 +74,9 @@ class Profile extends StatelessWidget {
                               Icon(Icons.edit),
                             ],
                           ),
+                          SizedBox(
+                            width: 20,
+                          ),
                           Row(
                             children: [
                               Text(
@@ -92,6 +95,9 @@ class Profile extends StatelessWidget {
                       );
                     }
                   }),
+              SizedBox(
+                width: 20,
+              ),
               Row(
                 children: [
                   Text(

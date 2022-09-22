@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connect/screens/drawer/drawer.dart';
 import 'package:connect/screens/messaging/chats.dart';
+import 'package:connect/screens/professional/proHome.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class homePage extends StatefulWidget {
@@ -12,6 +14,7 @@ class homePage extends StatefulWidget {
 
 class _homePage extends State<homePage> {
   var _currentPage = 0;
+  var user = FirebaseAuth.instance.currentUser;
 
   var _pages = [
     Drawer_(),
@@ -145,34 +148,44 @@ class _homePage extends State<homePage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Connect',
-      home: Scaffold(
-        body: Center(child: _pages.elementAt(_currentPage)),
-        bottomNavigationBar: BottomNavigationBar(
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.email),
-              label: 'chats',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.map),
-              label: 'Map',
-            ),
-          ],
-          currentIndex: _currentPage,
-          fixedColor: Colors.blue,
-          onTap: (int inIndex) {
-            setState(() {
-              _currentPage = inIndex;
-            });
-          },
-        ),
-      ),
-    );
+        title: 'Connect',
+        home: StreamBuilder(
+            stream: FirebaseFirestore.instance
+                .collection('users')
+                .where('accountType',
+                    isEqualTo: user!.uid.toString() + 'Professional')
+                .snapshots(),
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) {
+                return Scaffold(
+                  body: Center(child: _pages.elementAt(_currentPage)),
+                  bottomNavigationBar: BottomNavigationBar(
+                    items: [
+                      BottomNavigationBarItem(
+                        icon: Icon(Icons.home),
+                        label: 'Home',
+                      ),
+                      BottomNavigationBarItem(
+                        icon: Icon(Icons.email),
+                        label: 'chats',
+                      ),
+                      BottomNavigationBarItem(
+                        icon: Icon(Icons.map),
+                        label: 'Map',
+                      ),
+                    ],
+                    currentIndex: _currentPage,
+                    fixedColor: Colors.blue,
+                    onTap: (int inIndex) {
+                      setState(() {
+                        _currentPage = inIndex;
+                      });
+                    },
+                  ),
+                );
+              } else {
+                return proHome();
+              }
+            }));
   }
 }
-
