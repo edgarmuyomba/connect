@@ -36,7 +36,7 @@ class Profile extends StatelessWidget {
                       .where('uniqueId', isEqualTo: user!.uid)
                       .snapshots(),
                   builder: (context, snapshot) {
-                    if (!snapshot.hasData) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
                       return Center(
                         child: CircularProgressIndicator(),
                       );
@@ -74,6 +74,9 @@ class Profile extends StatelessWidget {
                               Icon(Icons.edit),
                             ],
                           ),
+                          SizedBox(
+                            width: 20,
+                          ),
                           Row(
                             children: [
                               Text(
@@ -92,6 +95,9 @@ class Profile extends StatelessWidget {
                       );
                     }
                   }),
+              SizedBox(
+                width: 20,
+              ),
               Row(
                 children: [
                   Text(
@@ -99,7 +105,7 @@ class Profile extends StatelessWidget {
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    user!.email!,
+                    user.email!,
                     style: TextStyle(fontSize: 18),
                   ),
                   Icon(Icons.edit),

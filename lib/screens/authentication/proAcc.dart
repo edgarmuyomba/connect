@@ -42,14 +42,10 @@ class _proAccountState extends State<proAccount> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        // padding: EdgeInsets.all(16),
         child: Form(
           key: formKey,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(height: 10),
-              FlutterLogo(size: 25),
               SizedBox(height: 20),
               Text('Create an account',
                   style: TextStyle(
@@ -87,15 +83,12 @@ class _proAccountState extends State<proAccount> {
                 children: [
                   Expanded(
                     child: TextFormField(
-                      controller: _emailController,
-                      cursorColor: Colors.white,
-                      textInputAction: TextInputAction.next,
-                      decoration: InputDecoration(labelText: 'Email'),
+                      controller: _professionController,
+                      textInputAction: TextInputAction.done,
+                      decoration: InputDecoration(labelText: 'Profession'),
                       autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: (email) =>
-                          email != null && !EmailValidator.validate(email.trim())
-                              ? 'Enter a valid email'
-                              : null,
+                      validator: (value) =>
+                          value != null ? null : 'This is a required field',
                     ),
                   ),
                   Expanded(
@@ -114,12 +107,15 @@ class _proAccountState extends State<proAccount> {
                 height: 4,
               ),
               TextFormField(
-                controller: _professionController,
-                textInputAction: TextInputAction.done,
-                decoration: InputDecoration(labelText: 'Profession'),
+                controller: _emailController,
+                cursorColor: Colors.white,
+                textInputAction: TextInputAction.next,
+                decoration: InputDecoration(labelText: 'Email'),
                 autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: (value) =>
-                    value != null ? null : 'This is a required field',
+                validator: (email) =>
+                    email != null && !EmailValidator.validate(email.trim())
+                        ? 'Enter a valid email'
+                        : null,
               ),
               SizedBox(
                 height: 4,
@@ -169,7 +165,8 @@ class _proAccountState extends State<proAccount> {
                     text: 'Already have an account?',
                     children: [
                       TextSpan(
-                        recognizer: TapGestureRecognizer()..onTap = widget.isPro,
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = widget.isPro,
                         text: 'SignIn',
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.secondary,
@@ -208,6 +205,7 @@ class _proAccountState extends State<proAccount> {
         'Profession': _professionController.text.trim(),
         'Location': _locationController.text.trim(),
         'accountType': 'Professional',
+        'identifier': user.uid.toString()+'Professional',
       });
     } on FirebaseAuthException catch (e) {
       print(e);
