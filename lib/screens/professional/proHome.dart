@@ -1,3 +1,4 @@
+import 'package:connect/screens/professional/proChats.dart';
 import 'package:connect/screens/professional/reviews.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -17,7 +18,7 @@ class _proHomeState extends State<proHome> {
   var _pages = [
     Reviews(),
     Profile(),
-    Text('Page 3 - Chats'),
+    proChat(),
   ];
 
   @override

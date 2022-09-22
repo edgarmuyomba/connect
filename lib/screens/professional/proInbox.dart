@@ -1,21 +1,20 @@
-import 'package:connect/screens/messaging/proProfile.dart';
-import 'package:connect/models/professional.dart';
+import 'package:connect/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class Inbox extends StatefulWidget {
-  final Professional professional;
+class proInbox extends StatefulWidget {
+  final User user;
 
-  const Inbox({
+  const proInbox({
     super.key,
-    required this.professional,
+    required this.user,
   });
 
   @override
-  State<Inbox> createState() => _InboxState();
+  State<proInbox> createState() => _proInboxState();
 }
 
-class _InboxState extends State<Inbox> {
+class _proInboxState extends State<proInbox> {
   void callEmoji() {
     print('Emoji Icon Pressed....');
   }
@@ -62,17 +61,11 @@ class _InboxState extends State<Inbox> {
     );
   }
 
-  void pushproProfile(Professional pro) {
-    Navigator.of(context).push(MaterialPageRoute<void>(builder: (context) {
-      return proProfile(professional: pro);
-    }));
-  }
-
   @override
   Widget build(BuildContext context) {
-    final Uri _url = Uri.parse(widget.professional.Contact);
+    final Uri _url = Uri.parse(widget.user.Contact);
     final Uri _email = Uri.parse(
-        'mailto:' + widget.professional.email + '?subject=%20&body=%20');
+        'mailto:' + widget.user.email + '?subject=%20&body=%20');
 
     Future<void> _makePhoneCall() async {
       if (!await launchUrl(_url)) {
@@ -93,7 +86,7 @@ class _InboxState extends State<Inbox> {
             CircleAvatar(
               backgroundImage: AssetImage('assets/proProfile.png'),
             ),
-            Text(' '+widget.professional.name),
+            Text(' '+widget.user.name),
           ],
         ),
         actions: [
@@ -101,20 +94,7 @@ class _InboxState extends State<Inbox> {
               onPressed: () => _makePhoneCall(), icon: Icon(Icons.phone)),
           PopupMenuButton(
               color: Color.fromARGB(255, 31, 44, 52),
-              onSelected: (result) {
-                if (result == 'Profile') {
-                  pushproProfile(widget.professional);
-                }
-              },
               itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-                    PopupMenuItem(
-                      value: "Profile",
-                      child: Text(
-                        "Profile",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, color: Colors.white),
-                      ),
-                    ),
                     PopupMenuItem(
                       value: "Settings",
                       child: Text(
