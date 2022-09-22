@@ -26,9 +26,6 @@ class _proProfileState extends State<proProfile> {
 
   Future<void> _addReview() async {
     final user = FirebaseAuth.instance.currentUser;
-    final _user = FirebaseFirestore.instance
-        .collection('users')
-        .where('uniqueId', isEqualTo: user!.uid) as Map<String, dynamic>;
     await showModalBottomSheet(
         isScrollControlled: false,
         context: context,
@@ -58,9 +55,12 @@ class _proProfileState extends State<proProfile> {
                       await FirebaseFirestore.instance
                           .collection('reviews')
                           .add({
-                        "contents": text,
-                        "uniqueId": user.uid,
-                        "sender": _user['firstname'] + ' ' + _user['lastname']
+                        "content": text,
+                        "uniqueId": user!.uid,
+                        "sender": user.email
+                            .toString()
+                            .substring(0, user.email.toString().indexOf('@')),
+                        "receipient": widget.professional.name,
                       });
 
                       _textController.text = '';
@@ -81,73 +81,78 @@ class _proProfileState extends State<proProfile> {
         title: Text(widget.professional.name),
       ),
       body: Center(
-        child: Column(
-          children: [
-            CircleAvatar(
-              backgroundImage: AssetImage('assets/proProfile.png'),
-              radius: 150,
-            ),
-            Text(widget.professional.name),
-            Text(widget.professional.Profession),
-            Text(widget.professional.Location),
-            Text(widget.professional.email),
-            Text(widget.professional.Contact),
-            ElevatedButton(
-                onPressed: () => pushInbox(widget.professional),
-                child: Text('Chat')),
-            Divider(
-              height: 1,
-            ),
-            Row(
-              children: [
-                Text('25 Ratings:', style: TextStyle(fontSize: 15)),
-                Icon(
-                  Icons.star,
-                  color: Colors.yellow,
-                ),
-                Icon(
-                  Icons.star,
-                  color: Colors.yellow,
-                ),
-                Icon(
-                  Icons.star,
-                  color: Colors.yellow,
-                ),
-                Icon(
-                  Icons.star,
-                  color: Colors.yellow,
-                ),
-              ],
-            ),
-            Text(
-              'Reviews',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            StreamBuilder(
-              stream:
-                  FirebaseFirestore.instance.collection('reviews').snapshots(),
-              builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
-                if (streamSnapshot.hasData) {
-                  return ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: streamSnapshot.data!.docs.length,
-                    itemBuilder: (context, index) {
-                      final DocumentSnapshot documentSnapshot =
-                          streamSnapshot.data!.docs[index];
-                      return Card(
-                        margin: const EdgeInsets.all(10),
-                        child: ListTile(
-                          title: Text(documentSnapshot['content']),
-                          subtitle: Text(documentSnapshot['sender']),
-                        ),
-                      );
-                    },
-                  );
-                }
-                return Text('No reviews!');
-              },
-            ),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              CircleAvatar(
+                backgroundImage: AssetImage('assets/proProfile.png'),
+                radius: 150,
+              ),
+              Text(widget.professional.name),
+              Text(widget.professional.Profession),
+              Text(widget.professional.Location),
+              Text(widget.professional.email),
+              Text(widget.professional.Contact),
+              ElevatedButton(
+                  onPressed: () => pushInbox(widget.professional),
+                  child: Text('Chat')),
+              Divider(
+                height: 1,
+              ),
+              Row(
+                children: [
+                  Text('25 Ratings:', style: TextStyle(fontSize: 15)),
+                  Icon(
+                    Icons.star,
+                    color: Colors.yellow,
+                  ),
+                  Icon(
+                    Icons.star,
+                    color: Colors.yellow,
+                  ),
+                  Icon(
+                    Icons.star,
+                    color: Colors.yellow,
+                  ),
+                  Icon(
+                    Icons.star,
+                    color: Colors.yellow,
+                  ),
+                ],
+              ),
+              Text(
+                'Reviews',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              StreamBuilder(
+                stream: FirebaseFirestore.instance
+                    .collection('reviews')
+                    .where('receipient', isEqualTo: widget.professional.name)
+                    .snapshots(),
+                builder:
+                    (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
+                  if (streamSnapshot.hasData) {
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: streamSnapshot.data!.docs.length,
+                      itemBuilder: (context, index) {
+                        final DocumentSnapshot documentSnapshot =
+                            streamSnapshot.data!.docs[index];
+                        return Card(
+                          margin: const EdgeInsets.all(10),
+                          child: ListTile(
+                            title: Text(documentSnapshot['content']),
+                            subtitle: Text(documentSnapshot['sender']),
+                          ),
+                        );
+                      },
+                    );
+                  }
+                  return Text('No reviews!');
+                },
+              ),
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
