@@ -36,7 +36,7 @@ class Profile extends StatelessWidget {
                       .where('uniqueId', isEqualTo: user!.uid)
                       .snapshots(),
                   builder: (context, snapshot) {
-                    if (!snapshot.hasData) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
                       return Center(
                         child: CircularProgressIndicator(),
                       );

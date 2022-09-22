@@ -156,7 +156,11 @@ class _homePage extends State<homePage> {
                     isEqualTo: user!.uid.toString() + 'Professional')
                 .snapshots(),
             builder: (context, snapshot) {
-              if (!snapshot.hasData) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else if (!snapshot.hasData) {
                 return Scaffold(
                   body: Center(child: _pages.elementAt(_currentPage)),
                   bottomNavigationBar: BottomNavigationBar(
