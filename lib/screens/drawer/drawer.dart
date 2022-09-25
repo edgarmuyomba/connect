@@ -86,45 +86,66 @@ class _Drawer extends State<Drawer_> {
           ],
         ),
         drawer: Drawer(
+          backgroundColor: Color.fromARGB(255, 18, 27, 34),
           child: ListView(
             padding: EdgeInsets.zero,
             children: [
-              const DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                ),
-                child: Text(
-                  'Connect',
-                  style: TextStyle(fontSize: 24, color: Colors.white),
-                ),
+                DrawerHeader(
+                    decoration: BoxDecoration(
+                        color: Colors.blue,
+                        image: DecorationImage(
+                            image: AssetImage("assets/handshake.png"),
+                            fit: BoxFit.cover)),
+                    child: Container(
+                      alignment: Alignment.bottomRight,
+                      child: Text(
+                        'Connect',
+                        style: TextStyle(
+                          fontSize: 24,
+                          color: Color.fromARGB(255, 2, 168, 132),
+                        ),
+                      ),
+                    ),
               ),
               ListTile(
-                leading: Icon(Icons.person),
-                title: Text('Profile'),
+                leading: Icon(
+                  Icons.person,
+                  color: Color.fromARGB(255, 2, 168, 132),
+                ),
+                title: Text('Profile', style: TextStyle(color: Colors.white)),
                 onTap: () => {
                   pushProfile(),
                 },
               ),
               Divider(),
               ListTile(
-                leading: Icon(Icons.share),
-                title: Text('Share'),
+                leading: Icon(
+                  Icons.share,
+                  color: Color.fromARGB(255, 2, 168, 132),
+                ),
+                title: Text('Share', style: TextStyle(color: Colors.white)),
                 onTap: () => {
                   pushShare(),
                 },
               ),
               Divider(),
               ListTile(
-                leading: Icon(Icons.help),
-                title: Text('Help'),
+                leading: Icon(
+                  Icons.help,
+                  color: Color.fromARGB(255, 2, 168, 132),
+                ),
+                title: Text('Help', style: TextStyle(color: Colors.white)),
                 onTap: () => {
                   pushHelp(),
                 },
               ),
               Divider(),
               ListTile(
-                leading: Icon(Icons.info),
-                title: Text('About Us'),
+                leading: Icon(
+                  Icons.info,
+                  color: Color.fromARGB(255, 2, 168, 132),
+                ),
+                title: Text('About Us', style: TextStyle(color: Colors.white)),
                 onTap: () => {
                   pushAbout(),
                 },
@@ -148,7 +169,10 @@ class _Drawer extends State<Drawer_> {
           ),
         ),
         body: StreamBuilder<QuerySnapshot>(
-          stream: FirebaseFirestore.instance.collection('users').where('accountType', isEqualTo: 'Professional').snapshots(),
+          stream: FirebaseFirestore.instance
+              .collection('users')
+              .where('accountType', isEqualTo: 'Professional')
+              .snapshots(),
           builder: (context, snapshots) {
             return (snapshots.connectionState == ConnectionState.waiting)
                 ? Center(
@@ -163,7 +187,8 @@ class _Drawer extends State<Drawer_> {
                       if (name.isEmpty) {
                         return Card(
                             child: ListTile(
-                          title: Text(data['firstname'] +' '+ data['lastname'],
+                          title: Text(
+                              data['firstname'] + ' ' + data['lastname'],
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
@@ -171,12 +196,13 @@ class _Drawer extends State<Drawer_> {
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold)),
                           leading: CircleAvatar(
-                            backgroundImage: AssetImage('assets/proProfile.png'),
+                            backgroundImage:
+                                AssetImage('assets/proProfile.png'),
                           ),
                           subtitle: Text(
                               data['Profession'] + ' in ' + data['Location']),
                           onTap: () => pushproProfile(Professional(
-                              data['firstname'] +' '+ data['lastname'],
+                              data['firstname'] + ' ' + data['lastname'],
                               data['email'],
                               data['Profession'],
                               data['Contact'],
@@ -197,7 +223,8 @@ class _Drawer extends State<Drawer_> {
                               .contains(name.toLowerCase())) {
                         return Card(
                             child: ListTile(
-                          title: Text(data['firstname']+' '+ data['lastname'],
+                          title: Text(
+                              data['firstname'] + ' ' + data['lastname'],
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
@@ -205,12 +232,13 @@ class _Drawer extends State<Drawer_> {
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold)),
                           leading: CircleAvatar(
-                            backgroundImage: AssetImage('assets/proProfile.png'),
+                            backgroundImage:
+                                AssetImage('assets/proProfile.png'),
                           ),
                           subtitle: Text(
                               data['Profession'] + ' in ' + data['Location']),
                           onTap: () => pushInbox(Professional(
-                              data['firstname']+ data['lastname'],
+                              data['firstname'] + data['lastname'],
                               data['email'],
                               data['Profession'],
                               data['Contact'],

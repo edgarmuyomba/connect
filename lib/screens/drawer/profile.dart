@@ -21,7 +21,7 @@ class Profile extends StatelessWidget {
             children: [
               CircleAvatar(
                 backgroundImage: AssetImage('assets/profilePicture.jpg'),
-                radius: 220,
+                radius: 100,
               ),
               Text(
                 'Signed In as',
@@ -44,8 +44,10 @@ class Profile extends StatelessWidget {
                       var data =
                           snapshot.data!.docs[0].data() as Map<String, dynamic>;
                       return Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Text("Firstname: ",
                                   style: TextStyle(
