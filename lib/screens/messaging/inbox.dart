@@ -32,26 +32,37 @@ class _InboxState extends State<Inbox> {
     print('Voice Icon Pressed...');
   }
 
+  void callSend() {
+    print('Send Icon Pressed...');
+  }
+
   Widget moodIcon() {
     return IconButton(
-        icon: const Icon(
+        icon: Icon(
           Icons.mood,
-          color: Colors.blue,
+          color: Colors.blue[900],
         ),
         onPressed: () => callEmoji());
   }
 
   Widget attachFile() {
     return IconButton(
-      icon: const Icon(Icons.attach_file, color: Colors.blue),
+      icon: Icon(Icons.attach_file, color: Colors.blue[900]),
       onPressed: () => callAttachFile(),
     );
   }
 
   Widget camera() {
     return IconButton(
-      icon: const Icon(Icons.photo_camera, color: Colors.blue),
+      icon: Icon(Icons.photo_camera, color: Colors.blue[900]),
       onPressed: () => callCamera(),
+    );
+  }
+
+  Widget send() {
+    return IconButton(
+      icon: Icon(Icons.send, color: Colors.blue[900]),
+      onPressed: () => callSend(),
     );
   }
 
@@ -93,7 +104,7 @@ class _InboxState extends State<Inbox> {
             CircleAvatar(
               backgroundImage: AssetImage('assets/proProfile.png'),
             ),
-            Text(' '+widget.professional.name),
+            Text(' ' + widget.professional.name),
           ],
         ),
         actions: [
@@ -164,6 +175,7 @@ class _InboxState extends State<Inbox> {
                     ),
                     attachFile(),
                     camera(),
+                    send(),
                   ],
                 ),
               ),
