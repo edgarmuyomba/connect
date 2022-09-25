@@ -55,7 +55,7 @@ class _LoginWidgetState extends State<loginwidget> {
               decoration: InputDecoration(labelText: 'Email'),
               autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: (email) =>
-                  email != null && !EmailValidator.validate(email)
+                  email != null && !EmailValidator.validate(email.trim())
                       ? 'Enter a valid email'
                       : null,
             ),

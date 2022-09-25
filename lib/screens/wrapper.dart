@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:connect/models/professional.dart';
 import 'package:connect/screens/authentication/authPage.dart';
 import 'package:connect/screens/home/homePage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
