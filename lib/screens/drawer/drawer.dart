@@ -90,22 +90,22 @@ class _Drawer extends State<Drawer_> {
           child: ListView(
             padding: EdgeInsets.zero,
             children: [
-                DrawerHeader(
-                    decoration: BoxDecoration(
-                        color: Colors.blue,
-                        image: DecorationImage(
-                            image: AssetImage("assets/handshake.png"),
-                            fit: BoxFit.cover)),
-                    child: Container(
-                      alignment: Alignment.bottomRight,
-                      child: Text(
-                        'Connect',
-                        style: TextStyle(
-                          fontSize: 24,
-                          color: Color.fromARGB(255, 2, 168, 132),
-                        ),
-                      ),
+              DrawerHeader(
+                decoration: BoxDecoration(
+                    color: Colors.blue,
+                    image: DecorationImage(
+                        image: AssetImage("assets/handshake.png"),
+                        fit: BoxFit.cover)),
+                child: Container(
+                  alignment: Alignment.bottomRight,
+                  child: Text(
+                    'Connect',
+                    style: TextStyle(
+                      fontSize: 24,
+                      color: Color.fromARGB(255, 2, 168, 132),
                     ),
+                  ),
+                ),
               ),
               ListTile(
                 leading: Icon(
@@ -196,8 +196,7 @@ class _Drawer extends State<Drawer_> {
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold)),
                           leading: CircleAvatar(
-                            backgroundImage:
-                                AssetImage('assets/proProfile.png'),
+                            backgroundImage: AssetImage(data['image']),
                           ),
                           subtitle: Text(
                               data['Profession'] + ' in ' + data['Location']),
@@ -206,7 +205,8 @@ class _Drawer extends State<Drawer_> {
                               data['email'],
                               data['Profession'],
                               data['Contact'],
-                              data['Location'])),
+                              data['Location'],
+                              data['image'])),
                         ));
                       }
                       if (data['firstname']
@@ -242,7 +242,8 @@ class _Drawer extends State<Drawer_> {
                               data['email'],
                               data['Profession'],
                               data['Contact'],
-                              data['Location'])),
+                              data['Location'],
+                              data['image'])),
                         ));
                       }
                       return Container();

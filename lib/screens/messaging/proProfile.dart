@@ -85,7 +85,7 @@ class _proProfileState extends State<proProfile> {
           child: Column(
             children: [
               CircleAvatar(
-                backgroundImage: AssetImage('assets/proProfile.png'),
+                backgroundImage: AssetImage(widget.professional.image),
                 radius: 150,
               ),
               Text(widget.professional.name),
