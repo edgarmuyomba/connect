@@ -40,28 +40,31 @@ class _InboxState extends State<Inbox> {
     return IconButton(
         icon: Icon(
           Icons.mood,
-          color: Colors.blue[900],
+          color: Color.fromARGB(255, 3, 26, 36),
         ),
         onPressed: () => callEmoji());
   }
 
   Widget attachFile() {
     return IconButton(
-      icon: Icon(Icons.attach_file, color: Colors.blue[900]),
+      icon: Icon(
+        Icons.attach_file,
+        color: Color.fromARGB(255, 3, 26, 36),
+      ),
       onPressed: () => callAttachFile(),
     );
   }
 
   Widget camera() {
     return IconButton(
-      icon: Icon(Icons.photo_camera, color: Colors.blue[900]),
+      icon: Icon(Icons.photo_camera, color: Color.fromARGB(255, 3, 26, 36)),
       onPressed: () => callCamera(),
     );
   }
 
   Widget send() {
     return IconButton(
-      icon: Icon(Icons.send, color: Colors.blue[900]),
+      icon: Icon(Icons.send, color: Color.fromARGB(255, 3, 26, 36)),
       onPressed: () => callSend(),
     );
   }
@@ -98,11 +101,13 @@ class _InboxState extends State<Inbox> {
     }
 
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 236, 234, 234),
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 3, 26, 36),
         title: Row(
           children: [
             CircleAvatar(
-              backgroundImage: AssetImage('assets/proProfile.png'),
+              backgroundImage: AssetImage(widget.professional.image),
             ),
             Text(' ' + widget.professional.name),
           ],
@@ -111,7 +116,7 @@ class _InboxState extends State<Inbox> {
           IconButton(
               onPressed: () => _makePhoneCall(), icon: Icon(Icons.phone)),
           PopupMenuButton(
-              color: Color.fromARGB(255, 31, 44, 52),
+              color: Color.fromARGB(255, 3, 26, 36),
               onSelected: (result) {
                 if (result == 'Profile') {
                   pushproProfile(widget.professional);
@@ -147,52 +152,58 @@ class _InboxState extends State<Inbox> {
         ],
       ),
       bottomNavigationBar: BottomAppBar(
+          color: Color.fromARGB(255, 3, 26, 36),
           child: Container(
-        margin: const EdgeInsets.all(12.0),
-        height: 60,
-        child: Row(
-          children: [
-            Expanded(
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(35.0),
-                  boxShadow: const [
-                    BoxShadow(
-                        offset: Offset(0, 2), blurRadius: 7, color: Colors.grey)
-                  ],
-                ),
-                child: Row(
-                  children: [
-                    moodIcon(),
-                    const Expanded(
-                      child: TextField(
-                        decoration: InputDecoration(
-                            hintText: "Message",
-                            hintStyle: TextStyle(color: Colors.blue),
-                            border: InputBorder.none),
-                      ),
+            margin: const EdgeInsets.all(12.0),
+            height: 60,
+            child: Row(
+              children: [
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 236, 234, 234),
+                      borderRadius: BorderRadius.circular(35.0),
+                      // boxShadow: const [
+                      //   BoxShadow(
+                      //       offset: Offset(0, 2),
+                      //       blurRadius: 7,
+                      //       color: Colors.grey)
+                      // ],
                     ),
-                    attachFile(),
-                    camera(),
-                    send(),
-                  ],
+                    child: Row(
+                      children: [
+                        moodIcon(),
+                        Expanded(
+                          child: TextField(
+                            decoration: InputDecoration(
+                                hintText: "Message",
+                                hintStyle: TextStyle(
+                                  color: Color.fromARGB(255, 3, 26, 36),
+                                ),
+                                border: InputBorder.none),
+                          ),
+                        ),
+                        attachFile(),
+                        camera(),
+                        send(),
+                      ],
+                    ),
+                  ),
                 ),
-              ),
+                const SizedBox(width: 15),
+                Container(
+                  padding: const EdgeInsets.all(15.0),
+                  decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 3, 26, 36),
+                      shape: BoxShape.circle),
+                  child: InkWell(
+                    child: voiceIcon(),
+                    onLongPress: () => callVoice(),
+                  ),
+                )
+              ],
             ),
-            const SizedBox(width: 15),
-            Container(
-              padding: const EdgeInsets.all(15.0),
-              decoration: const BoxDecoration(
-                  color: Colors.blue, shape: BoxShape.circle),
-              child: InkWell(
-                child: voiceIcon(),
-                onLongPress: () => callVoice(),
-              ),
-            )
-          ],
-        ),
-      )),
+          )),
     );
   }
 }

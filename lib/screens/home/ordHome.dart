@@ -30,6 +30,7 @@ class _ordHome extends State<ordHome> {
       'Contact': '+256 700 934 876',
       'Location': 'Wandegeya',
       'accountType': 'Professional',
+      'image': 'assets/images (3).jpg',
     },
     {
       'firstname': 'Matovu',
@@ -39,6 +40,7 @@ class _ordHome extends State<ordHome> {
       'Contact': '+256 700 912 456',
       'Location': 'Kikoni',
       'accountType': 'Professional',
+      'image': 'assets/images (2).jpg',
     },
     {
       'firstname': 'Kasozi',
@@ -48,6 +50,7 @@ class _ordHome extends State<ordHome> {
       'Contact': '+256 700 012 345',
       'Location': 'Mukono',
       'accountType': 'Professional',
+      'image': 'assets/images.jpg'
     },
     {
       'firstname': 'Amanya',
@@ -57,6 +60,7 @@ class _ordHome extends State<ordHome> {
       'Contact': '+256 700 900 567',
       'Location': 'Kampala',
       'accountType': 'Professional',
+      'image': 'assets/images (1).jpg',
     },
     {
       'firstname': 'Nalwoga',
@@ -66,6 +70,7 @@ class _ordHome extends State<ordHome> {
       'Contact': '+256 700 567 437',
       'Location': 'Zzana',
       'accountType': 'Professional',
+      'image': 'assets/download (1).jpg',
     },
     {
       'firstname': 'Kukunda',
@@ -75,6 +80,7 @@ class _ordHome extends State<ordHome> {
       'Contact': '+256 700 909 321',
       'Location': 'Seguku',
       'accountType': 'Professional',
+      'image': 'assets/download (2).jpg',
     },
     {
       'firstname': 'Kyosaba',
@@ -84,6 +90,7 @@ class _ordHome extends State<ordHome> {
       'Contact': '+256 700 124 789',
       'Location': 'Nakawa',
       'accountType': 'Professional',
+      'image': 'assets/download.jpg'
     },
     {
       'firstname': 'Mubiru',
@@ -93,6 +100,7 @@ class _ordHome extends State<ordHome> {
       'Contact': '+256 767 437 143',
       'Location': 'Kyambogo',
       'accountType': 'Professional',
+      'image': 'assets/images (1).jpg',
     },
     {
       'firstname': 'Tumusiime',
@@ -102,6 +110,7 @@ class _ordHome extends State<ordHome> {
       'Contact': '+256 700 999 454 901',
       'Location': 'Luzira',
       'accountType': 'Professional',
+      'image': 'assets/images (2).jpg'
     },
     {
       'firstname': 'Nsiimbi',
@@ -111,6 +120,7 @@ class _ordHome extends State<ordHome> {
       'Contact': '+256 700 123 345',
       'Location': 'Kikoni',
       'accountType': 'Professional',
+      'image': 'assets/images (3).jpg',
     },
     {
       'firstname': 'Nankya',
@@ -120,6 +130,7 @@ class _ordHome extends State<ordHome> {
       'Contact': '+256 777 775 332',
       'Location': 'Wandegeya',
       'accountType': 'Professional',
+      'image': 'assets/images (1).jpg',
     },
     {
       'firstname': 'Jeanie',
@@ -129,6 +140,7 @@ class _ordHome extends State<ordHome> {
       'Contact': '+256 701 567 324',
       'Location': 'Nakawa',
       'accountType': 'Professional',
+      'image': 'assets/images (2).jpg',
     }
   ];
 

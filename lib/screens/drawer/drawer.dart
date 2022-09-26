@@ -148,7 +148,10 @@ class _Drawer extends State<Drawer_> {
           ),
         ),
         body: StreamBuilder<QuerySnapshot>(
-          stream: FirebaseFirestore.instance.collection('users').where('accountType', isEqualTo: 'Professional').snapshots(),
+          stream: FirebaseFirestore.instance
+              .collection('users')
+              .where('accountType', isEqualTo: 'Professional')
+              .snapshots(),
           builder: (context, snapshots) {
             return (snapshots.connectionState == ConnectionState.waiting)
                 ? Center(
@@ -163,7 +166,8 @@ class _Drawer extends State<Drawer_> {
                       if (name.isEmpty) {
                         return Card(
                             child: ListTile(
-                          title: Text(data['firstname'] +' '+ data['lastname'],
+                          title: Text(
+                              data['firstname'] + ' ' + data['lastname'],
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
@@ -171,16 +175,18 @@ class _Drawer extends State<Drawer_> {
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold)),
                           leading: CircleAvatar(
-                            backgroundImage: AssetImage('assets/proProfile.png'),
+                            backgroundImage:
+                                AssetImage(data['image']),
                           ),
                           subtitle: Text(
                               data['Profession'] + ' in ' + data['Location']),
                           onTap: () => pushproProfile(Professional(
-                              data['firstname'] +' '+ data['lastname'],
+                              data['firstname'] + ' ' + data['lastname'],
                               data['email'],
                               data['Profession'],
                               data['Contact'],
-                              data['Location'])),
+                              data['Location'],
+                              data['image'])),
                         ));
                       }
                       if (data['firstname']
@@ -197,7 +203,8 @@ class _Drawer extends State<Drawer_> {
                               .contains(name.toLowerCase())) {
                         return Card(
                             child: ListTile(
-                          title: Text(data['firstname']+' '+ data['lastname'],
+                          title: Text(
+                              data['firstname'] + ' ' + data['lastname'],
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
@@ -205,16 +212,18 @@ class _Drawer extends State<Drawer_> {
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold)),
                           leading: CircleAvatar(
-                            backgroundImage: AssetImage('assets/proProfile.png'),
+                            backgroundImage:
+                                AssetImage('assets/proProfile.png'),
                           ),
                           subtitle: Text(
                               data['Profession'] + ' in ' + data['Location']),
                           onTap: () => pushInbox(Professional(
-                              data['firstname']+ data['lastname'],
+                              data['firstname'] + data['lastname'],
                               data['email'],
                               data['Profession'],
                               data['Contact'],
-                              data['Location'])),
+                              data['Location'],
+                              data['image'])),
                         ));
                       }
                       return Container();
