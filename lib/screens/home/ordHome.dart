@@ -154,7 +154,7 @@ class _ordHome extends State<ordHome> {
   @override
   void initState() {
     super.initState();
-    // addData();
+    addData();
   }
 
   @override

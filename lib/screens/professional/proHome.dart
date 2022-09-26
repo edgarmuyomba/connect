@@ -28,7 +28,6 @@ class _proHomeState extends State<proHome> {
       bottomNavigationBar: new Theme(
         data: Theme.of(context).copyWith(
             canvasColor: Color.fromARGB(255, 31, 44, 52),
-            selectedItemColor: Color.fromARGB(255, 2, 168, 132),
             textTheme: Theme.of(context)
                 .textTheme
                 .copyWith(caption: new TextStyle(color: Colors.yellow))),
@@ -48,7 +47,8 @@ class _proHomeState extends State<proHome> {
             ),
           ],
           currentIndex: _currentPage,
-          fixedColor: Colors.blue,
+          selectedItemColor: Color.fromARGB(255, 2, 168, 132),
+          unselectedItemColor: Color.fromARGB(255, 133, 150, 160),
           onTap: (int inIndex) {
             setState(() {
               _currentPage = inIndex;

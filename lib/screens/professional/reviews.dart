@@ -12,6 +12,11 @@ class _ReviewsState extends State<Reviews> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Reviews'),
+        backgroundColor: Color.fromARGB(255, 31, 44, 52),
+      ),
+      backgroundColor: Color.fromARGB(255, 12, 19, 23),
       body: StreamBuilder(
           stream: FirebaseFirestore.instance.collection('reviews').snapshots(),
           builder: (context, snapshots) {
@@ -21,10 +26,10 @@ class _ReviewsState extends State<Reviews> {
                 itemBuilder: (context, index) {
                 final data = snapshots.data!.docs[index];
                 return Card(
-                    margin: const EdgeInsets.all(10),
+                    color: Color.fromARGB(255, 31, 44, 52),
                     child: ListTile(
-                      title: Text(data['content']),
-                      subtitle: Text(data['sender']),
+                      title: Text(data['content'], style: TextStyle(color: Colors.white)),
+                      subtitle: Text(data['sender'], style: TextStyle(color: Color.fromARGB(255, 2, 168, 132))),
                     ));
               });
             }

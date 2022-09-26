@@ -35,21 +35,21 @@ class _proInboxState extends State<proInbox> {
     return IconButton(
         icon: const Icon(
           Icons.mood,
-          color: Colors.blue,
+          color: Color.fromARGB(255, 2, 168, 132),
         ),
         onPressed: () => callEmoji());
   }
 
   Widget attachFile() {
     return IconButton(
-      icon: const Icon(Icons.attach_file, color: Colors.blue),
+      icon: const Icon(Icons.attach_file, color: Color.fromARGB(255, 2, 168, 132)),
       onPressed: () => callAttachFile(),
     );
   }
 
   Widget camera() {
     return IconButton(
-      icon: const Icon(Icons.photo_camera, color: Colors.blue),
+      icon: const Icon(Icons.photo_camera, color: Color.fromARGB(255, 2, 168, 132)),
       onPressed: () => callCamera(),
     );
   }
@@ -57,7 +57,7 @@ class _proInboxState extends State<proInbox> {
   Widget voiceIcon() {
     return const Icon(
       Icons.keyboard_voice,
-      color: Colors.white,
+      color: Color.fromARGB(255, 2, 168, 132),
     );
   }
 
@@ -81,12 +81,13 @@ class _proInboxState extends State<proInbox> {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 31, 44, 52),
         title: Row(
           children: [
             CircleAvatar(
-              backgroundImage: AssetImage('assets/proProfile.png'),
+              backgroundImage: AssetImage(widget.user.image),
             ),
-            Text(' '+widget.user.name),
+            Text(' '+widget.user.name, style: TextStyle(color: Colors.white)),
           ],
         ),
         actions: [
@@ -115,7 +116,9 @@ class _proInboxState extends State<proInbox> {
                   ]),
         ],
       ),
+      backgroundColor: Color.fromARGB(255, 12, 19, 23),
       bottomNavigationBar: BottomAppBar(
+        color: Color.fromARGB(255, 31, 44, 52),
           child: Container(
         margin: const EdgeInsets.all(12.0),
         height: 60,
@@ -138,7 +141,7 @@ class _proInboxState extends State<proInbox> {
                       child: TextField(
                         decoration: InputDecoration(
                             hintText: "Message",
-                            hintStyle: TextStyle(color: Colors.blue),
+                            hintStyle: TextStyle(color: Color.fromARGB(255, 2, 168, 132)),
                             border: InputBorder.none),
                       ),
                     ),
@@ -152,7 +155,7 @@ class _proInboxState extends State<proInbox> {
             Container(
               padding: const EdgeInsets.all(15.0),
               decoration: const BoxDecoration(
-                  color: Colors.blue, shape: BoxShape.circle),
+                  color: Color.fromARGB(255, 12, 19, 23), shape: BoxShape.circle),
               child: InkWell(
                 child: voiceIcon(),
                 onLongPress: () => callVoice(),
