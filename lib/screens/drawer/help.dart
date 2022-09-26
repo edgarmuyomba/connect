@@ -25,6 +25,7 @@ class Help extends StatelessWidget {
           padding: EdgeInsets.all(20.0),
           child: Column(
             children: [
+              new Image.asset("assets/support-img.png"),
               Text('Experiencing some difficulties?'),
               RichText(
                 text: TextSpan(
