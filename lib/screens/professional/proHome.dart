@@ -25,28 +25,36 @@ class _proHomeState extends State<proHome> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(child: _pages.elementAt(_currentPage)),
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.reviews),
-            label: 'Reviews',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.chat),
-            label: 'Chats',
-          ),
-        ],
-        currentIndex: _currentPage,
-        fixedColor: Colors.blue,
-        onTap: (int inIndex) {
-          setState(() {
-            _currentPage = inIndex;
-          });
-        },
+      bottomNavigationBar: new Theme(
+        data: Theme.of(context).copyWith(
+            canvasColor: Color.fromARGB(255, 31, 44, 52),
+            textTheme: Theme.of(context)
+                .textTheme
+                .copyWith(caption: new TextStyle(color: Colors.yellow))),
+        child: BottomNavigationBar(
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.reviews),
+              label: 'Reviews',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: 'Profile',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.chat),
+              label: 'Chats',
+            ),
+          ],
+          currentIndex: _currentPage,
+          selectedItemColor: Color.fromARGB(255, 2, 168, 132),
+          unselectedItemColor: Color.fromARGB(255, 133, 150, 160),
+          onTap: (int inIndex) {
+            setState(() {
+              _currentPage = inIndex;
+            });
+          },
+        ),
       ),
     );
   }
