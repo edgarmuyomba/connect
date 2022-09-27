@@ -47,7 +47,7 @@ class _LoginWidgetState extends State<loginwidget> {
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 28,
-                    color: Color.fromARGB(255, 0, 65, 118))),
+                    color: Color.fromARGB(255, 2, 168, 132))),
             TextFormField(
               controller: emailController,
               cursorColor: Colors.white,
