@@ -1,8 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:connect/screens/home/ordHome.dart';
-import 'package:connect/screens/professional/proHome.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import '../professional/proHome.dart';
+import 'ordHome.dart';
 
 class homePage extends StatefulWidget {
   const homePage({super.key});

@@ -1,8 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:connect/models/professional.dart';
-import 'package:connect/screens/messaging/inbox.dart';
 import 'package:flutter/material.dart';
+
+import '../../models/professional.dart';
+import 'inbox.dart';
 
 class Chat extends StatefulWidget {
   const Chat({super.key});
