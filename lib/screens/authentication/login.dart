@@ -1,9 +1,10 @@
-import 'package:connect/utils.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:connect/main.dart';
+
+import '../../main.dart';
+import '../../utils.dart';
 
 class loginwidget extends StatefulWidget {
   final VoidCallback isLogin;
@@ -34,64 +35,72 @@ class _LoginWidgetState extends State<loginwidget> {
 
   @override
   Widget build(BuildContext context) => SingleChildScrollView(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       child: Form(
         key: formKey,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(height: 60),
-            FlutterLogo(size: 150),
-            SizedBox(height: 20),
-            Text('Welcome Back!',
+            const SizedBox(height: 60),
+            // FlutterLogo(size: 150),
+            Container(
+              width: 600,
+              height: 100,
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: AssetImage('./assets/logo.png'))),
+            ),
+            const SizedBox(height: 20),
+            const Text('Welcome Back!',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 28,
-                    color: Color.fromARGB(255, 2, 168, 132))),
+                    color: Color.fromARGB(255, 0, 65, 118))),
             TextFormField(
               controller: emailController,
               cursorColor: Colors.white,
               textInputAction: TextInputAction.next,
-              decoration: InputDecoration(labelText: 'Email'),
+              decoration: const InputDecoration(labelText: 'Email'),
               autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: (email) =>
                   email != null && !EmailValidator.validate(email.trim())
                       ? 'Enter a valid email'
                       : null,
             ),
-            SizedBox(
+            const SizedBox(
               height: 4,
             ),
             TextField(
               controller: passwordController,
               textInputAction: TextInputAction.done,
-              decoration: InputDecoration(labelText: 'Password'),
+              decoration: const InputDecoration(labelText: 'Password'),
               obscureText: true,
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton.icon(
               style: ElevatedButton.styleFrom(
-                minimumSize: Size.fromHeight(50),
+                minimumSize: const Size.fromHeight(50),
               ),
-              icon: Icon(
+              icon: const Icon(
                 Icons.lock_open,
                 size: 32,
               ),
-              label: Text(
+              label: const Text(
                 'Sign In',
                 style: TextStyle(fontSize: 20),
               ),
               onPressed: signIn,
             ),
-            SizedBox(
+            const SizedBox(
               height: 24,
             ),
-            Divider(
+            const Divider(
               height: 10,
             ),
             RichText(
               text: TextSpan(
-                  style: TextStyle(color: Colors.black54, fontSize: 17),
+                  style: const TextStyle(color: Colors.black54, fontSize: 17),
                   text: 'SignUp as a ',
                   children: [
                     TextSpan(
@@ -103,10 +112,10 @@ class _LoginWidgetState extends State<loginwidget> {
                     )
                   ]),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             RichText(
               text: TextSpan(
-                  style: TextStyle(color: Colors.black54, fontSize: 17),
+                  style: const TextStyle(color: Colors.black54, fontSize: 17),
                   text: 'SignUp as a ',
                   children: [
                     TextSpan(
@@ -130,7 +139,7 @@ class _LoginWidgetState extends State<loginwidget> {
     showDialog(
       context: context,
       barrierDismissible: false,
-      builder: (context) => Center(child: CircularProgressIndicator()),
+      builder: (context) => const Center(child: CircularProgressIndicator()),
     );
 
     try {

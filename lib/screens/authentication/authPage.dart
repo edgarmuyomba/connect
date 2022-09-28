@@ -1,7 +1,8 @@
-import 'package:connect/screens/authentication/login.dart';
-import 'package:connect/screens/authentication/ordAcc.dart';
-import 'package:connect/screens/authentication/proAcc.dart';
 import 'package:flutter/material.dart';
+
+import 'login.dart';
+import 'ordAcc.dart';
+import 'proAcc.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
@@ -22,9 +23,8 @@ class _AuthPageState extends State<AuthPage> {
     } else {
       return loginwidget(isLogin: toggle1, isPro: toggle2);
     }
-  } 
+  }
 
   void toggle1() => setState(() => isLogin = !isLogin);
   void toggle2() => setState(() => isPro = !isPro);
 }
-

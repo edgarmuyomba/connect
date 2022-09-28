@@ -1,10 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:connect/utils.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:connect/main.dart';
+
+import '../../main.dart';
+import '../../utils.dart';
 
 class proAccount extends StatefulWidget {
   final Function() isLogin;
@@ -205,7 +206,7 @@ class _proAccountState extends State<proAccount> {
         'Profession': _professionController.text.trim(),
         'Location': _locationController.text.trim(),
         'accountType': 'Professional',
-        'identifier': user.uid.toString()+'Professional',
+        'identifier': user.uid.toString() + 'Professional',
       });
     } on FirebaseAuthException catch (e) {
       print(e);
