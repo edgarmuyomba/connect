@@ -101,7 +101,11 @@ class _InboxState extends State<Inbox> {
     }
 
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 236, 234, 234),
+      //backgroundColor: Color.fromARGB(255, 236, 234, 234),
+      body: Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(image: AssetImage("assets/wallpaper.jpg"))),
+      ),
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 3, 26, 36),
         title: Row(

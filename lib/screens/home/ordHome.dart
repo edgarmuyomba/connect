@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:connect/QR/generate.dart';
 import 'package:connect/maps.dart';
 import 'package:connect/screens/drawer/drawer.dart';
 import 'package:connect/screens/messaging/chats.dart';
@@ -19,7 +20,8 @@ class _ordHome extends State<ordHome> {
   var _pages = [
     Drawer_(),
     Chat(),
-    MapWidget(),
+    // MapWidget(),
+    generatepage()
   ];
 
   List<Map<String, dynamic>> data = [

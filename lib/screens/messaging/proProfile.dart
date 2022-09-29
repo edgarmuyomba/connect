@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connect/models/professional.dart';
 import 'package:connect/screens/messaging/inbox.dart';
@@ -79,6 +81,7 @@ class _proProfileState extends State<proProfile> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.professional.name),
+        backgroundColor: Color.fromARGB(255, 3, 26, 36),
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -93,8 +96,13 @@ class _proProfileState extends State<proProfile> {
               Text(widget.professional.Location),
               Text(widget.professional.email),
               Text(widget.professional.Contact),
+              //Text(widget.professional.image),
               ElevatedButton(
                   onPressed: () => pushInbox(widget.professional),
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(
+                        Color.fromARGB(255, 3, 26, 36)),
+                  ),
                   child: Text('Chat')),
               Divider(
                 height: 1,
@@ -139,6 +147,7 @@ class _proProfileState extends State<proProfile> {
                         final DocumentSnapshot documentSnapshot =
                             streamSnapshot.data!.docs[index];
                         return Card(
+                          color: Color.fromARGB(255, 3, 26, 36),
                           margin: const EdgeInsets.all(10),
                           child: ListTile(
                             title: Text(documentSnapshot['content']),
@@ -158,6 +167,7 @@ class _proProfileState extends State<proProfile> {
       floatingActionButton: FloatingActionButton(
         onPressed: () => _addReview(),
         child: Icon(Icons.reviews),
+        backgroundColor: Color.fromARGB(255, 3, 26, 36),
       ),
     );
   }
