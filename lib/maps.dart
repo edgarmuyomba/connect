@@ -1,6 +1,7 @@
-import 'package:connect/models/office.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+import 'models/office.dart';
 
 class MapWidget extends StatefulWidget {
   const MapWidget({super.key});

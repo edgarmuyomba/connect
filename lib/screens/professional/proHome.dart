@@ -1,9 +1,10 @@
-import 'package:connect/screens/professional/proChats.dart';
-import 'package:connect/screens/professional/reviews.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '_profile.dart';
 import 'package:flutter/material.dart';
+
+import 'proChats.dart';
+import 'reviews.dart';
 
 class proHome extends StatefulWidget {
   const proHome({super.key});

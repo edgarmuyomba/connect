@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:connect/screens/drawer/profile.dart';
-import 'package:connect/screens/messaging/proProfile.dart';
-import 'package:connect/models/professional.dart';
-import 'package:connect/screens/messaging/inbox.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import '../../models/professional.dart';
+import '../messaging/inbox.dart';
+import '../messaging/proProfile.dart';
+import '../professional/_profile.dart';
 import 'share.dart';
 import 'help.dart';
 import 'about.dart';

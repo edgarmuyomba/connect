@@ -1,8 +1,8 @@
-import 'package:connect/firebase_options.dart';
-import 'package:connect/screens/wrapper.dart';
-import 'package:connect/utils.dart' as Utils;
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+
+import 'firebase_options.dart';
+import 'screens/wrapper.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,12 +17,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final messengerKey = GlobalKey<ScaffoldMessengerState>();
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       navigatorKey: navigatorKey,
-      scaffoldMessengerKey: Utils.messengerKey,
+      scaffoldMessengerKey: messengerKey,
       title: 'Connect',
-      home: Wrapper(),
+      home: const Wrapper(),
     );
   }
 }

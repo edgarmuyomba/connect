@@ -1,7 +1,8 @@
-import 'package:connect/screens/authentication/authPage.dart';
-import 'package:connect/screens/home/homePage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import 'authentication/authPage.dart';
+import 'home/homePage.dart';
 
 class Wrapper extends StatelessWidget {
   const Wrapper({super.key});

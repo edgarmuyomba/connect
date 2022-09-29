@@ -1,10 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:connect/utils.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:connect/main.dart';
+
+import '../../main.dart';
+import '../../utils.dart';
 
 class proAccount extends StatefulWidget {
   final Function() isLogin;

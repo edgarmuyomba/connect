@@ -1,10 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:connect/utils.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:connect/main.dart';
+
+import '../../main.dart';
+import '../../utils.dart';
 
 class ordAccount extends StatefulWidget {
   final Function() isLogin;
@@ -56,24 +57,24 @@ class _ordAccountState extends State<ordAccount> {
               Row(
                 children: [
                   Expanded(
-                  child: TextFormField(
-                    controller: _fnameController,
-                    textInputAction: TextInputAction.done,
-                    decoration: InputDecoration(labelText: 'First Name'),
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    validator: (value) =>
-                        value != null ? null : 'This is a required field',
+                    child: TextFormField(
+                      controller: _fnameController,
+                      textInputAction: TextInputAction.done,
+                      decoration: InputDecoration(labelText: 'First Name'),
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      validator: (value) =>
+                          value != null ? null : 'This is a required field',
+                    ),
                   ),
-                  ),
-                  Expanded(  
-                  child: TextFormField(
-                    controller: _lnameController,
-                    textInputAction: TextInputAction.done,
-                    decoration: InputDecoration(labelText: 'Last Name'),
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    validator: (value) =>
-                        value != null ? null : 'This is a required field',
-                  ),
+                  Expanded(
+                    child: TextFormField(
+                      controller: _lnameController,
+                      textInputAction: TextInputAction.done,
+                      decoration: InputDecoration(labelText: 'Last Name'),
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      validator: (value) =>
+                          value != null ? null : 'This is a required field',
+                    ),
                   ),
                 ],
               ),
@@ -178,7 +179,7 @@ class _ordAccountState extends State<ordAccount> {
         'email': _emailController.text.trim(),
         'Location': _locationController.text.trim(),
         'accountType': 'Ordinary',
-        'identifier': user.uid.toString()+'Ordinary',
+        'identifier': user.uid.toString() + 'Ordinary',
       });
     } on FirebaseAuthException catch (e) {
       print(e);
