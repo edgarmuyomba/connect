@@ -37,14 +37,15 @@ class _ordAccountState extends State<ordAccount> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        // padding: EdgeInsets.all(16),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.all(16),
+      child: Center(
         child: Form(
           key: formKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // SizedBox(height: 30),
+              SizedBox(height: 50),
               FlutterLogo(size: 70),
               SizedBox(height: 20),
               Text('Create an account',
@@ -151,6 +152,7 @@ class _ordAccountState extends State<ordAccount> {
           ),
         ),
       ),
+    ),
     );
   }
 

@@ -41,11 +41,15 @@ class _proAccountState extends State<proAccount> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      body: SingleChildScrollView(
+        padding: EdgeInsets.all(16),
+        child: Center(
         child: Form(
           key: formKey,
           child: Column(
             children: [
+              SizedBox(height: 50),
+              FlutterLogo(size: 90),
               SizedBox(height: 20),
               Text('Create an account',
                   style: TextStyle(
@@ -178,7 +182,7 @@ class _proAccountState extends State<proAccount> {
           ),
         ),
       ),
-    );
+    ));
   }
 
   Future signUp() async {
@@ -205,7 +209,7 @@ class _proAccountState extends State<proAccount> {
         'Profession': _professionController.text.trim(),
         'Location': _locationController.text.trim(),
         'accountType': 'Professional',
-        'identifier': user.uid.toString()+'Professional',
+        'identifier': user.uid.toString() + 'Professional',
       });
     } on FirebaseAuthException catch (e) {
       print(e);
