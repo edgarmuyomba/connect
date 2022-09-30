@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/screens/professional/biodata.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -11,6 +12,12 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   var user = FirebaseAuth.instance.currentUser;
+
+  void pushBioData() {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => bioData()));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -29,7 +36,7 @@ class _ProfileState extends State<Profile> {
           return Scaffold(
             backgroundColor: Color.fromARGB(255, 12, 19, 23),
             appBar: AppBar(
-              title: Text("Hello, "+ data['firstname'].toString()),
+              title: Text("Hello, " + data['firstname'].toString()),
               backgroundColor: Color.fromARGB(255, 31, 44, 52),
               actions: [
                 PopupMenuButton(
@@ -51,146 +58,161 @@ class _ProfileState extends State<Profile> {
             ),
             body: Padding(
               padding: EdgeInsets.all(10),
-              child: Column(
-                children: [
-                  SizedBox(height: 10),
-                  CircleAvatar(
-                    backgroundImage: AssetImage('assets/profilePicture.jpg'),
-                    radius: 100,
-                  ),
-                  SizedBox(height: 10),
-                  Container(
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      border:
-                          Border.all(color: Color.fromARGB(255, 2, 168, 132)),
-                      borderRadius: BorderRadius.all(Radius.circular(150)),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    SizedBox(height: 10),
+                    CircleAvatar(
+                      backgroundImage: AssetImage('assets/profilePicture.jpg'),
+                      radius: 100,
                     ),
-                    child: Row(
-                      children: [
-                        Text("Firstname: ",
+                    SizedBox(height: 10),
+                    Container(
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        border:
+                            Border.all(color: Color.fromARGB(255, 2, 168, 132)),
+                        borderRadius: BorderRadius.all(Radius.circular(150)),
+                      ),
+                      child: Row(
+                        children: [
+                          Text("Firstname: ",
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white)),
+                          Text(data['firstname'].toString().toUpperCase(),
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  color: Color.fromARGB(255, 133, 150, 160))),
+                          Icon(Icons.edit,
+                              color: Color.fromARGB(255, 2, 168, 132)),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Container(
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        border:
+                            Border.all(color: Color.fromARGB(255, 2, 168, 132)),
+                        borderRadius: BorderRadius.all(Radius.circular(150)),
+                      ),
+                      child: Row(
+                        children: [
+                          Text("Lastname: ",
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white)),
+                          Text(data['lastname'].toString().toUpperCase(),
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  color: Color.fromARGB(255, 133, 150, 160))),
+                          Icon(Icons.edit,
+                              color: Color.fromARGB(255, 2, 168, 132)),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Container(
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        border:
+                            Border.all(color: Color.fromARGB(255, 2, 168, 132)),
+                        borderRadius: BorderRadius.all(Radius.circular(150)),
+                      ),
+                      child: Row(
+                        children: [
+                          Text(
+                            'Location: ',
                             style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.white)),
-                        Text(data['firstname'].toString().toUpperCase(),
+                                color: Colors.white),
+                          ),
+                          Text(
+                            data['Location'].toString().toUpperCase(),
                             style: TextStyle(
                                 fontSize: 18,
-                                color: Color.fromARGB(255, 133, 150, 160))),
-                        Icon(Icons.edit,
-                            color: Color.fromARGB(255, 2, 168, 132)),
-                      ],
+                                color: Color.fromARGB(255, 133, 150, 160)),
+                          ),
+                          Icon(Icons.edit,
+                              color: Color.fromARGB(255, 2, 168, 132)),
+                        ],
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 10),
-                  Container(
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      border:
-                          Border.all(color: Color.fromARGB(255, 2, 168, 132)),
-                      borderRadius: BorderRadius.all(Radius.circular(150)),
-                    ),
-                    child: Row(
-                      children: [
-                        Text("Lastname: ",
+                    SizedBox(height: 10),
+                    Container(
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        border:
+                            Border.all(color: Color.fromARGB(255, 2, 168, 132)),
+                        borderRadius: BorderRadius.all(Radius.circular(150)),
+                      ),
+                      child: Row(
+                        children: [
+                          Text(
+                            'Email: ',
                             style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.white)),
-                        Text(data['lastname'].toString().toUpperCase(),
+                                color: Colors.white),
+                          ),
+                          Text(
+                            user!.email!,
                             style: TextStyle(
                                 fontSize: 18,
-                                color: Color.fromARGB(255, 133, 150, 160))),
-                        Icon(Icons.edit,
-                            color: Color.fromARGB(255, 2, 168, 132)),
-                      ],
+                                color: Color.fromARGB(255, 133, 150, 160)),
+                          ),
+                          Icon(Icons.edit,
+                              color: Color.fromARGB(255, 2, 168, 132)),
+                        ],
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 10),
-                  Container(
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      border:
-                          Border.all(color: Color.fromARGB(255, 2, 168, 132)),
-                      borderRadius: BorderRadius.all(Radius.circular(150)),
+                    SizedBox(height: 10),
+                    Container(
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        border:
+                            Border.all(color: Color.fromARGB(255, 2, 168, 132)),
+                        borderRadius: BorderRadius.all(Radius.circular(150)),
+                      ),
+                      child: Row(
+                        children: [
+                          Text(
+                            'Profession: ',
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                          Text(
+                            data['Profession'].toString().toUpperCase(),
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: Color.fromARGB(255, 133, 150, 160)),
+                          ),
+                          Icon(Icons.edit,
+                              color: Color.fromARGB(255, 2, 168, 132)),
+                        ],
+                      ),
                     ),
-                    child: Row(
-                      children: [
-                        Text(
-                          'Location: ',
-                          style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
-                        ),
-                        Text(
-                          data['Location'].toString().toUpperCase(),
-                          style: TextStyle(
-                              fontSize: 18,
-                              color: Color.fromARGB(255, 133, 150, 160)),
-                        ),
-                        Icon(Icons.edit,
-                            color: Color.fromARGB(255, 2, 168, 132)),
-                      ],
+                    SizedBox(
+                      height: 20,
                     ),
-                  ),
-                  SizedBox(height: 10),
-                  Container(
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      border:
-                          Border.all(color: Color.fromARGB(255, 2, 168, 132)),
-                      borderRadius: BorderRadius.all(Radius.circular(150)),
+                    Divider(
+                      height: 10,
+                      color: Colors.white,
                     ),
-                    child: Row(
-                      children: [
-                        Text(
-                          'Email: ',
-                          style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
-                        ),
-                        Text(
-                          user!.email!,
-                          style: TextStyle(
-                              fontSize: 18,
-                              color: Color.fromARGB(255, 133, 150, 160)),
-                        ),
-                        Icon(Icons.edit,
-                            color: Color.fromARGB(255, 2, 168, 132)),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 10),
-                  Container(
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      border:
-                          Border.all(color: Color.fromARGB(255, 2, 168, 132)),
-                      borderRadius: BorderRadius.all(Radius.circular(150)),
-                    ),
-                    child: Row(
-                      children: [
-                        Text(
-                          'Location: ',
-                          style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
-                        ),
-                        Text(
-                          data['Profession'].toString().toUpperCase(),
-                          style: TextStyle(
-                              fontSize: 18,
-                              color: Color.fromARGB(255, 133, 150, 160)),
-                        ),
-                        Icon(Icons.edit,
-                            color: Color.fromARGB(255, 2, 168, 132)),
-                      ],
-                    ),
-                  ),
-                ],
+                    ElevatedButton(
+                        onPressed: pushBioData,
+                        child: const Text('Bio-Data'),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color.fromARGB(255, 31, 44, 52),
+                        ))
+                  ],
+                ),
               ),
             ),
           );

@@ -42,9 +42,9 @@ class _proAccountState extends State<proAccount> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        padding: EdgeInsets.all(16),
-        child: Center(
+        body: SingleChildScrollView(
+      padding: EdgeInsets.all(16),
+      child: Center(
         child: Form(
           key: formKey,
           child: Column(
@@ -57,56 +57,46 @@ class _proAccountState extends State<proAccount> {
                       fontWeight: FontWeight.bold,
                       fontSize: 28,
                       color: Color.fromARGB(255, 0, 65, 118))),
-              Row(
-                children: [
-                  Expanded(
-                    child: TextFormField(
-                      controller: _fnameController,
-                      textInputAction: TextInputAction.done,
-                      decoration: InputDecoration(labelText: 'First Name'),
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: (value) =>
-                          value != null ? null : 'This is a required field',
-                    ),
-                  ),
-                  Expanded(
-                    child: TextFormField(
-                      controller: _lnameController,
-                      textInputAction: TextInputAction.done,
-                      decoration: InputDecoration(labelText: 'Last Name'),
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: (value) =>
-                          value != null ? null : 'This is a required field',
-                    ),
-                  ),
-                ],
+              TextFormField(
+                controller: _fnameController,
+                textInputAction: TextInputAction.done,
+                decoration: InputDecoration(labelText: 'First Name'),
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: (value) =>
+                    value != null ? null : 'This is a required field',
               ),
               SizedBox(
                 height: 4,
               ),
-              Row(
-                children: [
-                  Expanded(
-                    child: TextFormField(
-                      controller: _professionController,
-                      textInputAction: TextInputAction.done,
-                      decoration: InputDecoration(labelText: 'Profession'),
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: (value) =>
-                          value != null ? null : 'This is a required field',
-                    ),
-                  ),
-                  Expanded(
-                    child: TextFormField(
-                      controller: _contactController,
-                      textInputAction: TextInputAction.done,
-                      decoration: InputDecoration(labelText: 'Contact'),
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: (value) =>
-                          value != null ? null : 'This is a required field',
-                    ),
-                  ),
-                ],
+              TextFormField(
+                controller: _lnameController,
+                textInputAction: TextInputAction.done,
+                decoration: InputDecoration(labelText: 'Last Name'),
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: (value) =>
+                    value != null ? null : 'This is a required field',
+              ),
+              SizedBox(
+                height: 4,
+              ),
+              TextFormField(
+                controller: _professionController,
+                textInputAction: TextInputAction.done,
+                decoration: InputDecoration(labelText: 'Profession'),
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: (value) =>
+                    value != null ? null : 'This is a required field',
+              ),
+              SizedBox(
+                height: 4,
+              ),
+              TextFormField(
+                controller: _contactController,
+                textInputAction: TextInputAction.done,
+                decoration: InputDecoration(labelText: 'Contact'),
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: (value) =>
+                    value != null ? null : 'This is a required field',
               ),
               SizedBox(
                 height: 4,
@@ -201,6 +191,12 @@ class _proAccountState extends State<proAccount> {
           email: _emailController.text.trim(),
           password: _passwordController.text.trim());
       var user = FirebaseAuth.instance.currentUser;
+      // await FirebaseFirestore.instance.collection('bioData').add({
+      //   'uniqueId': user!.uid.toString(),
+      //   'about': '',
+      //   'education': '',
+      //   'experience': ''
+      // });
       await FirebaseFirestore.instance.collection('users').add({
         'uniqueId': user!.uid,
         'firstname': _fnameController.text.trim(),
@@ -211,6 +207,7 @@ class _proAccountState extends State<proAccount> {
         'Location': _locationController.text.trim(),
         'accountType': 'Professional',
         'identifier': user.uid.toString() + 'Professional',
+        'image': 'assets/proProfile/png'
       });
     } on FirebaseAuthException catch (e) {
       print(e);
