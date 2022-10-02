@@ -25,7 +25,7 @@ class generatepage extends StatelessWidget {
                       children: [
                     Center(
                       child: QrImage(
-                          data: 'CSC2022 CSC1202 1',
+                          data: '',
                           version: QrVersions.auto,
                           size: (200),
                           gapless: false,

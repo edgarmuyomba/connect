@@ -22,6 +22,7 @@ class _AppState extends State<App> {
 
   var _aspectTolerance = 0.00;
   var _numberOfCameras = 0;
+
   var _selectedCamera = -1;
   var _useAutoFocus = true;
   var _autoEnableFlash = false;
