@@ -1,6 +1,7 @@
-import 'package:connect/models/user.dart';
-import 'package:connect/screens/professional/proInbox.dart';
 import 'package:flutter/material.dart';
+
+import '../../models/user.dart';
+import 'proInbox.dart';
 
 class proChat extends StatefulWidget {
   const proChat({super.key});
@@ -12,7 +13,9 @@ class proChat extends StatefulWidget {
 class _proChatState extends State<proChat> {
   void pushInbox(User pro) {
     Navigator.of(context).push(MaterialPageRoute<void>(builder: (context) {
-      return proInbox(user: pro,);
+      return proInbox(
+        user: pro,
+      );
     }));
   }
 
@@ -49,20 +52,27 @@ class _proChatState extends State<proChat> {
         backgroundColor: Color.fromARGB(255, 31, 44, 52),
       ),
       body: ListView.builder(
-      itemCount: data.length,
-      itemBuilder: (BuildContext context, int index) {
-        return Card(
-          color: Color.fromARGB(255, 31, 44, 52),
-          child: ListTile(
-            leading: CircleAvatar(
-                backgroundImage: AssetImage(data[index]['image'])),
-            title: Text(data[index]['firstname'] +' '+data[index]['lastname'], style: TextStyle(color: Colors.white)),
-            subtitle: Text('Hi, I would like to make an appointment...', style: TextStyle(color: Color.fromARGB(255, 133, 150, 160))),
-            onTap: () => pushInbox(User(data[index]['firstname'] + ' '+ data[index]['lastname'],data[index]['email'], data[index]['Contact'], data[index]['image'])),
-          ),
-        );
-      },
-    ),
-    );   
+        itemCount: data.length,
+        itemBuilder: (BuildContext context, int index) {
+          return Card(
+            color: Color.fromARGB(255, 31, 44, 52),
+            child: ListTile(
+              leading: CircleAvatar(
+                  backgroundImage: AssetImage(data[index]['image'])),
+              title: Text(
+                  data[index]['firstname'] + ' ' + data[index]['lastname'],
+                  style: TextStyle(color: Colors.white)),
+              subtitle: Text('Hi, I would like to make an appointment...',
+                  style: TextStyle(color: Color.fromARGB(255, 133, 150, 160))),
+              onTap: () => pushInbox(User(
+                  data[index]['firstname'] + ' ' + data[index]['lastname'],
+                  data[index]['email'],
+                  data[index]['Contact'],
+                  data[index]['image'])),
+            ),
+          );
+        },
+      ),
+    );
   }
 }

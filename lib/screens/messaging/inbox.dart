@@ -1,7 +1,8 @@
-import 'package:connect/screens/messaging/proProfile.dart';
-import 'package:connect/models/professional.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../../models/professional.dart';
+import 'proProfile.dart';
 
 class Inbox extends StatefulWidget {
   final Professional professional;

@@ -1,10 +1,11 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:connect/models/professional.dart';
-import 'package:connect/screens/messaging/inbox.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import '../../models/professional.dart';
+import 'inbox.dart';
 
 class proProfile extends StatefulWidget {
   const proProfile({super.key, required this.professional});
