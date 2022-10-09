@@ -51,6 +51,7 @@ dependencies:
   dropdown_textfield: ^1.0.5
   date_time_picker_widget: ^1.0.1+4
   intl: ^0.17.0
+  rating_dialog: ^2.0.4
 
 dev_dependencies:
   flutter_test:

@@ -31,7 +31,10 @@ class _ChatState extends State<Chat> {
       'Location': 'Wandegeya',
       'image': 'assets/images.jpg',
       'ratings': [1,3,3,4,5,2],
-      'cost': 17000
+      'cost': 17000,
+      'available': false,
+      'verified': false,
+      'complete': 10
     },
     {
       'firstname': 'Matovu',
@@ -42,7 +45,10 @@ class _ChatState extends State<Chat> {
       'Location': 'Kikoni',
       'image': 'assets/images (2).jpg',
       'ratings': [5,4,5,3],
-      'cost': 25000
+      'cost': 25000,
+      'available': true,
+      'verified': true,
+      'complete': 25
     },
     {
       'firstname': 'Kasozi',
@@ -53,7 +59,10 @@ class _ChatState extends State<Chat> {
       'Location': 'Mukono',
       'image': 'assets/images (3).jpg',
       'ratings': [4,2,5,3,1],
-      'cost': 25000
+      'cost': 25000,
+      'available': false,
+      'verified': false,
+      'complete': 10
     },
   ];
 

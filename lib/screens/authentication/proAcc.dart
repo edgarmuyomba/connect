@@ -241,7 +241,7 @@ class _proAccountState extends State<proAccount> {
         'identifier': user.uid.toString() + 'Professional',
         'image': 'assets/proProfile/png',
         'ratings': [],
-        'cost': _costController.text.trim(),
+        'cost': int.parse(_costController.text.trim()),
         'available': true,
         'verified': false,
         'complete': 0

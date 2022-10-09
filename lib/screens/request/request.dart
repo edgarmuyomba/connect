@@ -3,6 +3,7 @@ import 'package:date_time_picker_widget/date_time_picker_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/models/professional.dart';
+import 'package:flutter_application_1/screens/messaging/proProfile.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_application_1/main.dart';
 
@@ -21,6 +22,12 @@ class _requestState extends State<request> {
   final formKey = GlobalKey<FormState>();
   final locationController = TextEditingController();
   final detailController = TextEditingController();
+
+  void pushproProfile(Professional pro) {
+    Navigator.of(context).push(MaterialPageRoute<void>(builder: (context) {
+      return proProfile(professional: pro);
+    }));
+  }
 
   @override
   void dispose() {
@@ -72,7 +79,19 @@ class _requestState extends State<request> {
                                       widget.professional.Category,
                                     )
                                   ],
-                                )
+                                ),
+                                Row(
+                                  children: [
+                                    ElevatedButton(
+                                        onPressed: () =>
+                                            pushproProfile(widget.professional),
+                                        child: const Text('Profile'),
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor:
+                                              Color.fromARGB(255, 31, 44, 52),
+                                        ))
+                                  ],
+                                ),
                               ],
                             ))),
                   ],

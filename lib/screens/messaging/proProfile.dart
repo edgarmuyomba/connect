@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_glow/flutter_glow.dart';
+import 'package:rating_dialog/rating_dialog.dart';
 import '../../models/professional.dart';
 import 'inbox.dart';
 
@@ -26,12 +27,15 @@ class _proProfileState extends State<proProfile> {
   }
 
   double rating(List ratingList) {
-    int len = ratingList.length;
-    int sum = 0;
-    for (int i in ratingList) {
-      sum += i;
+    if (ratingList.length > 0) {
+      int len = ratingList.length;
+      int sum = 0;
+      for (int i in ratingList) {
+        sum += i;
+      }
+      return sum / len;
     }
-    return sum / len;
+    return 0.0;
   }
 
   String comment(double rate) {
@@ -79,9 +83,7 @@ class _proProfileState extends State<proProfile> {
                       color: Colors.grey,
                     ))),
             child: Center(
-              child: Text(
-                comment(rate)
-              ),
+              child: Text(comment(rate)),
             ),
           )
         ],
@@ -101,12 +103,8 @@ class _proProfileState extends State<proProfile> {
                       color: Color.fromARGB(255, 131, 9, 0),
                     ))),
             child: Center(
-              child: Text(
-                'Unverified',
-                style: TextStyle(
-                  color: Color.fromARGB(255, 255, 114, 104)
-                )
-              ),
+              child: Text('Unverified',
+                  style: TextStyle(color: Color.fromARGB(255, 255, 114, 104))),
             ),
           ),
           SizedBox(width: 5),
@@ -122,9 +120,7 @@ class _proProfileState extends State<proProfile> {
                       color: Colors.grey,
                     ))),
             child: Center(
-              child: Text(
-                comment(rate)
-              ),
+              child: Text(comment(rate)),
             ),
           )
         ],
@@ -212,6 +208,41 @@ class _proProfileState extends State<proProfile> {
         });
   }
 
+  Widget _dialog() {
+    final user = FirebaseAuth.instance.currentUser;
+    return RatingDialog(
+      initialRating: 1.0,
+      title: Text(
+        'Connect',
+        textAlign: TextAlign.center,
+        style: const TextStyle(
+          fontSize: 25,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      message: Text(
+        'Tap a star to set your rating. Add a review about the professional here if you want.',
+        textAlign: TextAlign.center,
+        style: const TextStyle(fontSize: 15),
+      ),
+      image: Image.asset('./assets/logo.png'),
+      submitButtonText: 'Submit',
+      commentHint: 'Submit a review',
+      onCancelled: () => Navigator.pop(context),
+      onSubmitted: (response) async {
+        print('rating: ${response.rating}, comment: ${response.comment}');
+        await FirebaseFirestore.instance.collection('reviews').add({
+          "content": response.comment,
+          "uniqueId": user!.uid,
+          "sender": user.email
+              .toString()
+              .substring(0, user.email.toString().indexOf('@')),
+          "receipient": widget.professional.name,
+        });
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -295,7 +326,8 @@ class _proProfileState extends State<proProfile> {
                 Row(
                   children: [Text('Starting cost\n')],
                 ),
-                tags(widget.professional.complete, rating(widget.professional.ratings)),
+                tags(widget.professional.complete,
+                    rating(widget.professional.ratings)),
                 Row(
                   children: [
                     Text(
@@ -345,7 +377,6 @@ class _proProfileState extends State<proProfile> {
           ),
         ],
       ),
-      // ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => _addReview(),
         child: Icon(Icons.reviews),

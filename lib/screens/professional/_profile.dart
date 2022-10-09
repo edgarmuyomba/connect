@@ -181,14 +181,14 @@ class _ProfileState extends State<Profile> {
                       child: Row(
                         children: [
                           Text(
-                            'Profession: ',
+                            'Category: ',
                             style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white),
                           ),
                           Text(
-                            data['Profession'].toString().toUpperCase(),
+                            data['Category'].toString().toUpperCase(),
                             style: TextStyle(
                                 fontSize: 18,
                                 color: Color.fromARGB(255, 133, 150, 160)),

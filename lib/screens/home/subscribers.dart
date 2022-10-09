@@ -20,12 +20,15 @@ class _subscribersState extends State<subscribers> {
   }
 
   double rating(List ratingList) {
-    int len = ratingList.length;
-    int sum = 0;
-    for (int i in ratingList) {
-      sum += i;
+    if (ratingList.length > 0) {
+      int len = ratingList.length;
+      int sum = 0;
+      for (int i in ratingList) {
+        sum += i;
+      }
+      return sum / len;
     }
-    return sum / len;
+    return 0.0;
   }
 
   void pushRequest(Professional pro) {
