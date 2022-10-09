@@ -4,7 +4,6 @@ import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-
 import '../../main.dart';
 import '../../utils.dart';
 
@@ -246,12 +245,6 @@ class _proAccountState extends State<proAccount> {
         'available': true,
         'verified': false,
         'complete': 0
-      });
-      await FirebaseFirestore.instance
-          .collection('categories')
-          .doc(holder)
-          .update({
-        'subscribers': FieldValue.arrayUnion([user.uid])
       });
     } on FirebaseAuthException catch (e) {
       print(e);

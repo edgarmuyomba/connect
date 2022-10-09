@@ -255,7 +255,6 @@ class _proProfileState extends State<proProfile> {
                           ),
                         ],
                       ),
-
                       Row(
                         children: [
                           Icon(
@@ -275,9 +274,6 @@ class _proProfileState extends State<proProfile> {
                               child: Text('Chat')),
                         ],
                       ),
-                      // Text(widget.professional.Location),
-                      // Text(widget.professional.email),
-                      // Text(widget.professional.Contact),
                     ],
                   ),
                 )),
