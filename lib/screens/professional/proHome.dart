@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_application_1/screens/professional/QR/generate.dart';
 
 import '_profile.dart';
 import 'package:flutter/material.dart';
@@ -16,11 +17,7 @@ class proHome extends StatefulWidget {
 class _proHomeState extends State<proHome> {
   var _currentPage = 1;
 
-  var _pages = [
-    Reviews(),
-    Profile(),
-    proChat(),
-  ];
+  var _pages = [Reviews(), Profile(), proChat(), generatepage()];
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +42,10 @@ class _proHomeState extends State<proHome> {
             BottomNavigationBarItem(
               icon: Icon(Icons.chat),
               label: 'Chats',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.qr_code),
+              label: 'QR',
             ),
           ],
           currentIndex: _currentPage,
