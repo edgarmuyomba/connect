@@ -1,5 +1,4 @@
 import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
@@ -25,7 +24,12 @@ class generatepage extends StatelessWidget {
                       children: [
                     Center(
                       child: QrImage(
-                          data: '',
+                          data: 'firstname: Kasozi\n' +
+                              'lastname : Mark\n' +
+                              'email: kasozimark@gmail.com\n' +
+                              'Profession : Plumber\n' +
+                              'Contact : +256 700 999 999\n' +
+                              'Location:  Mukono',
                           version: QrVersions.auto,
                           size: (200),
                           gapless: false,

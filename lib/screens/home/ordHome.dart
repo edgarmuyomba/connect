@@ -1,14 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:connect/QR/generate.dart';
-import 'package:connect/maps.dart';
-import 'package:connect/screens/drawer/drawer.dart';
-import 'package:connect/screens/messaging/chats.dart';
+//import 'package:connect/maps.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
-import '../../maps.dart';
-import '../drawer/drawer.dart';
-import '../messaging/chats.dart';
+import 'package:flutter_application_1/screens/professional/QR/generate.dart';
+import 'package:flutter_application_1/screens/drawer/drawer.dart';
+import 'package:flutter_application_1/screens/messaging/chats.dart';
 
 class ordHome extends StatefulWidget {
   const ordHome({super.key});
@@ -24,8 +20,8 @@ class _ordHome extends State<ordHome> {
   var _pages = [
     Drawer_(),
     Chat(),
-    // MapWidget(),
-    generatepage()
+    //MapWidget(),
+    //generatepage(),
   ];
 
   List<Map<String, dynamic>> data = [
