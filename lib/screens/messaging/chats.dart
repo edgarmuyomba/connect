@@ -26,28 +26,43 @@ class _ChatState extends State<Chat> {
       'firstname': 'Ntale',
       'lastname': 'John',
       'email': 'ntalejohn25@gmail.com',
-      'Profession': 'Tailor',
+      'Category': 'Tailoring',
       'Contact': '+256 700 999 999',
       'Location': 'Wandegeya',
-      'image': 'assets/images.jpg'
+      'image': 'assets/images.jpg',
+      'ratings': [1,3,3,4,5,2],
+      'cost': 17000,
+      'available': false,
+      'verified': false,
+      'complete': 10
     },
     {
       'firstname': 'Matovu',
       'lastname': 'Eric',
       'email': 'matovueric@gmail.com',
-      'Profession': 'Carpenter',
+      'Category': 'Woodworking',
       'Contact': '+256 700 999 999',
       'Location': 'Kikoni',
-      'image': 'assets/images (2).jpg'
+      'image': 'assets/images (2).jpg',
+      'ratings': [5,4,5,3],
+      'cost': 25000,
+      'available': true,
+      'verified': true,
+      'complete': 25
     },
     {
       'firstname': 'Kasozi',
       'lastname': 'Mark',
       'email': 'kasozimark@gmail.com',
-      'Profession': 'Plumber',
+      'Category': 'Plumbing and Waterworks',
       'Contact': '+256 700 999 999',
       'Location': 'Mukono',
-      'image': 'assets/images (3).jpg'
+      'image': 'assets/images (3).jpg',
+      'ratings': [4,2,5,3,1],
+      'cost': 25000,
+      'available': false,
+      'verified': false,
+      'complete': 10
     },
   ];
 
@@ -81,10 +96,15 @@ class _ChatState extends State<Chat> {
               onTap: () => pushInbox(Professional(
                   data[index]['firstname'] + ' ' + data[index]['lastname'],
                   data[index]['email'],
-                  data[index]['Profession'],
+                  data[index]['Category'],
                   data[index]['Contact'],
                   data[index]['Location'],
-                  data[index]['image'])),
+                  data[index]['image'],
+                  data[index]['ratings'],
+                  data[index]['cost'],
+                  data[index]['available'],
+                  data[index]['verified'],
+                  data[index]['complete'])),
             ),
           );
         },

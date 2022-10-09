@@ -55,8 +55,11 @@ class _proChatState extends State<proChat> {
         itemCount: data.length,
         itemBuilder: (BuildContext context, int index) {
           return Card(
-            color: Color.fromARGB(255, 31, 44, 52),
+            shape: RoundedRectangleBorder(
+                side: BorderSide(color: Colors.grey),
+                borderRadius: BorderRadius.circular(20.0)),
             child: ListTile(
+              tileColor: Color.fromARGB(255, 3, 26, 36),
               leading: CircleAvatar(
                   backgroundImage: AssetImage(data[index]['image'])),
               title: Text(

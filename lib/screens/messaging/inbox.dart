@@ -168,12 +168,6 @@ class _InboxState extends State<Inbox> {
                     decoration: BoxDecoration(
                       color: Color.fromARGB(255, 236, 234, 234),
                       borderRadius: BorderRadius.circular(35.0),
-                      // boxShadow: const [
-                      //   BoxShadow(
-                      //       offset: Offset(0, 2),
-                      //       blurRadius: 7,
-                      //       color: Colors.grey)
-                      // ],
                     ),
                     child: Row(
                       children: [

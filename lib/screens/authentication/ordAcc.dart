@@ -38,117 +38,121 @@ class _ordAccountState extends State<ordAccount> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        // padding: EdgeInsets.all(16),
-        child: Form(
-          key: formKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // SizedBox(height: 30),
-              FlutterLogo(size: 70),
-              SizedBox(height: 20),
-              Text('Create an account',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 28,
-                      color: Color.fromARGB(255, 0, 65, 118))),
-              Row(
-                children: [
-                  Expanded(
-                    child: TextFormField(
-                      controller: _fnameController,
-                      textInputAction: TextInputAction.done,
-                      decoration: InputDecoration(labelText: 'First Name'),
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: (value) =>
-                          value != null ? null : 'This is a required field',
-                    ),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.all(16),
+        child: Center(
+          child: Form(
+            key: formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(height: 50),
+            Container(
+              width: 600,
+              height: 100,
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: AssetImage('./assets/logo.png'))),
+            ),
+                SizedBox(height: 20),
+                Text('Create an account',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 28,
+                        color: Color.fromARGB(255, 0, 65, 118))),
+                TextFormField(
+                  controller: _fnameController,
+                  textInputAction: TextInputAction.done,
+                  decoration: InputDecoration(labelText: 'First Name'),
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  validator: (value) =>
+                      value != null ? null : 'This is a required field',
+                ),
+                SizedBox(
+                  height: 4,
+                ),
+                TextFormField(
+                  controller: _lnameController,
+                  textInputAction: TextInputAction.done,
+                  decoration: InputDecoration(labelText: 'Last Name'),
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  validator: (value) =>
+                      value != null ? null : 'This is a required field',
+                ),
+                SizedBox(
+                  height: 4,
+                ),
+                TextFormField(
+                  controller: _emailController,
+                  cursorColor: Colors.white,
+                  textInputAction: TextInputAction.next,
+                  decoration: InputDecoration(labelText: 'Email'),
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  validator: (email) =>
+                      email != null && !EmailValidator.validate(email.trim())
+                          ? 'Enter a valid email'
+                          : null,
+                ),
+                SizedBox(
+                  height: 4,
+                ),
+                TextFormField(
+                  controller: _locationController,
+                  textInputAction: TextInputAction.done,
+                  decoration: InputDecoration(labelText: 'Location'),
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  validator: (value) =>
+                      value != null ? null : 'This is a required field',
+                ),
+                SizedBox(
+                  height: 4,
+                ),
+                TextFormField(
+                  controller: _passwordController,
+                  textInputAction: TextInputAction.done,
+                  decoration: InputDecoration(labelText: 'Password'),
+                  obscureText: true,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  validator: (value) => value != null && value.length < 6
+                      ? 'Enter min 6 characters'
+                      : null,
+                ),
+                SizedBox(height: 20),
+                ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: Size.fromHeight(50),
                   ),
-                  Expanded(
-                    child: TextFormField(
-                      controller: _lnameController,
-                      textInputAction: TextInputAction.done,
-                      decoration: InputDecoration(labelText: 'Last Name'),
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: (value) =>
-                          value != null ? null : 'This is a required field',
-                    ),
+                  icon: Icon(
+                    Icons.lock_open,
+                    size: 32,
                   ),
-                ],
-              ),
-              SizedBox(
-                height: 4,
-              ),
-              TextFormField(
-                controller: _emailController,
-                cursorColor: Colors.white,
-                textInputAction: TextInputAction.next,
-                decoration: InputDecoration(labelText: 'Email'),
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: (email) =>
-                    email != null && !EmailValidator.validate(email.trim())
-                        ? 'Enter a valid email'
-                        : null,
-              ),
-              SizedBox(
-                height: 4,
-              ),
-              TextFormField(
-                controller: _locationController,
-                textInputAction: TextInputAction.done,
-                decoration: InputDecoration(labelText: 'Location'),
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: (value) =>
-                    value != null ? null : 'This is a required field',
-              ),
-              SizedBox(
-                height: 4,
-              ),
-              TextFormField(
-                controller: _passwordController,
-                textInputAction: TextInputAction.done,
-                decoration: InputDecoration(labelText: 'Password'),
-                obscureText: true,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: (value) => value != null && value.length < 6
-                    ? 'Enter min 6 characters'
-                    : null,
-              ),
-              SizedBox(height: 20),
-              ElevatedButton.icon(
-                style: ElevatedButton.styleFrom(
-                  minimumSize: Size.fromHeight(50),
+                  label: Text(
+                    'Sign Up',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  onPressed: signUp,
                 ),
-                icon: Icon(
-                  Icons.lock_open,
-                  size: 32,
+                SizedBox(
+                  height: 24,
                 ),
-                label: Text(
-                  'Sign Up',
-                  style: TextStyle(fontSize: 20),
+                RichText(
+                  text: TextSpan(
+                      style: TextStyle(color: Colors.black54, fontSize: 17),
+                      text: 'Already have an account?',
+                      children: [
+                        TextSpan(
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = widget.isLogin,
+                          text: 'SignIn',
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.secondary,
+                          ),
+                        )
+                      ]),
                 ),
-                onPressed: signUp,
-              ),
-              SizedBox(
-                height: 24,
-              ),
-              RichText(
-                text: TextSpan(
-                    style: TextStyle(color: Colors.black54, fontSize: 17),
-                    text: 'Already have an account?',
-                    children: [
-                      TextSpan(
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = widget.isLogin,
-                        text: 'SignIn',
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.secondary,
-                        ),
-                      )
-                    ]),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

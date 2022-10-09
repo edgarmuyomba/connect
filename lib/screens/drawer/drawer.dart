@@ -1,10 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../../models/professional.dart';
-import '../messaging/inbox.dart';
-import '../messaging/proProfile.dart';
-import '../professional/_profile.dart';
+import 'package:flutter_application_1/screens/drawer/profile.dart';
+import 'package:flutter_application_1/screens/home/proList.dart';
 import 'share.dart';
 import 'help.dart';
 import 'about.dart';
@@ -39,20 +36,6 @@ class _Drawer extends State<Drawer_> {
   void pushAbout() {
     Navigator.of(context).push(MaterialPageRoute<void>(builder: (context) {
       return About();
-    }));
-  }
-
-  void pushInbox(Professional pro) {
-    Navigator.of(context).push(MaterialPageRoute<void>(builder: (context) {
-      return Inbox(
-        professional: pro,
-      );
-    }));
-  }
-
-  void pushproProfile(Professional pro) {
-    Navigator.of(context).push(MaterialPageRoute<void>(builder: (context) {
-      return proProfile(professional: pro);
     }));
   }
 
@@ -168,87 +151,6 @@ class _Drawer extends State<Drawer_> {
             ],
           ),
         ),
-        body: StreamBuilder<QuerySnapshot>(
-          stream: FirebaseFirestore.instance
-              .collection('users')
-              .where('accountType', isEqualTo: 'Professional')
-              .snapshots(),
-          builder: (context, snapshots) {
-            return (snapshots.connectionState == ConnectionState.waiting)
-                ? Center(
-                    child: CircularProgressIndicator(),
-                  )
-                : ListView.builder(
-                    itemCount: snapshots.data!.docs.length,
-                    itemBuilder: (context, index) {
-                      var data = snapshots.data!.docs[index].data()
-                          as Map<String, dynamic>;
-
-                      if (name.isEmpty) {
-                        return Card(
-                            child: ListTile(
-                          title: Text(
-                              data['firstname'] + ' ' + data['lastname'],
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                  color: Colors.black45,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold)),
-                          leading: CircleAvatar(
-                            backgroundImage: AssetImage(data['image']),
-                          ),
-                          subtitle: Text(
-                              data['Profession'] + ' in ' + data['Location']),
-                          onTap: () => pushproProfile(Professional(
-                              data['firstname'] + ' ' + data['lastname'],
-                              data['email'],
-                              data['Profession'],
-                              data['Contact'],
-                              data['Location'],
-                              data['image'])),
-                        ));
-                      }
-                      if (data['firstname']
-                              .toString()
-                              .toLowerCase()
-                              .contains(name.toLowerCase()) ||
-                          data['Profession']
-                              .toString()
-                              .toLowerCase()
-                              .contains(name.toLowerCase()) ||
-                          data['lastname']
-                              .toString()
-                              .toLowerCase()
-                              .contains(name.toLowerCase())) {
-                        return Card(
-                            child: ListTile(
-                          title: Text(
-                              data['firstname'] + ' ' + data['lastname'],
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                  color: Colors.black45,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold)),
-                          leading: CircleAvatar(
-                            backgroundImage:
-                                AssetImage('assets/proProfile.png'),
-                          ),
-                          subtitle: Text(
-                              data['Profession'] + ' in ' + data['Location']),
-                          onTap: () => pushInbox(Professional(
-                              data['firstname'] + data['lastname'],
-                              data['email'],
-                              data['Profession'],
-                              data['Contact'],
-                              data['Location'],
-                              data['image'])),
-                        ));
-                      }
-                      return Container();
-                    });
-          },
-        ));
+        body: proList());
   }
 }

@@ -42,7 +42,6 @@ class _LoginWidgetState extends State<loginwidget> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const SizedBox(height: 60),
-            // FlutterLogo(size: 150),
             Container(
               width: 600,
               height: 100,
