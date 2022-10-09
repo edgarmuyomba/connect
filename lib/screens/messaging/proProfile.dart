@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -248,6 +250,7 @@ class _proProfileState extends State<proProfile> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.professional.name),
+        backgroundColor: Color.fromARGB(255, 3, 26, 36),
       ),
       body: Column(
         children: [
@@ -380,6 +383,7 @@ class _proProfileState extends State<proProfile> {
       floatingActionButton: FloatingActionButton(
         onPressed: () => _addReview(),
         child: Icon(Icons.reviews),
+        backgroundColor: Color.fromARGB(255, 3, 26, 36),
       ),
     );
   }
