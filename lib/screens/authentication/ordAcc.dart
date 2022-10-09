@@ -47,7 +47,14 @@ class _ordAccountState extends State<ordAccount> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(height: 50),
-                FlutterLogo(size: 70),
+            Container(
+              width: 600,
+              height: 100,
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: AssetImage('./assets/logo.png'))),
+            ),
                 SizedBox(height: 20),
                 Text('Create an account',
                     style: TextStyle(

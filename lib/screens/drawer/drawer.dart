@@ -1,10 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter_application_1/screens/drawer/profile.dart';
 import '../../models/professional.dart';
 import '../messaging/inbox.dart';
 import '../messaging/proProfile.dart';
-import '../professional/_profile.dart';
 import 'share.dart';
 import 'help.dart';
 import 'about.dart';
@@ -183,31 +184,159 @@ class _Drawer extends State<Drawer_> {
                     itemBuilder: (context, index) {
                       var data = snapshots.data!.docs[index].data()
                           as Map<String, dynamic>;
-
                       if (name.isEmpty) {
-                        return Card(
-                            child: ListTile(
-                          title: Text(
-                              data['firstname'] + ' ' + data['lastname'],
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                  color: Colors.black45,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold)),
-                          leading: CircleAvatar(
-                            backgroundImage: AssetImage(data['image']),
-                          ),
-                          subtitle: Text(
-                              data['Profession'] + ' in ' + data['Location']),
-                          onTap: () => pushproProfile(Professional(
-                              data['firstname'] + ' ' + data['lastname'],
-                              data['email'],
-                              data['Profession'],
-                              data['Contact'],
-                              data['Location'],
-                              data['image'])),
-                        ));
+                        // return Card(
+                        //     child: ListTile(
+                        //   title: Text(
+                        //       data['Category'],
+                        //       maxLines: 1,
+                        //       overflow: TextOverflow.ellipsis,
+                        //       style: TextStyle(
+                        //           color: Colors.black45,
+                        //           fontSize: 16,
+                        //           fontWeight: FontWeight.bold)),
+                        //   leading: CircleAvatar(
+                        //     backgroundImage: AssetImage(data['image']),
+                        //   ),
+                        //   subtitle: Text(
+                        //       'UGX '+ data['cost'].toString()),
+                        //   onTap: () => pushproProfile(Professional(
+                        //       data['firstname'] + ' ' + data['lastname'],
+                        //       data['email'],
+                        //       data['Category'],
+                        //       data['Contact'],
+                        //       data['Location'],
+                        //       data['image'],
+                        //       data['ratings'],
+                        //       data['cost'],
+                        //       data['available'],
+                        //       data['verified'],
+                        //       data['complete'])),
+                        // ));
+                        return Padding(
+                            padding: EdgeInsets.all(5),
+                            child: Column(
+                              children: [
+                              InkWell(
+                                  onTap: () {},
+                                  child: Container(
+                                    padding: EdgeInsets.all(10),
+                                    child:
+                                        Text(
+                                          'Electricians & Electrical Works',
+                                          style: TextStyle(
+                                            fontSize: 20,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                          ),
+                                    height: 200,
+                                    width: 500,
+                                    decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image: AssetImage(
+                                              'assets/electicity.png'),
+                                          fit: BoxFit.fill,
+                                        ),
+                                        borderRadius: BorderRadius.circular(10)),
+                                  )),
+                              SizedBox(height: 5,),
+                              InkWell(
+                                  onTap: () {},
+                                  child: Container(
+                                    padding: EdgeInsets.all(10),
+                                    child:
+                                        Text(
+                                          'Food & Nutrition',
+                                          style: TextStyle(
+                                            fontSize: 20,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                          ),
+                                    height: 200,
+                                    width: 500,
+                                    decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image: AssetImage(
+                                              'assets/food.png'),
+                                          fit: BoxFit.fill,
+                                        ),
+                                        borderRadius: BorderRadius.circular(10)),
+                                  )),
+                              SizedBox(height: 5),
+                              InkWell(
+                                  onTap: () {},
+                                  child: Container(
+                                    padding: EdgeInsets.all(10),
+                                    child:
+                                        Text(
+                                          'Plumbing & Waterworks',
+                                          style: TextStyle(
+                                            fontSize: 20,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                          ),
+                                    height: 200,
+                                    width: 500,
+                                    decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image: AssetImage(
+                                              'assets/plumbing.png'),
+                                          fit: BoxFit.fill,
+                                        ),
+                                        borderRadius: BorderRadius.circular(10)),
+                                  )),
+                              SizedBox(height: 5),
+                              InkWell(
+                                  onTap: () {},
+                                  child: Container(
+                                    padding: EdgeInsets.all(10),
+                                    child:
+                                        Text(
+                                          'Tailoring',
+                                          style: TextStyle(
+                                            fontSize: 20,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                          ),
+                                    height: 200,
+                                    width: 500,
+                                    decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image: AssetImage(
+                                              'assets/tailor.png'),
+                                          fit: BoxFit.fill,
+                                        ),
+                                        borderRadius: BorderRadius.circular(10)),
+                                  )),
+                              SizedBox(height: 5),
+                              InkWell(
+                                  onTap: () {},
+                                  child: Container(
+                                    padding: EdgeInsets.all(10),
+                                    child:
+                                        Text(
+                                          'Woodworking',
+                                          style: TextStyle(
+                                            fontSize: 20,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                          ),
+                                    height: 200,
+                                    width: 500,
+                                    decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image: AssetImage(
+                                              'assets/wood.png'),
+                                          fit: BoxFit.fill,
+                                        ),
+                                        borderRadius: BorderRadius.circular(10)),
+                                  )),
+                            ]));
                       }
                       if (data['firstname']
                               .toString()
@@ -223,8 +352,7 @@ class _Drawer extends State<Drawer_> {
                               .contains(name.toLowerCase())) {
                         return Card(
                             child: ListTile(
-                          title: Text(
-                              data['firstname'] + ' ' + data['lastname'],
+                          title: Text(data['Category'],
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
@@ -235,15 +363,19 @@ class _Drawer extends State<Drawer_> {
                             backgroundImage:
                                 AssetImage('assets/proProfile.png'),
                           ),
-                          subtitle: Text(
-                              data['Profession'] + ' in ' + data['Location']),
+                          subtitle: Text('UGX ' + data['cost'].toString()),
                           onTap: () => pushInbox(Professional(
                               data['firstname'] + data['lastname'],
                               data['email'],
-                              data['Profession'],
+                              data['Category'],
                               data['Contact'],
                               data['Location'],
-                              data['image'])),
+                              data['image'],
+                              data['ratings'],
+                              data['cost'],
+                              data['available'],
+                              data['verified'],
+                              data['complete'])),
                         ));
                       }
                       return Container();

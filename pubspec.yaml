@@ -47,6 +47,8 @@ dependencies:
   json_annotation: ^4.7.0
   http: ^0.13.5
   snippet_coder_utils: ^1.0.12
+  flutter_glow: ^0.2.0
+  dropdown_textfield: ^1.0.5
 
 dev_dependencies:
   flutter_test:

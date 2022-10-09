@@ -13,14 +13,10 @@ class _bioDataState extends State<bioData> {
   final user = FirebaseAuth.instance.currentUser;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final aboutController = TextEditingController();
-  final educController = TextEditingController();
-  final expController = TextEditingController();
 
   @override
   void dispose() {
     aboutController.dispose();
-    educController.dispose();
-    expController.dispose();
     super.dispose();
   }
 
@@ -65,44 +61,6 @@ class _bioDataState extends State<bioData> {
                               borderRadius: BorderRadius.all(Radius.circular(10))
                             ),
                               child: Text(data['about'].toString(), style: TextStyle(fontSize: 15, color: Color.fromARGB(255, 133, 150, 160)),))),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      ListTile(
-                        title: Text('Education',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white)),
-                        tileColor: Color.fromARGB(255, 31, 44, 52),
-                      ),
-                      Padding(
-                          padding: EdgeInsets.all(10),
-                          child: Container(
-                            padding: EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Colors.grey),
-                              borderRadius: BorderRadius.all(Radius.circular(10))
-                            ),
-                              child: Text(data['education'].toString(), style: TextStyle(fontSize: 15, color: Color.fromARGB(255, 133, 150, 160))))),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      ListTile(
-                        title: Text('Experience',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white)),
-                        tileColor: Color.fromARGB(255, 31, 44, 52),
-                      ),
-                      Padding(
-                          padding: EdgeInsets.all(10),
-                          child: Container(
-                            padding: EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Colors.grey),
-                              borderRadius: BorderRadius.all(Radius.circular(10))
-                            ),
-                              child: Text(data['experience'].toString(), style: TextStyle(fontSize: 15, color: Color.fromARGB(255, 133, 150, 160))))),
                     ]);
                   } catch (e) {
                     print(e);
@@ -135,58 +93,7 @@ class _bioDataState extends State<bioData> {
                                 }
                                 return null;
                               }),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          ListTile(
-                            title: Text('Education',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white)),
-                            trailing: Icon(
-                              Icons.add_circle,
-                              color: Color.fromARGB(255, 2, 168, 132),
-                            ),
-                            tileColor: Color.fromARGB(255, 31, 44, 52),
-                          ),
-                          TextFormField(
-                              controller: educController,
-                              cursorColor: Colors.white,
-                              textInputAction: TextInputAction.next,
-                              decoration: InputDecoration(
-                                  fillColor: Colors.white, filled: true),
-                              validator: (value) {
-                                if (value!.isEmpty) {
-                                  return 'Write about your education background!';
-                                }
-                                return null;
-                              }),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          ListTile(
-                            title: Text('Experience',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white)),
-                            trailing: Icon(
-                              Icons.add_circle,
-                              color: Color.fromARGB(255, 2, 168, 132),
-                            ),
-                            tileColor: Color.fromARGB(255, 31, 44, 52),
-                          ),
-                          TextFormField(
-                              controller: expController,
-                              cursorColor: Colors.white,
-                              textInputAction: TextInputAction.next,
-                              decoration: InputDecoration(
-                                  fillColor: Colors.white, filled: true),
-                              validator: (value) {
-                                if (value!.isEmpty) {
-                                  return 'Write something about your work experience';
-                                }
-                                return null;
-                              }),
+                          
                           ElevatedButton(
                               onPressed: _saveBio, child: const Text('Save'))
                         ]));
@@ -202,8 +109,6 @@ class _bioDataState extends State<bioData> {
     await FirebaseFirestore.instance.collection('bioData').add({
       'uniqueId': user!.uid,
       'about': aboutController.text.trim(),
-      'education': educController.text.trim(),
-      'experience': expController.text.trim()
     });
   }
 }

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dropdown_textfield/dropdown_textfield.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
@@ -6,6 +7,17 @@ import 'package:flutter/material.dart';
 
 import '../../main.dart';
 import '../../utils.dart';
+
+const List<DropDownValueModel> list = <DropDownValueModel>[
+  DropDownValueModel(name: 'Tailoring', value: 'Tailoring'),
+  DropDownValueModel(name: 'Woodworking', value: 'Woodworking'),
+  DropDownValueModel(
+      name: 'Plumbing & Waterworks', value: 'Plumbing & Waterworks'),
+  DropDownValueModel(
+      name: 'Electricians & Electrical Works',
+      value: 'Electricians & Electrical Works'),
+  DropDownValueModel(name: 'Food & Nutrition', value: 'Food & Nutrition'),
+];
 
 class proAccount extends StatefulWidget {
   final Function() isLogin;
@@ -24,7 +36,10 @@ class _proAccountState extends State<proAccount> {
   final _lnameController = TextEditingController();
   final _locationController = TextEditingController();
   final _contactController = TextEditingController();
-  final _professionController = TextEditingController();
+  final _categoryController = SingleValueDropDownController();
+  final _costController = TextEditingController();
+
+  String? holder;
 
   @override
   void dispose() {
@@ -34,7 +49,7 @@ class _proAccountState extends State<proAccount> {
     _lnameController.dispose();
     _locationController.dispose();
     _contactController.dispose();
-    _professionController.dispose();
+    _categoryController.dispose();
 
     super.dispose();
   }
@@ -50,7 +65,14 @@ class _proAccountState extends State<proAccount> {
           child: Column(
             children: [
               SizedBox(height: 50),
-              FlutterLogo(size: 90),
+              Container(
+                width: 600,
+                height: 100,
+                decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: AssetImage('./assets/logo.png'))),
+              ),
               SizedBox(height: 20),
               Text('Create an account',
                   style: TextStyle(
@@ -77,15 +99,21 @@ class _proAccountState extends State<proAccount> {
                     value != null ? null : 'This is a required field',
               ),
               SizedBox(
-                height: 4,
+                height: 5,
               ),
-              TextFormField(
-                controller: _professionController,
-                textInputAction: TextInputAction.done,
-                decoration: InputDecoration(labelText: 'Profession'),
-                autovalidateMode: AutovalidateMode.onUserInteraction,
+              DropDownTextField(
+                controller: _categoryController,
+                clearOption: true,
+                enableSearch: false,
+                textFieldDecoration:
+                    InputDecoration(hintText: 'Select a category'),
                 validator: (value) =>
                     value != null ? null : 'This is a required field',
+                dropDownItemCount: 5,
+                dropDownList: list,
+                onChanged: (value) {
+                  holder = value.value;
+                },
               ),
               SizedBox(
                 height: 4,
@@ -119,6 +147,17 @@ class _proAccountState extends State<proAccount> {
                 controller: _locationController,
                 textInputAction: TextInputAction.done,
                 decoration: InputDecoration(labelText: 'Location'),
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: (value) =>
+                    value != null ? null : 'This is a required field',
+              ),
+              SizedBox(
+                height: 4,
+              ),
+              TextFormField(
+                controller: _costController,
+                textInputAction: TextInputAction.done,
+                decoration: InputDecoration(labelText: 'Cost'),
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: (value) =>
                     value != null ? null : 'This is a required field',
@@ -191,23 +230,28 @@ class _proAccountState extends State<proAccount> {
           email: _emailController.text.trim(),
           password: _passwordController.text.trim());
       var user = FirebaseAuth.instance.currentUser;
-      // await FirebaseFirestore.instance.collection('bioData').add({
-      //   'uniqueId': user!.uid.toString(),
-      //   'about': '',
-      //   'education': '',
-      //   'experience': ''
-      // });
       await FirebaseFirestore.instance.collection('users').add({
         'uniqueId': user!.uid,
         'firstname': _fnameController.text.trim(),
         'lastname': _lnameController.text.trim(),
         'email': _emailController.text.trim(),
         'Contact': _contactController.text.trim(),
-        'Profession': _professionController.text.trim(),
+        'Category': holder,
         'Location': _locationController.text.trim(),
         'accountType': 'Professional',
         'identifier': user.uid.toString() + 'Professional',
-        'image': 'assets/proProfile/png'
+        'image': 'assets/proProfile/png',
+        'ratings': [],
+        'cost': _costController.text.trim(),
+        'available': true,
+        'verified': false,
+        'complete': 0
+      });
+      await FirebaseFirestore.instance
+          .collection('categories')
+          .doc(holder)
+          .update({
+        'subscribers': FieldValue.arrayUnion([user.uid])
       });
     } on FirebaseAuthException catch (e) {
       print(e);
