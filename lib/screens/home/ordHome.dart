@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-//import 'package:connect/maps.dart';
+// import 'package:connect/maps.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/professional/QR/generate.dart';
@@ -20,7 +20,7 @@ class _ordHome extends State<ordHome> {
   var _pages = [
     Drawer_(),
     Chat(),
-    //MapWidget(),
+    // MapWidget(),
     //generatepage(),
   ];
 
