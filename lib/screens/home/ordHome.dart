@@ -207,17 +207,17 @@ class _ordHome extends State<ordHome> {
     }
   ];
 
-  // addData() async {
-  //   for (var element in data) {
-  //     FirebaseFirestore.instance.collection('users').add(element);
-  //   }
-  // }
+  addData() async {
+    for (var element in data) {
+      FirebaseFirestore.instance.collection('users').doc(element['email']).set(element);
+    }
+  }
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   // addData();
-  // }
+  @override
+  void initState() {
+    super.initState();
+    // addData();
+  }
 
   @override
   Widget build(BuildContext context) {

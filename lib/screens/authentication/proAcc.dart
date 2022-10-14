@@ -229,7 +229,7 @@ class _proAccountState extends State<proAccount> {
           email: _emailController.text.trim(),
           password: _passwordController.text.trim());
       var user = FirebaseAuth.instance.currentUser;
-      await FirebaseFirestore.instance.collection('users').add({
+      await FirebaseFirestore.instance.collection('users').doc(_emailController.text.trim()).set({
         'uniqueId': user!.uid,
         'firstname': _fnameController.text.trim(),
         'lastname': _lnameController.text.trim(),
