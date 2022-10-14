@@ -235,10 +235,10 @@ class _ordHome extends State<ordHome> {
               icon: Icon(Icons.email),
               label: 'chats',
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.map),
-              label: 'Map',
-            ),
+            // BottomNavigationBarItem(
+            //   icon: Icon(Icons.map),
+            //   label: 'Map',
+            // ),
           ],
           currentIndex: _currentPage,
           fixedColor: Colors.blue,
