@@ -22,6 +22,7 @@ class _requestState extends State<request> {
   final formKey = GlobalKey<FormState>();
   final locationController = TextEditingController();
   final detailController = TextEditingController();
+  final descrController = TextEditingController();
 
   void pushproProfile(Professional pro) {
     Navigator.of(context).push(MaterialPageRoute<void>(builder: (context) {
@@ -138,6 +139,16 @@ class _requestState extends State<request> {
                         validator: (value) =>
                             value != null ? null : 'This is a required field',
                       ),
+                      SizedBox(height: 4),
+                      TextFormField(
+                        controller: descrController,
+                        textInputAction: TextInputAction.done,
+                        decoration:
+                            InputDecoration(labelText: 'Job description'),
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        validator: (value) =>
+                            value != null ? null : 'This is a required field',
+                      ),
                     ],
                   ),
                 )
@@ -159,14 +170,18 @@ class _requestState extends State<request> {
 
     try {
       var user = FirebaseAuth.instance.currentUser;
-      await FirebaseFirestore.instance.collection('requests').add({
+      await FirebaseFirestore.instance.collection('requests')
+      .doc(date.toString().trim()+time.toString().trim())
+      .set({
+        'uniqueId': pro.email.trim(),
         'recepient': pro.name.trim(),
         'request': user!.email,
         'date': date,
         'time': time,
         'location': locationController.text.trim(),
         'details': detailController.text.trim(),
-        'status': 'pending'
+        'status': 'Pending',
+        'decription': descrController.text.trim()
       });
     } catch (e) {
       print(e);
