@@ -1,10 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/models/spinkit.dart';
 import 'package:flutter_application_1/screens/home/subscribers.dart';
 import 'package:flutter_application_1/screens/request/request.dart';
 import '../../models/professional.dart';
-import '../messaging/inbox.dart';
-import '../messaging/proProfile.dart';
 
 class proList extends StatefulWidget {
   const proList({super.key});
@@ -16,14 +15,6 @@ class proList extends StatefulWidget {
 class _proListState extends State<proList> {
   String name = '';
 
-  void pushInbox(Professional pro) {
-    Navigator.of(context).push(MaterialPageRoute<void>(builder: (context) {
-      return Inbox(
-        professional: pro,
-      );
-    }));
-  }
-
   void pushRequest(Professional pro) {
     Navigator.of(context).push(MaterialPageRoute(builder: (context) {
       return request(professional: pro);
@@ -33,13 +24,7 @@ class _proListState extends State<proList> {
   void pushSubscribers(String category) {
     Navigator.of(context).push(MaterialPageRoute<void>(builder: (context) {
       return subscribers(category: category);
-    }));
-  }
-
-  void pushproProfile(Professional pro) {
-    Navigator.of(context).push(MaterialPageRoute<void>(builder: (context) {
-      return proProfile(professional: pro);
-    }));
+    }),);
   }
 
   double rating(List ratingList) {
@@ -53,7 +38,9 @@ class _proListState extends State<proList> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<QuerySnapshot>(
+    return Scaffold(
+      backgroundColor: Color.fromARGB(255, 31, 44, 52),
+      body: StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance
           .collection('users')
           .where('accountType', isEqualTo: 'Professional')
@@ -61,7 +48,7 @@ class _proListState extends State<proList> {
       builder: (context, snapshots) {
         return (snapshots.connectionState == ConnectionState.waiting)
             ? Center(
-                child: CircularProgressIndicator(),
+                child: spinkit,
               )
             : (name.isEmpty)
                 ? ListView(padding: EdgeInsets.all(5), children: [
@@ -232,6 +219,8 @@ class _proListState extends State<proList> {
                       return Container();
                     });
       },
+    ),
     );
+    
   }
 }

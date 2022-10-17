@@ -3,6 +3,7 @@ import 'package:date_time_picker_widget/date_time_picker_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/models/professional.dart';
+import 'package:flutter_application_1/models/spinkit.dart';
 import 'package:flutter_application_1/screens/messaging/proProfile.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_application_1/main.dart';
@@ -46,7 +47,9 @@ class _requestState extends State<request> {
             tooltip: 'submit',
             onPressed: () => makeRequest(widget.professional),
           ),
-        ]),
+        ],
+        backgroundColor: Color.fromARGB(255, 31, 44, 52),),
+        backgroundColor: Color.fromARGB(255, 57, 91, 100),
         body: Padding(
           padding: EdgeInsets.all(5),
           child: SingleChildScrollView(
@@ -70,6 +73,7 @@ class _requestState extends State<request> {
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 18,
+                                        color: Color.fromARGB(255, 231, 246, 242)
                                       ),
                                     )
                                   ],
@@ -78,6 +82,9 @@ class _requestState extends State<request> {
                                   children: [
                                     Text(
                                       widget.professional.Category,
+                                      style: TextStyle(
+                                        color: Color.fromARGB(255, 165, 201, 202)
+                                      )
                                     )
                                   ],
                                 ),
@@ -122,29 +129,32 @@ class _requestState extends State<request> {
                   child: Column(
                     children: [
                       TextFormField(
+                        style: TextStyle(color: Color.fromARGB(255, 165, 201, 202)),
                         controller: locationController,
                         textInputAction: TextInputAction.done,
-                        decoration: InputDecoration(labelText: 'Location'),
+                        decoration: InputDecoration(labelText: 'Location', labelStyle: TextStyle(color: Color.fromARGB(255, 231, 246, 242))),
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         validator: (value) =>
                             value != null ? null : 'This is a required field',
                       ),
                       SizedBox(height: 4),
                       TextFormField(
+                        style: TextStyle(color: Color.fromARGB(255, 165, 201, 202)),
                         controller: detailController,
                         textInputAction: TextInputAction.done,
                         decoration:
-                            InputDecoration(labelText: 'Details e.g main gate'),
+                            InputDecoration(labelText: 'Details e.g main gate', labelStyle: TextStyle(color: Color.fromARGB(255, 231, 246, 242))),
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         validator: (value) =>
                             value != null ? null : 'This is a required field',
                       ),
                       SizedBox(height: 4),
                       TextFormField(
+                        style: TextStyle(color: Color.fromARGB(255, 165, 201, 202)),
                         controller: descrController,
                         textInputAction: TextInputAction.done,
                         decoration:
-                            InputDecoration(labelText: 'Job description'),
+                            InputDecoration(labelText: 'Job description', labelStyle: TextStyle(color: Color.fromARGB(255, 231, 246, 242))),
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         validator: (value) =>
                             value != null ? null : 'This is a required field',
@@ -165,7 +175,7 @@ class _requestState extends State<request> {
     showDialog(
       context: context,
       barrierDismissible: false,
-      builder: (context) => Center(child: CircularProgressIndicator()),
+      builder: (context) => Center(child: spinkit),
     );
 
     try {

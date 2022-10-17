@@ -2,6 +2,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/models/spinkit.dart';
 
 import '../../main.dart';
 import '../../utils.dart';
@@ -40,11 +41,11 @@ class _LoginWidgetState extends State<loginwidget> {
           key: formKey,
           child: Container(
             height: (MediaQuery.of(context).size.height),
-            width: (MediaQuery.of(context).size.height),
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage('./assets/background image.png'))),
+            width: (MediaQuery.of(context).size.width),
+            // decoration: const BoxDecoration(
+            //     image: DecorationImage(
+            //         fit: BoxFit.fill,
+            //         image: AssetImage('./assets/bg.jpg'))),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -62,12 +63,13 @@ class _LoginWidgetState extends State<loginwidget> {
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 28,
-                        color: Color.fromARGB(255, 0, 65, 118))),
+                        color: Color.fromARGB(255, 52, 121, 177))),
                 TextFormField(
+                  style: TextStyle(color: Color.fromARGB(255, 44, 51, 51)),
                   controller: emailController,
                   cursorColor: Colors.white,
                   textInputAction: TextInputAction.next,
-                  decoration: const InputDecoration(labelText: 'Email'),
+                  decoration: const InputDecoration(labelText: 'Email', labelStyle: TextStyle(color: Colors.grey)),
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   validator: (email) =>
                       email != null && !EmailValidator.validate(email.trim())
@@ -78,15 +80,17 @@ class _LoginWidgetState extends State<loginwidget> {
                   height: 4,
                 ),
                 TextField(
+                  style: TextStyle(color: Color.fromARGB(255, 44, 51, 51)),
                   controller: passwordController,
                   textInputAction: TextInputAction.done,
-                  decoration: const InputDecoration(labelText: 'Password'),
+                  decoration: const InputDecoration(labelText: 'Password', labelStyle: TextStyle(color: Colors.grey)),
                   obscureText: true,
                 ),
                 const SizedBox(height: 20),
                 ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size.fromHeight(50),
+                    backgroundColor: Color.fromARGB(255, 44, 51, 51)
                   ),
                   icon: const Icon(
                     Icons.lock_open,
@@ -107,7 +111,7 @@ class _LoginWidgetState extends State<loginwidget> {
                 RichText(
                   text: TextSpan(
                       style:
-                          const TextStyle(color: Colors.black54, fontSize: 17),
+                          const TextStyle(color: Color.fromARGB(255, 44, 51, 51), fontSize: 17),
                       text: 'SignUp as a ',
                       children: [
                         TextSpan(
@@ -124,7 +128,7 @@ class _LoginWidgetState extends State<loginwidget> {
                 RichText(
                   text: TextSpan(
                       style:
-                          const TextStyle(color: Colors.black54, fontSize: 17),
+                          const TextStyle(color: Color.fromARGB(255, 44, 51, 51), fontSize: 17),
                       text: 'SignUp as a ',
                       children: [
                         TextSpan(
@@ -148,7 +152,7 @@ class _LoginWidgetState extends State<loginwidget> {
     showDialog(
       context: context,
       barrierDismissible: false,
-      builder: (context) => const Center(child: CircularProgressIndicator()),
+      builder: (context) => const Center(child: spinkit),
     );
 
     try {

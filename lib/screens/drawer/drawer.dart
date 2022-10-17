@@ -43,6 +43,7 @@ class _Drawer extends State<Drawer_> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: Color.fromARGB(255, 31, 44, 52),
           title: Card(
               child: TextField(
             decoration: InputDecoration(
@@ -134,18 +135,20 @@ class _Drawer extends State<Drawer_> {
                 },
               ),
               Divider(),
-              SizedBox(
+              Expanded(child: SizedBox(
                 height: 300,
-              ),
+              ),),
+              
               ElevatedButton.icon(
                 onPressed: () => FirebaseAuth.instance.signOut(),
                 label: Text(
                   'Sign Out',
                   style: TextStyle(fontSize: 20),
                 ),
-                icon: Icon(Icons.power_settings_new),
+                icon: Icon(Icons.power_settings_new, color: Color.fromARGB(255, 2, 168, 132),),
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size.fromHeight(50),
+                  backgroundColor: Color.fromARGB(255, 44, 51, 51)
                 ),
               ),
             ],
