@@ -219,9 +219,7 @@ class _ordHome extends State<ordHome> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Connect',
-      home: Scaffold(
+    return Scaffold(
         body: Center(child: _pages.elementAt(_currentPage)),
         bottomNavigationBar: BottomNavigationBar(
           items: [
@@ -239,14 +237,15 @@ class _ordHome extends State<ordHome> {
             // ),
           ],
           currentIndex: _currentPage,
-          fixedColor: Colors.blue,
+          backgroundColor: Color.fromARGB(255, 31, 44, 52),
+          fixedColor: Color.fromARGB(255, 2, 168, 132),
+          unselectedItemColor: Color.fromARGB(255, 133, 150, 160),
           onTap: (int inIndex) {
             setState(() {
               _currentPage = inIndex;
             });
           },
         ),
-      ),
-    );
+      );
   }
 }

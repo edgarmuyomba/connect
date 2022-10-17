@@ -22,6 +22,10 @@ class MyApp extends StatelessWidget {
       navigatorKey: navigatorKey,
       scaffoldMessengerKey: messengerKey,
       title: 'Connect',
+      theme: ThemeData(
+        primaryColor: Color.fromARGB(255, 31, 44, 52),
+        accentColor: Color.fromARGB(255, 31, 44, 52)
+      ),
       home: Wrapper(),
     );
   }

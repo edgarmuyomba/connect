@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/models/spinkit.dart';
 
 class Profile extends StatelessWidget {
   const Profile({super.key});
@@ -12,7 +13,9 @@ class Profile extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: Text('Profile'),
+          backgroundColor: Color.fromARGB(255, 44, 51, 51),
         ),
+        backgroundColor: Color.fromARGB(255, 57, 91, 100),
         body: Padding(
           padding: EdgeInsets.all(32),
           child: Column(
@@ -37,7 +40,7 @@ class Profile extends StatelessWidget {
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return Center(
-                        child: CircularProgressIndicator(),
+                        child: spinkit,
                       );
                     } else {
                       var data =
@@ -51,7 +54,8 @@ class Profile extends StatelessWidget {
                               Text("Firstname: ",
                                   style: TextStyle(
                                       fontSize: 20,
-                                      fontWeight: FontWeight.bold)),
+                                      fontWeight: FontWeight.bold,
+                                      color: Color.fromARGB(255, 165, 201, 202))),
                               Text(data['firstname'].toString().toUpperCase(),
                                   style: TextStyle(
                                     fontSize: 18,
@@ -67,7 +71,8 @@ class Profile extends StatelessWidget {
                               Text("Lastname: ",
                                   style: TextStyle(
                                       fontSize: 20,
-                                      fontWeight: FontWeight.bold)),
+                                      fontWeight: FontWeight.bold,
+                                      color: Color.fromARGB(255, 165, 201, 202))),
                               Text(data['lastname'].toString().toUpperCase(),
                                   style: TextStyle(
                                     fontSize: 18,
@@ -83,7 +88,8 @@ class Profile extends StatelessWidget {
                               Text(
                                 'Location: ',
                                 style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold),
+                                    fontSize: 20, fontWeight: FontWeight.bold,
+                                    color: Color.fromARGB(255, 165, 201, 202),)
                               ),
                               Text(
                                 data['Location'].toString().toUpperCase(),
@@ -103,7 +109,8 @@ class Profile extends StatelessWidget {
                 children: [
                   Text(
                     'Email: ',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 165, 201, 202),)
                   ),
                   Text(
                     user.email!,

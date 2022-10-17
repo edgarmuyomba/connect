@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/models/professional.dart';
+import 'package:flutter_application_1/models/spinkit.dart';
 import 'package:flutter_application_1/screens/messaging/proProfile.dart';
 import 'package:flutter_application_1/screens/request/request.dart';
 
@@ -40,7 +41,11 @@ class _subscribersState extends State<subscribers> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text(widget.category)),
+        appBar: AppBar(
+          backgroundColor: Color.fromARGB(255, 31, 44, 52),
+          title: Text(widget.category)
+          ),
+          backgroundColor: Color.fromARGB(255, 31, 44, 52),
         body: StreamBuilder(
             stream: FirebaseFirestore.instance
                 .collection('users')
@@ -49,7 +54,7 @@ class _subscribersState extends State<subscribers> {
             builder: ((context, snapshot) {
               return (snapshot.connectionState == ConnectionState.waiting)
                   ? Center(
-                      child: CircularProgressIndicator(),
+                      child: spinkit,
                     )
                   : ListView.builder(
                       itemCount: snapshot.data!.docs.length,
@@ -57,13 +62,14 @@ class _subscribersState extends State<subscribers> {
                         var data = snapshot.data!.docs[index].data()
                             as Map<String, dynamic>;
                         return Card(
+                          color: Color.fromARGB(255, 231, 246, 242),
                             child: ListTile(
                           title: Text(
                               data['firstname'] + ' ' + data['lastname'],
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
-                                  color: Colors.black45,
+                                  color: Color.fromARGB(255, 31, 44, 52),
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold)),
                           leading: CircleAvatar(
@@ -76,7 +82,7 @@ class _subscribersState extends State<subscribers> {
                                 color: Color.fromARGB(255, 248, 226, 31),
                               ),
                               Text(rating(data['ratings']).toStringAsFixed(1) +
-                                  '/5 stars')
+                                  '/5 stars', style: TextStyle(color: Color.fromARGB(255, 31, 44, 52)))
                             ],
                           ),
                           onTap: () => pushRequest(Professional(

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/models/spinkit.dart';
 
 import '../professional/proHome.dart';
 import 'ordHome.dart';
@@ -16,9 +17,7 @@ class _homePage extends State<homePage> {
   var user = FirebaseAuth.instance.currentUser;
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'Connect',
-        home: StreamBuilder(
+    return StreamBuilder(
             stream: FirebaseFirestore.instance
                 .collection('users')
                 .where('identifier',
@@ -27,7 +26,7 @@ class _homePage extends State<homePage> {
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return Center(
-                  child: CircularProgressIndicator(),
+                  child: spinkit,
                 );
               } else {
                 try {
@@ -38,6 +37,6 @@ class _homePage extends State<homePage> {
                   return ordHome();
                 }
               }
-            }));
+            });
   }
 }

@@ -2,6 +2,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/models/spinkit.dart';
 
 import '../../main.dart';
 import '../../utils.dart';
@@ -150,7 +151,7 @@ class _LoginWidgetState extends State<loginwidget> {
     showDialog(
       context: context,
       barrierDismissible: false,
-      builder: (context) => const Center(child: CircularProgressIndicator()),
+      builder: (context) => const Center(child: spinkit),
     );
 
     try {

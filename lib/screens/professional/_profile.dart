@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
+import 'package:flutter_application_1/models/spinkit.dart';
 import 'package:flutter_application_1/screens/professional/biodata.dart';
 
 class Profile extends StatefulWidget {
@@ -51,7 +52,7 @@ class _ProfileState extends State<Profile> {
       builder: (context, snapshots) {
         if (snapshots.connectionState == ConnectionState.waiting) {
           return Center(
-            child: CircularProgressIndicator(),
+            child: spinkit,
           );
         } else if (snapshots.hasData) {
           var data = snapshots.data!.docs[0].data() as Map<String, dynamic>;
