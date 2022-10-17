@@ -355,18 +355,17 @@ class _proProfileState extends State<proProfile> {
                                   .doc(data['email'])
                                   .snapshots(),
                               builder: (context, snapshot) {
-                                var data = snapshot.data!.data()
-                                    as Map<String, dynamic>;
                                 if (snapshot.connectionState ==
                                     ConnectionState.waiting) {
                                   return Center(
                                       child: CircularProgressIndicator());
                                 } else {
-                                  if (snapshot.hasData) {
+                                  try {
+                                    var data = snapshot.data!.data()
+                                        as Map<String, dynamic>;
                                     return Text(data['about']);
-                                  } else {
-                                    return Text(
-                                        'The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. ');
+                                  } catch (e) {
+                                    return Container();
                                   }
                                 }
                               },

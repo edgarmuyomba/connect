@@ -40,11 +40,11 @@ class _LoginWidgetState extends State<loginwidget> {
           key: formKey,
           child: Container(
             height: (MediaQuery.of(context).size.height),
-            width: (MediaQuery.of(context).size.height),
+            width: (MediaQuery.of(context).size.width),
             decoration: const BoxDecoration(
                 image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage('./assets/background image.png'))),
+                    fit: BoxFit.fill,
+                    image: AssetImage('./assets/bg.jpg'))),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -62,12 +62,13 @@ class _LoginWidgetState extends State<loginwidget> {
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 28,
-                        color: Color.fromARGB(255, 0, 65, 118))),
+                        color: Color.fromARGB(255, 52, 121, 177))),
                 TextFormField(
+                  style: TextStyle(color: Colors.white),
                   controller: emailController,
                   cursorColor: Colors.white,
                   textInputAction: TextInputAction.next,
-                  decoration: const InputDecoration(labelText: 'Email'),
+                  decoration: const InputDecoration(labelText: 'Email', labelStyle: TextStyle(color: Colors.grey)),
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   validator: (email) =>
                       email != null && !EmailValidator.validate(email.trim())
@@ -78,9 +79,10 @@ class _LoginWidgetState extends State<loginwidget> {
                   height: 4,
                 ),
                 TextField(
+                  style: TextStyle(color: Colors.white),
                   controller: passwordController,
                   textInputAction: TextInputAction.done,
-                  decoration: const InputDecoration(labelText: 'Password'),
+                  decoration: const InputDecoration(labelText: 'Password', labelStyle: TextStyle(color: Colors.grey)),
                   obscureText: true,
                 ),
                 const SizedBox(height: 20),
@@ -107,7 +109,7 @@ class _LoginWidgetState extends State<loginwidget> {
                 RichText(
                   text: TextSpan(
                       style:
-                          const TextStyle(color: Colors.black54, fontSize: 17),
+                          const TextStyle(color: Color.fromARGB(255, 255, 255, 255), fontSize: 17),
                       text: 'SignUp as a ',
                       children: [
                         TextSpan(
@@ -124,7 +126,7 @@ class _LoginWidgetState extends State<loginwidget> {
                 RichText(
                   text: TextSpan(
                       style:
-                          const TextStyle(color: Colors.black54, fontSize: 17),
+                          const TextStyle(color: Color.fromARGB(255, 255, 255, 255), fontSize: 17),
                       text: 'SignUp as a ',
                       children: [
                         TextSpan(

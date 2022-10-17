@@ -61,7 +61,7 @@ class _proAccountState extends State<proAccount> {
       child: Center(
         child: Form(
           key: formKey,
-          child: Column(
+          child:  Column(
             children: [
               SizedBox(height: 50),
               Container(
@@ -239,7 +239,7 @@ class _proAccountState extends State<proAccount> {
         'Location': _locationController.text.trim(),
         'accountType': 'Professional',
         'identifier': user.uid.toString() + 'Professional',
-        'image': 'assets/proProfile/png',
+        'image': 'assets/proProfile.png',
         'ratings': [],
         'cost': int.parse(_costController.text.trim()),
         'available': true,
