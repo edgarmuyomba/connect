@@ -179,6 +179,7 @@ class _proAccountState extends State<proAccount> {
               ElevatedButton.icon(
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size.fromHeight(50),
+                  backgroundColor: Color.fromARGB(255, 44, 51, 51)
                 ),
                 icon: Icon(
                   Icons.lock_open,

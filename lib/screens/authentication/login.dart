@@ -42,10 +42,10 @@ class _LoginWidgetState extends State<loginwidget> {
           child: Container(
             height: (MediaQuery.of(context).size.height),
             width: (MediaQuery.of(context).size.width),
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-                    fit: BoxFit.fill,
-                    image: AssetImage('./assets/bg.jpg'))),
+            // decoration: const BoxDecoration(
+            //     image: DecorationImage(
+            //         fit: BoxFit.fill,
+            //         image: AssetImage('./assets/bg.jpg'))),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -65,7 +65,7 @@ class _LoginWidgetState extends State<loginwidget> {
                         fontSize: 28,
                         color: Color.fromARGB(255, 52, 121, 177))),
                 TextFormField(
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: Color.fromARGB(255, 44, 51, 51)),
                   controller: emailController,
                   cursorColor: Colors.white,
                   textInputAction: TextInputAction.next,
@@ -80,7 +80,7 @@ class _LoginWidgetState extends State<loginwidget> {
                   height: 4,
                 ),
                 TextField(
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: Color.fromARGB(255, 44, 51, 51)),
                   controller: passwordController,
                   textInputAction: TextInputAction.done,
                   decoration: const InputDecoration(labelText: 'Password', labelStyle: TextStyle(color: Colors.grey)),
@@ -90,6 +90,7 @@ class _LoginWidgetState extends State<loginwidget> {
                 ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size.fromHeight(50),
+                    backgroundColor: Color.fromARGB(255, 44, 51, 51)
                   ),
                   icon: const Icon(
                     Icons.lock_open,
@@ -110,7 +111,7 @@ class _LoginWidgetState extends State<loginwidget> {
                 RichText(
                   text: TextSpan(
                       style:
-                          const TextStyle(color: Color.fromARGB(255, 255, 255, 255), fontSize: 17),
+                          const TextStyle(color: Color.fromARGB(255, 44, 51, 51), fontSize: 17),
                       text: 'SignUp as a ',
                       children: [
                         TextSpan(
@@ -127,7 +128,7 @@ class _LoginWidgetState extends State<loginwidget> {
                 RichText(
                   text: TextSpan(
                       style:
-                          const TextStyle(color: Color.fromARGB(255, 255, 255, 255), fontSize: 17),
+                          const TextStyle(color: Color.fromARGB(255, 44, 51, 51), fontSize: 17),
                       text: 'SignUp as a ',
                       children: [
                         TextSpan(
