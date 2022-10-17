@@ -59,8 +59,9 @@ class Profile extends StatelessWidget {
                               Text(data['firstname'].toString().toUpperCase(),
                                   style: TextStyle(
                                     fontSize: 18,
+                                    color: Color.fromARGB(255, 231, 246, 242),
                                   )),
-                              Icon(Icons.edit),
+                              Icon(Icons.edit, color: Color.fromARGB(255, 2,168,132 )),
                             ],
                           ),
                           SizedBox(
@@ -76,8 +77,9 @@ class Profile extends StatelessWidget {
                               Text(data['lastname'].toString().toUpperCase(),
                                   style: TextStyle(
                                     fontSize: 18,
+                                    color: Color.fromARGB(255, 231, 246, 242),
                                   )),
-                              Icon(Icons.edit),
+                              Icon(Icons.edit, color: Color.fromARGB(255, 2,168,132 )),
                             ],
                           ),
                           SizedBox(
@@ -93,9 +95,10 @@ class Profile extends StatelessWidget {
                               ),
                               Text(
                                 data['Location'].toString().toUpperCase(),
-                                style: TextStyle(fontSize: 18),
+                                style: TextStyle(fontSize: 18,
+                                color: Color.fromARGB(255, 231, 246, 242)),
                               ),
-                              Icon(Icons.edit),
+                              Icon(Icons.edit, color: Color.fromARGB(255, 2,168,132 )),
                             ],
                           ),
                         ],
@@ -114,9 +117,10 @@ class Profile extends StatelessWidget {
                   ),
                   Text(
                     user.email!,
-                    style: TextStyle(fontSize: 18),
+                    style: TextStyle(fontSize: 18,
+                    color: Color.fromARGB(255, 231, 246, 242)),
                   ),
-                  Icon(Icons.edit),
+                  Icon(Icons.edit, color: Color.fromARGB(255, 2, 168,132)),
                 ],
               ),
             ],
