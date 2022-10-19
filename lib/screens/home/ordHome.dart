@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/drawer/drawer.dart';
+import 'package:flutter_application_1/screens/map/current%20location_screen.dart';
 import 'package:flutter_application_1/screens/messaging/chats.dart';
 
 class ordHome extends StatefulWidget {
@@ -20,6 +21,7 @@ class _ordHome extends State<ordHome> {
     Chat(),
     // MapWidget(),
     //generatepage(),
+    CurrentLocationScreen()
   ];
 
   List<Map<String, dynamic>> data = [
@@ -32,7 +34,7 @@ class _ordHome extends State<ordHome> {
       'Location': 'Wandegeya',
       'accountType': 'Professional',
       'image': 'assets/images (3).jpg',
-      'ratings': [4,2,5,3,1],
+      'ratings': [4, 2, 5, 3, 1],
       'cost': 25000,
       'available': false,
       'verified': false,
@@ -47,7 +49,7 @@ class _ordHome extends State<ordHome> {
       'Location': 'Kikoni',
       'accountType': 'Professional',
       'image': 'assets/images (2).jpg',
-      'ratings': [5,4,5,3],
+      'ratings': [5, 4, 5, 3],
       'cost': 25000,
       'available': true,
       'verified': true,
@@ -62,7 +64,7 @@ class _ordHome extends State<ordHome> {
       'Location': 'Mukono',
       'accountType': 'Professional',
       'image': 'assets/images.jpg',
-      'ratings': [4,2,5,3,1],
+      'ratings': [4, 2, 5, 3, 1],
       'cost': 25000,
       'available': false,
       'verified': false,
@@ -77,7 +79,7 @@ class _ordHome extends State<ordHome> {
       'Location': 'Kampala',
       'accountType': 'Professional',
       'image': 'assets/images (1).jpg',
-      'ratings': [4,2,5,3,1],
+      'ratings': [4, 2, 5, 3, 1],
       'cost': 25000,
       'available': true,
       'verified': true,
@@ -92,7 +94,7 @@ class _ordHome extends State<ordHome> {
       'Location': 'Zzana',
       'accountType': 'Professional',
       'image': 'assets/download (1).jpg',
-      'ratings': [5,4,5,3],
+      'ratings': [5, 4, 5, 3],
       'cost': 25000,
       'available': false,
       'verified': false,
@@ -107,7 +109,7 @@ class _ordHome extends State<ordHome> {
       'Location': 'Seguku',
       'accountType': 'Professional',
       'image': 'assets/download (2).jpg',
-      'ratings': [5,4,5,3],
+      'ratings': [5, 4, 5, 3],
       'cost': 25000,
       'available': true,
       'verified': true,
@@ -122,7 +124,7 @@ class _ordHome extends State<ordHome> {
       'Location': 'Nakawa',
       'accountType': 'Professional',
       'image': 'assets/download.jpg',
-      'ratings': [4,2,5,3,1],
+      'ratings': [4, 2, 5, 3, 1],
       'cost': 25000,
       'available': false,
       'verified': false,
@@ -137,7 +139,7 @@ class _ordHome extends State<ordHome> {
       'Location': 'Kyambogo',
       'accountType': 'Professional',
       'image': 'assets/images (1).jpg',
-      'ratings': [1,3,3,4,5,2],
+      'ratings': [1, 3, 3, 4, 5, 2],
       'cost': 17000,
       'available': true,
       'verified': true,
@@ -152,7 +154,7 @@ class _ordHome extends State<ordHome> {
       'Location': 'Luzira',
       'accountType': 'Professional',
       'image': 'assets/images (2).jpg',
-      'ratings': [1,3,3,4,5,2],
+      'ratings': [1, 3, 3, 4, 5, 2],
       'cost': 17000,
       'available': false,
       'verified': false,
@@ -167,7 +169,7 @@ class _ordHome extends State<ordHome> {
       'Location': 'Kikoni',
       'accountType': 'Professional',
       'image': 'assets/images (3).jpg',
-      'ratings': [1,3,3,4,5,2],
+      'ratings': [1, 3, 3, 4, 5, 2],
       'cost': 17000,
       'available': true,
       'verified': true,
@@ -182,7 +184,7 @@ class _ordHome extends State<ordHome> {
       'Location': 'Wandegeya',
       'accountType': 'Professional',
       'image': 'assets/images (1).jpg',
-      'ratings': [4,2,5,3,1],
+      'ratings': [4, 2, 5, 3, 1],
       'cost': 25000,
       'available': false,
       'verified': false,
@@ -197,7 +199,7 @@ class _ordHome extends State<ordHome> {
       'Location': 'Nakawa',
       'accountType': 'Professional',
       'image': 'assets/images (2).jpg',
-      'ratings': [1,3,3,4,5,2],
+      'ratings': [1, 3, 3, 4, 5, 2],
       'cost': 17000,
       'available': true,
       'verified': true,
@@ -207,7 +209,10 @@ class _ordHome extends State<ordHome> {
 
   addData() async {
     for (var element in data) {
-      FirebaseFirestore.instance.collection('users').doc(element['email']).set(element);
+      FirebaseFirestore.instance
+          .collection('users')
+          .doc(element['email'])
+          .set(element);
     }
   }
 
@@ -220,32 +225,32 @@ class _ordHome extends State<ordHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(child: _pages.elementAt(_currentPage)),
-        bottomNavigationBar: BottomNavigationBar(
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.email),
-              label: 'chats',
-            ),
-            // BottomNavigationBarItem(
-            //   icon: Icon(Icons.map),
-            //   label: 'Map',
-            // ),
-          ],
-          currentIndex: _currentPage,
-          backgroundColor: Color.fromARGB(255, 31, 44, 52),
-          fixedColor: Color.fromARGB(255, 2, 168, 132),
-          unselectedItemColor: Color.fromARGB(255, 133, 150, 160),
-          onTap: (int inIndex) {
-            setState(() {
-              _currentPage = inIndex;
-            });
-          },
-        ),
-      );
+      body: Center(child: _pages.elementAt(_currentPage)),
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.email),
+            label: 'chats',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.map),
+            label: 'Map',
+          ),
+        ],
+        currentIndex: _currentPage,
+        backgroundColor: Color.fromARGB(255, 31, 44, 52),
+        fixedColor: Color.fromARGB(255, 2, 168, 132),
+        unselectedItemColor: Color.fromARGB(255, 133, 150, 160),
+        onTap: (int inIndex) {
+          setState(() {
+            _currentPage = inIndex;
+          });
+        },
+      ),
+    );
   }
 }

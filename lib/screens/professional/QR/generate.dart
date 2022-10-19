@@ -18,7 +18,8 @@ class generatepage extends StatelessWidget {
         home: Scaffold(
           appBar: AppBar(
             title: const Text("SCAN QR CODE"),
-            backgroundColor: Color.fromARGB(255, 31, 44, 52),),
+            backgroundColor: Color.fromARGB(255, 31, 44, 52),
+          ),
           backgroundColor: Color.fromARGB(255, 18, 27, 34),
           body: Center(
             child:
