@@ -341,7 +341,7 @@ class _proProfileState extends State<proProfile> {
                   ],
                 ),
                 Text(
-                    'The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. '),
+                    'This professional has a work experience of over 5 years and is guaranteed to get the job properly done.'),
               ],
             ),
           ),
