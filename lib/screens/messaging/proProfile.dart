@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/models/spinkit.dart';
 import 'package:flutter_glow/flutter_glow.dart';
 import 'package:rating_dialog/rating_dialog.dart';
 import '../../models/professional.dart';
@@ -141,7 +142,7 @@ class _proProfileState extends State<proProfile> {
             size: 10,
             blurRadius: 4,
           ),
-          Text(' Available now')
+          Text(' Available now', style: TextStyle(color: Colors.green))
         ],
       );
     } else {
@@ -154,7 +155,7 @@ class _proProfileState extends State<proProfile> {
             size: 10,
             blurRadius: 4,
           ),
-          Text(' Unavailable')
+          Text(' Unavailable', style: TextStyle(color: Colors.red))
         ],
       );
     }
@@ -163,6 +164,7 @@ class _proProfileState extends State<proProfile> {
   Future<void> _addReview() async {
     final user = FirebaseAuth.instance.currentUser;
     await showModalBottomSheet(
+        backgroundColor: Color.fromARGB(255, 57, 91, 100),
         isScrollControlled: false,
         context: context,
         builder: (BuildContext context) {
@@ -177,14 +179,22 @@ class _proProfileState extends State<proProfile> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextField(
+                  style: TextStyle(color: Color.fromARGB(255, 165, 201, 202)),
                   controller: _textController,
-                  decoration: const InputDecoration(labelText: 'Review'),
+                  decoration: const InputDecoration(
+                      labelText: 'Review',
+                      labelStyle:
+                          TextStyle(color: Color.fromARGB(255, 231, 246, 242))),
                 ),
                 const SizedBox(
                   height: 20,
                 ),
                 ElevatedButton(
-                  child: const Text("Post"),
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromARGB(255, 44, 51, 51)),
+                  child: const Text(
+                    "Post",
+                  ),
                   onPressed: () async {
                     final String text = _textController.text;
                     if (text != null) {
@@ -192,13 +202,12 @@ class _proProfileState extends State<proProfile> {
                           .collection('reviews')
                           .add({
                         "content": text,
-                        "uniqueId": user!.uid,
-                        "sender": user.email
+                        "uniqueId": widget.professional.email,
+                        "sender": user!.email
                             .toString()
                             .substring(0, user.email.toString().indexOf('@')),
                         "receipient": widget.professional.name,
                       });
-
                       _textController.text = '';
                       Navigator.of(context).pop();
                     }
@@ -252,134 +261,204 @@ class _proProfileState extends State<proProfile> {
         title: Text(widget.professional.name),
         backgroundColor: Color.fromARGB(255, 3, 26, 36),
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.all(10),
-            child: Row(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(20.0),
-                  child: Image.asset(widget.professional.image,
-                      height: 150, width: 150),
-                ),
-                Expanded(
-                    child: Padding(
-                  padding: EdgeInsets.all(10),
-                  child: Column(
+      backgroundColor: Color.fromARGB(255, 57, 91, 100),
+      body: SingleChildScrollView(
+          child: StreamBuilder(
+              stream: FirebaseFirestore.instance
+                  .collection('users')
+                  .doc(widget.professional.email)
+                  .snapshots(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  var data = snapshot.data!.data() as Map<String, dynamic>;
+                  return Column(
                     children: [
-                      Row(
-                        children: [
-                          Text(
-                            widget.professional.name,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 25,
+                      Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Row(children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(20.0),
+                            child: Image.asset(widget.professional.image,
+                                height: 150, width: 150),
+                          ),
+                          Expanded(
+                            child: Padding(
+                              padding: EdgeInsets.all(10),
+                              child: Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      Text(
+                                        widget.professional.name,
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 25,
+                                            color: Color.fromARGB(
+                                                255, 231, 246, 242)),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        widget.professional.Category,
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Color.fromARGB(
+                                              255, 165, 201, 202),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Icon(
+                                        Icons.star,
+                                        color:
+                                            Color.fromARGB(255, 248, 226, 31),
+                                      ),
+                                      Text(
+                                          rating(data['ratings'])
+                                                  .toStringAsFixed(1) +
+                                              '/5 stars',
+                                          style: TextStyle(
+                                              color: Color.fromARGB(
+                                                  255, 165, 201, 202)))
+                                    ],
+                                  ),
+                                  availability(data['available']),
+                                  Row(
+                                    children: [
+                                      ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              backgroundColor: Color.fromARGB(
+                                                  255, 44, 51, 51)),
+                                          onPressed: () =>
+                                              pushInbox(widget.professional),
+                                          child: Text('Chat')),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          )
+                        ]),
                       ),
-                      Row(
-                        children: [
-                          Text(
-                            widget.professional.Category,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
+                      Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Text(
+                                  'UGX ' + widget.professional.cost.toString(),
+                                  style: TextStyle(
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.bold,
+                                      color:
+                                          Color.fromARGB(255, 231, 246, 242)),
+                                )
+                              ],
                             ),
-                          ),
-                        ],
+                            Row(
+                              children: [
+                                Text(
+                                  'Starting cost\n',
+                                  style: TextStyle(
+                                      color:
+                                          Color.fromARGB(255, 165, 201, 202)),
+                                )
+                              ],
+                            ),
+                            tags(data['complete'], rating(data['ratings'])),
+                            Row(
+                              children: [
+                                Text(
+                                  '\nAbout this pro',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20,
+                                      color:
+                                          Color.fromARGB(255, 231, 246, 242)),
+                                ),
+                              ],
+                            ),
+                            StreamBuilder(
+                              stream: FirebaseFirestore.instance
+                                  .collection('bioData')
+                                  .doc(data['email'])
+                                  .snapshots(),
+                              builder: (context, snapshot) {
+                                if (snapshot.connectionState ==
+                                    ConnectionState.waiting) {
+                                  return Center(child: spinkit);
+                                } else {
+                                  try {
+                                    var data = snapshot.data!.data()
+                                        as Map<String, dynamic>;
+                                    return Text(data['about'],
+                                        style: TextStyle(
+                                            color: Color.fromARGB(
+                                                255, 165, 201, 202)));
+                                  } catch (e) {
+                                    return Container();
+                                  }
+                                }
+                              },
+                            ),
+                          ],
+                        ),
                       ),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.star,
-                            color: Color.fromARGB(255, 248, 226, 31),
-                          ),
-                          Text(rating(widget.professional.ratings)
-                                  .toStringAsFixed(1) +
-                              '/5 stars')
-                        ],
+                      Divider(
+                        height: 1,
                       ),
-                      availability(widget.professional.available),
-                      Row(
-                        children: [
-                          ElevatedButton(
-                              onPressed: () => pushInbox(widget.professional),
-                              child: Text('Chat')),
-                        ],
+                      Text(
+                        'Reviews',
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromARGB(255, 231, 246, 242)),
+                      ),
+                      StreamBuilder(
+                        stream: FirebaseFirestore.instance
+                            .collection('reviews')
+                            .where('receipient',
+                                isEqualTo: widget.professional.name)
+                            .snapshots(),
+                        builder: (context,
+                            AsyncSnapshot<QuerySnapshot> streamSnapshot) {
+                          if (streamSnapshot.hasData) {
+                            return ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: streamSnapshot.data!.docs.length,
+                              itemBuilder: (context, index) {
+                                final DocumentSnapshot documentSnapshot =
+                                    streamSnapshot.data!.docs[index];
+                                return Card(
+                                  color: Color.fromARGB(255, 165, 201, 202),
+                                  margin: const EdgeInsets.all(10),
+                                  child: ListTile(
+                                    title: Text(
+                                      documentSnapshot['content'],
+                                      style: TextStyle(
+                                          color:
+                                              Color.fromARGB(255, 44, 51, 51)),
+                                    ),
+                                    subtitle: Text(documentSnapshot['sender']),
+                                  ),
+                                );
+                              },
+                            );
+                          }
+                          return Text('No reviews!');
+                        },
                       ),
                     ],
-                  ),
-                )),
-              ],
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.all(10),
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    Text(
-                      'UGX ' + widget.professional.cost.toString(),
-                      style: TextStyle(fontSize: 22),
-                    )
-                  ],
-                ),
-                Row(
-                  children: [Text('Starting cost\n')],
-                ),
-                tags(widget.professional.complete,
-                    rating(widget.professional.ratings)),
-                Row(
-                  children: [
-                    Text(
-                      '\nAbout this pro',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                    ),
-                  ],
-                ),
-                Text(
-                    'This professional has a work experience of over 5 years and is guaranteed to get the job properly done.'),
-              ],
-            ),
-          ),
-          Divider(
-            height: 1,
-          ),
-          Text(
-            'Reviews',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          ),
-          StreamBuilder(
-            stream: FirebaseFirestore.instance
-                .collection('reviews')
-                .where('receipient', isEqualTo: widget.professional.name)
-                .snapshots(),
-            builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
-              if (streamSnapshot.hasData) {
-                return ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: streamSnapshot.data!.docs.length,
-                  itemBuilder: (context, index) {
-                    final DocumentSnapshot documentSnapshot =
-                        streamSnapshot.data!.docs[index];
-                    return Card(
-                      margin: const EdgeInsets.all(10),
-                      child: ListTile(
-                        title: Text(documentSnapshot['content']),
-                        subtitle: Text(documentSnapshot['sender']),
-                      ),
-                    );
-                  },
-                );
-              }
-              return Text('No reviews!');
-            },
-          ),
-        ],
-      ),
+                  );
+                } else {
+                  return Center(child: spinkit);
+                }
+              })),
       floatingActionButton: FloatingActionButton(
         onPressed: () => _addReview(),
         child: Icon(Icons.reviews),

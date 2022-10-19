@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
+import 'package:flutter_application_1/models/spinkit.dart';
 import 'package:flutter_application_1/screens/professional/biodata.dart';
 
 class Profile extends StatefulWidget {
@@ -12,6 +14,27 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   var user = FirebaseAuth.instance.currentUser;
+  final _controller = ValueNotifier<bool>(false);
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.addListener(() {
+      setState(() {
+        final docUser =
+            FirebaseFirestore.instance.collection('users').doc(user!.email);
+        if (_controller.value) {
+          docUser.update({
+            'available': true
+          });
+        } else {
+          docUser.update({
+            'available': false
+          });
+        }
+      });
+    });
+  }
 
   void pushBioData() {
     Navigator.of(context)
@@ -29,7 +52,7 @@ class _ProfileState extends State<Profile> {
       builder: (context, snapshots) {
         if (snapshots.connectionState == ConnectionState.waiting) {
           return Center(
-            child: CircularProgressIndicator(),
+            child: spinkit,
           );
         } else if (snapshots.hasData) {
           var data = snapshots.data!.docs[0].data() as Map<String, dynamic>;
@@ -210,7 +233,30 @@ class _ProfileState extends State<Profile> {
                         child: const Text('Bio-Data'),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Color.fromARGB(255, 31, 44, 52),
-                        ))
+                        )),
+                    SizedBox(height: 10),
+                    Row(
+                      children: [
+                        Text('Toggle Availability: ',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20)),
+                        availability(),
+                      ],
+                    ),
+                    SizedBox(height: 10,),
+                    Row(
+                      children: [
+                        Text(
+                          'Completed jobs: ',
+                          style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20)),
+                        Text(data['complete'].toString(), style: TextStyle(color: Colors.green, fontSize: 20),)
+                      ]
+                    )
                   ],
                 ),
               ),
@@ -222,5 +268,20 @@ class _ProfileState extends State<Profile> {
         }
       },
     ));
+  }
+
+  Widget availability() {
+    return AdvancedSwitch(
+      controller: _controller,
+      activeColor: Colors.green,
+      inactiveColor: Colors.red,
+      activeChild: Text('YES'),
+      inactiveChild: Text('No'),
+      borderRadius: BorderRadius.all(const Radius.circular(15)),
+      width: 100,
+      height: 30,
+      enabled: true,
+      disabledOpacity: 0.5,
+    );
   }
 }

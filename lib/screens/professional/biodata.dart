@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/models/spinkit.dart';
 
 class bioData extends StatefulWidget {
   const bioData({super.key});
@@ -32,15 +33,15 @@ class _bioDataState extends State<bioData> {
           child: StreamBuilder(
               stream: FirebaseFirestore.instance
                   .collection('bioData')
-                  .where('uniqueId', isEqualTo: user!.uid)
+                  .doc(user!.email)
                   .snapshots(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(child: CircularProgressIndicator());
+                  return Center(child: spinkit);
                 } else {
                   try {
                     var data =
-                        snapshot.data!.docs[0].data() as Map<String, dynamic>;
+                        snapshot.data!.data() as Map<String, dynamic>;
                     return Column(children: [
                       SizedBox(
                         height: 10,
@@ -89,7 +90,7 @@ class _bioDataState extends State<bioData> {
                                   fillColor: Colors.white, filled: true),
                               validator: (value) {
                                 if (value!.isEmpty) {
-                                  return 'Please write something about yourself!';
+                                  return 'Write something about yourself!';
                                 }
                                 return null;
                               }),
@@ -106,8 +107,7 @@ class _bioDataState extends State<bioData> {
   Future _saveBio() async {
     final isValid = formKey.currentState!.validate();
     if (!isValid) return;
-    await FirebaseFirestore.instance.collection('bioData').add({
-      'uniqueId': user!.uid,
+    await FirebaseFirestore.instance.collection('bioData').doc(user!.email).set({
       'about': aboutController.text.trim(),
     });
   }

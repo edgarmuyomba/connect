@@ -1,5 +1,3 @@
-//import 'package:connect/firebase_options.dart';
-//import 'package:connect/screens/wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -24,6 +22,10 @@ class MyApp extends StatelessWidget {
       navigatorKey: navigatorKey,
       scaffoldMessengerKey: messengerKey,
       title: 'Connect',
+      theme: ThemeData(
+        primaryColor: Color.fromARGB(255, 31, 44, 52),
+        accentColor: Color.fromARGB(255, 31, 44, 52)
+      ),
       home: Wrapper(),
     );
   }

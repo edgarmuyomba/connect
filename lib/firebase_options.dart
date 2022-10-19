@@ -17,16 +17,16 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web;
+      throw UnsupportedError(
+        'DefaultFirebaseOptions have not been configured for web - '
+        'you can reconfigure this by running the FlutterFire CLI again.',
+      );
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
@@ -49,20 +49,21 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCD1DFa6fPHNsLqeJNMmFzgGxhtOj_OKos',
-    appId: '1:746562030554:web:dcbc5d5ed4a0b3e9f54ee3',
-    messagingSenderId: '746562030554',
-    projectId: 'connect-e9d92',
-    authDomain: 'connect-e9d92.firebaseapp.com',
-    storageBucket: 'connect-e9d92.appspot.com',
+  static const FirebaseOptions android = FirebaseOptions(
+    apiKey: 'AIzaSyAcrQQq_xOLu_1qT-PhfSv78yPuNVwY9os',
+    appId: '1:692868287416:android:a9eb668f64dceb3ff29d4d',
+    messagingSenderId: '692868287416',
+    projectId: 'connect-9e78f',
+    storageBucket: 'connect-9e78f.appspot.com',
   );
 
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDKBEZMc3mhHHIQBbWf3YHiMdpU9faj1xg',
-    appId: '1:746562030554:android:bee54a4207ab3f04f54ee3',
-    messagingSenderId: '746562030554',
-    projectId: 'connect-e9d92',
-    storageBucket: 'connect-e9d92.appspot.com',
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyCKAI8nv5fj7eTV6t2r3rs-FmsJ3BuUV_M',
+    appId: '1:692868287416:ios:8578595aa9c79742f29d4d',
+    messagingSenderId: '692868287416',
+    projectId: 'connect-9e78f',
+    storageBucket: 'connect-9e78f.appspot.com',
+    iosClientId: '692868287416-ql8lfs3rc6igf78vmmvov8mhspi5cd3c.apps.googleusercontent.com',
+    iosBundleId: 'com.example.connect',
   );
 }

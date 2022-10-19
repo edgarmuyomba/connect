@@ -3,6 +3,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/models/spinkit.dart';
 
 import '../../main.dart';
 import '../../utils.dart';
@@ -122,6 +123,7 @@ class _ordAccountState extends State<ordAccount> {
                 ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
                     minimumSize: Size.fromHeight(50),
+                    backgroundColor: Color.fromARGB(255, 44, 51, 51)
                   ),
                   icon: Icon(
                     Icons.lock_open,
@@ -166,7 +168,7 @@ class _ordAccountState extends State<ordAccount> {
     showDialog(
       context: context,
       barrierDismissible: false,
-      builder: (context) => Center(child: CircularProgressIndicator()),
+      builder: (context) => Center(child: spinkit),
     );
 
     try {
@@ -174,7 +176,7 @@ class _ordAccountState extends State<ordAccount> {
           email: _emailController.text.trim(),
           password: _passwordController.text.trim());
       var user = FirebaseAuth.instance.currentUser;
-      await FirebaseFirestore.instance.collection('users').add({
+      await FirebaseFirestore.instance.collection('users').doc(_emailController.text.trim()).set({
         'uniqueId': user!.uid.toString(),
         'firstname': _fnameController.text.trim(),
         'lastname': _lnameController.text.trim(),

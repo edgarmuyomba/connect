@@ -1,8 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-//import 'package:connect/maps.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/screens/professional/QR/generate.dart';
 import 'package:flutter_application_1/screens/drawer/drawer.dart';
 import 'package:flutter_application_1/screens/messaging/chats.dart';
 
@@ -20,7 +18,7 @@ class _ordHome extends State<ordHome> {
   var _pages = [
     Drawer_(),
     Chat(),
-    //MapWidget(),
+    // MapWidget(),
     //generatepage(),
   ];
 
@@ -207,23 +205,21 @@ class _ordHome extends State<ordHome> {
     }
   ];
 
-  // addData() async {
-  //   for (var element in data) {
-  //     FirebaseFirestore.instance.collection('users').add(element);
-  //   }
-  // }
+  addData() async {
+    for (var element in data) {
+      FirebaseFirestore.instance.collection('users').doc(element['email']).set(element);
+    }
+  }
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   // addData();
-  // }
+  @override
+  void initState() {
+    super.initState();
+    // addData();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Connect',
-      home: Scaffold(
+    return Scaffold(
         body: Center(child: _pages.elementAt(_currentPage)),
         bottomNavigationBar: BottomNavigationBar(
           items: [
@@ -235,20 +231,21 @@ class _ordHome extends State<ordHome> {
               icon: Icon(Icons.email),
               label: 'chats',
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.map),
-              label: 'Map',
-            ),
+            // BottomNavigationBarItem(
+            //   icon: Icon(Icons.map),
+            //   label: 'Map',
+            // ),
           ],
           currentIndex: _currentPage,
-          fixedColor: Colors.blue,
+          backgroundColor: Color.fromARGB(255, 31, 44, 52),
+          fixedColor: Color.fromARGB(255, 2, 168, 132),
+          unselectedItemColor: Color.fromARGB(255, 133, 150, 160),
           onTap: (int inIndex) {
             setState(() {
               _currentPage = inIndex;
             });
           },
         ),
-      ),
-    );
+      );
   }
 }
