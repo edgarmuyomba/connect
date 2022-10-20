@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/drawer/drawer.dart';
-import 'package:flutter_application_1/screens/map/current%20location_screen.dart';
+import 'package:flutter_application_1/screens/map/map.dart';
 import 'package:flutter_application_1/screens/messaging/chats.dart';
 
 class ordHome extends StatefulWidget {
@@ -19,9 +19,7 @@ class _ordHome extends State<ordHome> {
   var _pages = [
     Drawer_(),
     Chat(),
-    // MapWidget(),
-    //generatepage(),
-    CurrentLocationScreen()
+    locationMap()
   ];
 
   List<Map<String, dynamic>> data = [
