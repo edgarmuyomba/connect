@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/models/spinkit.dart';
 import 'package:flutter_application_1/screens/home/subscribers.dart';
-import 'package:flutter_application_1/screens/request/request.dart';
+import 'package:flutter_application_1/screens/professional/request/request.dart';
 import '../../models/professional.dart';
 
 class proList extends StatefulWidget {

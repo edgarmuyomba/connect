@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_application_1/screens/professional/QR/generate.dart';
-import 'package:flutter_application_1/screens/request/jobs.dart';
+import 'package:flutter_application_1/screens/professional/request/jobs.dart';
 
 import '_profile.dart';
 import 'package:flutter/material.dart';

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/drawer/drawer.dart';
 import 'package:flutter_application_1/screens/map/map.dart';
 import 'package:flutter_application_1/screens/messaging/chats.dart';
+import 'package:flutter_application_1/screens/userRequests/sentRequests.dart';
 
 class ordHome extends StatefulWidget {
   const ordHome({super.key});
@@ -13,11 +14,12 @@ class ordHome extends StatefulWidget {
 }
 
 class _ordHome extends State<ordHome> {
-  var _currentPage = 0;
+  var _currentPage = 1;
   var user = FirebaseAuth.instance.currentUser;
 
   var _pages = [
     Drawer_(),
+    SentRequest(),
     Chat(),
     locationMap()
   ];
@@ -229,6 +231,10 @@ class _ordHome extends State<ordHome> {
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.task),
+            label: 'requests'
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.email),
