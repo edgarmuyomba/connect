@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/models/professional.dart';
 import 'package:flutter_application_1/models/spinkit.dart';
 import 'package:flutter_application_1/screens/messaging/proProfile.dart';
-import 'package:flutter_application_1/screens/professional/request/request.dart';
+import 'package:flutter_application_1/screens/userRequests/request.dart';
 
 class subscribers extends StatefulWidget {
   const subscribers({super.key, required this.category});

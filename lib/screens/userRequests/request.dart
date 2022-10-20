@@ -117,10 +117,10 @@ class _requestState extends State<request> {
                   timeOutOfRangeError: "Sorry, can't pick the selected date",
                   onDateChanged: (value) {
                     setState(
-                        (() => {date = DateFormat.yMMMMd().format(value)}));
+                        (() => {date = DateFormat('yyyy-dd-MM').format(value)}));
                   },
                   onTimeChanged: (value) {
-                    setState(() => {time = DateFormat.jm().format(value)});
+                    setState(() => {time = DateFormat.Hms().format(value)});
                   },
                 ),
                 SizedBox(height: 7),

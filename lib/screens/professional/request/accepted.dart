@@ -5,6 +5,17 @@ import 'package:firebase_auth/firebase_auth.dart';
 class accepted extends StatelessWidget {
   const accepted({super.key});
 
+  bool validComp(DateTime date) {
+    DateTime dt = DateTime.now();
+    if (dt.isBefore(date)) {
+      return false;
+    } else if (dt.isAfter(date)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     var user = FirebaseAuth.instance.currentUser;
@@ -130,25 +141,35 @@ class accepted extends StatelessWidget {
                                                       fontSize: 18,
                                                       fontWeight:
                                                           FontWeight.normal)),
-                                              onPressed: () {
-                                                var docRef = FirebaseFirestore
-                                                    .instance
-                                                    .collection('requests')
-                                                    .doc(data['date']
-                                                            .toString() +
-                                                        data[
-                                                            'time'.toString()]);
-                                                docRef.update(
-                                                    {'status': 'Completed'});
-                                                var userRef = FirebaseFirestore
-                                                    .instance
-                                                    .collection('users')
-                                                    .doc(user.email);
-                                                userRef.update({
-                                                  'complete':
-                                                      FieldValue.increment(1)
-                                                });
-                                              },
+                                              onPressed: validComp(
+                                                      DateTime.parse(
+                                                          data['date'] +
+                                                              ' ' +
+                                                              data['time']))
+                                                  ? () {
+                                                      var docRef = FirebaseFirestore
+                                                          .instance
+                                                          .collection(
+                                                              'requests')
+                                                          .doc(data['date']
+                                                                  .toString() +
+                                                              data['time'
+                                                                  .toString()]);
+                                                      docRef.update({
+                                                        'status': 'Completed'
+                                                      });
+                                                      var userRef =
+                                                          FirebaseFirestore
+                                                              .instance
+                                                              .collection(
+                                                                  'users')
+                                                              .doc(user.email);
+                                                      userRef.update({
+                                                        'complete': FieldValue
+                                                            .increment(1)
+                                                      });
+                                                    }
+                                                  : null,
                                               style: ElevatedButton.styleFrom(
                                                   backgroundColor: Colors.green,
                                                   padding: EdgeInsets.symmetric(

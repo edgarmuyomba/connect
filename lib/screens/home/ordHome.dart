@@ -14,7 +14,7 @@ class ordHome extends StatefulWidget {
 }
 
 class _ordHome extends State<ordHome> {
-  var _currentPage = 1;
+  var _currentPage = 0;
   var user = FirebaseAuth.instance.currentUser;
 
   var _pages = [
