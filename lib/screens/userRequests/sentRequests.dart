@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/screens/request/accepted.dart';
-import 'package:flutter_application_1/screens/request/complete.dart';
-import 'package:flutter_application_1/screens/request/status.dart';
+import 'package:flutter_application_1/screens/userRequests/completeTasks.dart';
+import 'package:flutter_application_1/screens/userRequests/tasks.dart';
 
-class job extends StatefulWidget {
-  const job({super.key});
+class SentRequest extends StatefulWidget {
+  const SentRequest({super.key});
 
   @override
-  State<job> createState() => _jobState();
+  State<SentRequest> createState() => _sentRequestState();
 }
 
-class _jobState extends State<job> with SingleTickerProviderStateMixin {
+class _sentRequestState extends State<SentRequest> with SingleTickerProviderStateMixin {
   late TabController _controller;
   int selectedIndex = 0;
 
@@ -29,11 +28,11 @@ class _jobState extends State<job> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return DefaultTabController(
         initialIndex: 0,
-        length: 3,
+        length: 2,
         child: Scaffold(
             backgroundColor: Color.fromARGB(255, 18, 27, 34),
             appBar: AppBar(
-              title: Text('Jobs',
+              title: Text('Tasks',
                   style: TextStyle(color: Color.fromARGB(255, 133, 150, 160))),
               backgroundColor: Color.fromARGB(255, 31, 44, 52),
               bottom: TabBar(
@@ -44,19 +43,15 @@ class _jobState extends State<job> with SingleTickerProviderStateMixin {
                             style: TextStyle(
                                 color: Color.fromARGB(255, 133, 150, 160)))),
                     Tab(
-                        child: Text('Accepted',
-                            style: TextStyle(
-                                color: Color.fromARGB(255, 133, 150, 160)))),
-                    Tab(
                         child: Text('Completed',
                             style: TextStyle(
-                                color: Color.fromARGB(255, 133, 150, 160))))
+                                color: Color.fromARGB(255, 133, 150, 160)))),
                   ]),
             ),
             body: TabBarView(
               children: <Widget>[
-                status(), 
-                accepted(),
-                complete()])));
+                tasks(), 
+                compTasks(),
+                ])));
   }
 }

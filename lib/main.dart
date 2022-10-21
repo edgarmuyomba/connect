@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       title: 'Connect',
       theme: ThemeData(
         primaryColor: Color.fromARGB(255, 31, 44, 52),
-        accentColor: Color.fromARGB(255, 31, 44, 52)
+        accentColor: Color.fromARGB(255, 2, 168, 132)
       ),
       home: Wrapper(),
     );

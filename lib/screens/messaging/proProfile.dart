@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -159,64 +157,6 @@ class _proProfileState extends State<proProfile> {
         ],
       );
     }
-  }
-
-  Future<void> _addReview() async {
-    final user = FirebaseAuth.instance.currentUser;
-    await showModalBottomSheet(
-        backgroundColor: Color.fromARGB(255, 57, 91, 100),
-        isScrollControlled: false,
-        context: context,
-        builder: (BuildContext context) {
-          return Padding(
-            padding: EdgeInsets.only(
-                top: 20,
-                left: 20,
-                right: 20,
-                bottom: MediaQuery.of(context).viewInsets.bottom + 20),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                TextField(
-                  style: TextStyle(color: Color.fromARGB(255, 165, 201, 202)),
-                  controller: _textController,
-                  decoration: const InputDecoration(
-                      labelText: 'Review',
-                      labelStyle:
-                          TextStyle(color: Color.fromARGB(255, 231, 246, 242))),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(255, 44, 51, 51)),
-                  child: const Text(
-                    "Post",
-                  ),
-                  onPressed: () async {
-                    final String text = _textController.text;
-                    if (text != null) {
-                      await FirebaseFirestore.instance
-                          .collection('reviews')
-                          .add({
-                        "content": text,
-                        "uniqueId": widget.professional.email,
-                        "sender": user!.email
-                            .toString()
-                            .substring(0, user.email.toString().indexOf('@')),
-                        "receipient": widget.professional.name,
-                      });
-                      _textController.text = '';
-                      Navigator.of(context).pop();
-                    }
-                  },
-                )
-              ],
-            ),
-          );
-        });
   }
 
   Widget _dialog() {
@@ -459,11 +399,6 @@ class _proProfileState extends State<proProfile> {
                   return Center(child: spinkit);
                 }
               })),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => _addReview(),
-        child: Icon(Icons.reviews),
-        backgroundColor: Color.fromARGB(255, 3, 26, 36),
-      ),
     );
   }
 }

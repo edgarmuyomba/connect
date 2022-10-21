@@ -171,7 +171,7 @@ class status extends StatelessWidget {
                                               width: 100,
                                               child: ElevatedButton(
                                                   child: Text(
-                                                    'Reject',
+                                                    'Decline',
                                                     style: TextStyle(
                                                       fontSize: 18,
                                                       fontWeight: FontWeight.normal
