@@ -7,8 +7,6 @@ The user and professional can also chat with our in built chat and text feature.
 
 Professional, upon completion of 20 tasks with various clients, will attain verification status. When a professional meets with a client, he/she is required to display a QR code embedded with their details to the client to prove/verify that indeed, he is the one they requested for.
 
-## Screenshots
-
 ## Setting up dev
 1. Clone the repository
     ```bash
